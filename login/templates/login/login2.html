@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Log In</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'login/n.css' %}"/>
+    </head>
+
+    <body>
+    {% load crispy_forms_tags %}
+    {% load staticfiles %}
+    <!-- The top of file index.html -->
+        <html itemscope itemtype="http://schema.org/Article">
+        <head>
+          <!-- BEGIN Pre-requisites -->
+          <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+          </script>
+          <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer>
+          </script>
+          <!-- END Pre-requisites -->
+        
+        
+        <form class="ui form" action="" method="POST" enctype='multipart/form-data'  style="color:black;">
+
+            {% csrf_token %}
+            {% if 'Post' in title or 'Answer' in title %}
+            {{ form.as_p }}
+            {% else %}
+            {{ form|crispy }}
+            {% endif %}
+            <div class="actions">
+            <button class="ui positive right labeled icon button" type="submit" name="submit">
+              Submit
+              <i class="checkmark icon"></i>
+            </button>
+            </div>
+        </form>
+
+
+</html>

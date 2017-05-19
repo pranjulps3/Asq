@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  {% load static %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tvaran - Homepage</title>
+    <!-- CSS-->
+    <link href={% static "css/prism.css" %} rel="stylesheet">
+    <link href={% static "css/style1.css"%} rel="stylesheet">
+    <link href={% static "css/animate.css"%} rel="stylesheet">
+    <link href={% static "css/ghpages-materialize.css"%} type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body class="parallax-demo" style="overflow-x:hidden;"><header>
+  <nav style="height: 5em;" class="wow fadeInUp">
+    <div class="nav-wrapper" style="background-color: #EE6E73;">
+      <a href="/" class="brand-logo" style="font-size: 3.5em;">&emsp;Tvaran</a>
+        {% if user.first_name %}
+        <ul class="right hide-on-med-and-down">
+        <li><a class="waves-effect waves-light btn" href="/fillup">{{user.first_name}}&nbsp;{% if user.person.display_pic %}
+        <img src="{{user.person.display_pic.url}}" width=7% height=80% />
+        {% else %}<i class="material-icons right">perm_identity</i>{% endif %}</a></li>
+        <li><a class="waves-effect waves-light btn" href="/logout">Logout<i class="material-icons right">email</i></a></li>
+        <li><a class="waves-effect waves-light btn" href="#about">About<i class="material-icons right">info_outline</i></a></li>
+      </ul>
+      {% elif user.username %}
+        <ul class="right hide-on-med-and-down">
+        <li><a class="waves-effect waves-light btn" href="/fillup">{{user.username}}&nbsp;{% if user.person.display_pic %}
+        <img src="{{user.person.display_pic.url}}" width=7% height=80% />
+        {% else %}<i class="material-icons right">perm_identity</i>{% endif %}</a></li>
+        <li><a class="waves-effect waves-light btn" href="/logout">Logout<i class="material-icons right">email</i></a></li>
+        <li><a class="waves-effect waves-light btn" href="#about">About<i class="material-icons right">info_outline</i></a></li>
+      </ul>
+      {% else %}
+      <ul class="right hide-on-med-and-down">
+      <li><a class="waves-effect waves-light btn" href="/login">Log In<i class="material-icons right">perm_identity</i></a></li>
+        <li><a class="waves-effect waves-light btn" href="/register">Sign Up<i class="material-icons right">email</i></a></li>
+        <li><a class="waves-effect waves-light btn" href="#about">About<i class="material-icons right">info_outline</i></a></li>
+      </ul>
+      {% endif %}
+
+    </div>
+  </nav>
+</header>
+
+<!--  Parallax Section  -->
+
+<main>
+  <div class="parallax-container wow fadeInUp" style="z-index: 999999;">
+  {% load static %}
+    <div class="parallax"><img src={% static "img/office2.jpg"%}></div>
+  }
+  </div>
+<!--     -->
+<!--     <div class="row container" style="font-family: 'Ubuntu';"">
+      <h2 class="text-darken-3 center-align">About Tvaran</h2> -->
+<div id="teal2" class="block teal lighten-1 container-fluid wow fadeInUp" >
+  <nav class="pushpin-demo-nav wow fadeInUp" data-target="teal2" style="z-index: 99999;" id="about">
+    <div class="nav-wrapper teal">
+      <div class="container">
+        <a href="#" class="brand-logo center" style="font-size: 3em;">About Tvaran</a>
+      </div>
+    </div>
+  </nav>
+          <div class="col s12 m12 center-align" style="height: 20em; margin-top: 5em;">
+          <div class="">
+            <hr>
+            <div class="" style="font-family: 'Ubuntu'; font-size: 4em; color: white;">
+              <h5>Tvaran is an amalgamation of two themes : </h5>
+      <h5><i class="material-icons left">label</i>Provide a common platform for people to apply for all internships and job opportunities related to Public Sector Units and Government Offices</h5>
+      <h5><i class="material-icons left">label</i>Provide a transparent procedure for application and selection to the same, through merit and qualifications</h5>
+
+      <h5>Tvaran will target and benefit a large number of people, and its implications are huge.
+      </h5>
+      <hr>
+            </div>
+          </div>
+        </div>
+<!--        -->
+    </div>  
+     <div id="teal1" class="block teal lighten-1 container-fluid wow fadeInUp" style="margin-top: -0.7em;">
+  <nav class="pushpin-demo-nav" data-target="teal1" style="z-index: 99999;">
+    <div class="nav-wrapper teal">
+      <div class="container">
+        <a href="#" class="brand-logo center" style="font-size: 3em;">Departments</a>
+        
+      </div>
+    </div>
+  </nav>
+    <div class="row" style="position: relative;top:0em;">
+      <div class="col s6 m3 wow fadeInUp">
+          <div class="card medium">
+            <div class="card-image">
+              <img src={% static "img/engg.jpg"%}>
+              <span class="card-title">Engineering</span>
+            </div>
+            <div class="card-content">
+              <p>Discover the latest opportunities in the Engineering sector.</p>
+            </div>
+            <div class="card-action">
+              <a href="category.html#engg"><b>Explore</b></a>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col s6 m3 wow fadeInUp">
+          <div class="card medium">
+            <div class="card-image">
+              <img src={% static "img/med.jpg"%}>
+              <span class="card-title">Medical</span>
+            </div>
+            <div class="card-content">
+              <p>Discover the latest opportunities in the Medical sector.</p>
+            </div>
+            <div class="card-action">
+              <a href="category.html#med"><b>Explore</b></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s6 m3 wow fadeInUp">
+          <div class="card medium">
+            <div class="card-image">
+              <img src={% static "img/law.jpg"%}>
+              <span class="card-title">Law</span>
+            </div>
+            <div class="card-content">
+              <p>Discover the latest opportunities in the Law sector.</p>
+            </div>
+            <div class="card-action">
+              <a href="category.html#law"><b>Explore</b></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s6 m3 wow fadeInUp">
+          <div class="card medium">
+            <div class="card-image">
+            {% load static %}
+              <img src={% static "img/manage.jpg" %}/>
+              <span class="card-title">Manangement</span>
+            </div>
+            <div class="card-content">
+              <p>Discover the latest opportunities in the Management sector.</p>
+            </div>
+            <div class="card-action">
+              <a href="category.html#manage"><b>Explore</b></a>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+  
+  <div class="parallax-container wow fadeInUp" style="margin-top: -1.3em;">
+    <div class="parallax"><img src={% static "img/parallax2.jpg"%}></div>
+  </div>
+  </main>
+
+    <footer class="page-footer wow fadeInUp" style="background-color: #EE6E73;">
+      <div class="container">
+        <div class="row">
+          <div class="col l4 s12">
+            <h5 class="white-text">Help Tvaran Grow</h5>
+            <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+            
+
+          </div>
+          <div class="col l4 s12">
+            <h5 class="white-text">Join the Discussion</h5>
+            <p class="grey-text text-lighten-4">We have a Gitter chat room set up where you can talk directly with us. Come in and discuss new features, future goals, general problems or questions, or anything else you can think of.</p>
+            
+          </div>
+
+          <div class="col l4 s12">
+            <h5 class="white-text">Contact Us</h5>
+            <p class="grey-text text-lighten-4">For any more information, you can contact us on:<br><b><em style="font-size: 1.2em;font-family: 'Ubuntu'">tvaran@gmail.com</em></b></p>
+            
+          </div>
+          
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2017 Tvaran, All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>if (!window.jQuery) { document.write('<script src={% static "bin/jquery-2.1.1.min.js" %}><\/script>'); }
+    </script>
+    <script src={% static "js/jquery.timeago.min.js"%}></script>
+    <script src={% static "js/prism.js" %}></script>
+    <script src={% static "bin/materialize.js" %}></script>
+    <script src={% static "js/init.js" %}></script>
+    <script src={% static "js/wow.min.js" %}></script>
+    <script>
+  // Initialize collapse button
+  $(document).ready(function(){
+        $(".button-collapse").sideNav();
+    });
+  
+    </script>
+    <script>
+              new WOW().init();
+              </script>
+
+  </body>
+</html>

@@ -1,0 +1,9 @@
+
+{% if count > 0 %}
+	{% for prof in profiles %}
+<a class="result" href="{% url 'profile_view' prof.id %}"><div class="content"><div class="title">{{ prof.username }}<br><p>{{ prof.email }}</p></div></div></a>
+	 {% endfor %}
+	 <a class="result"><div class="content"><div class="title">That's it</div></div></a>
+{% else %}
+	<a class="result"><div class="content"><div class="title">No Results</div></div></a>
+{% endif %}

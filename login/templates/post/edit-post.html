@@ -1,0 +1,36 @@
+       <div id="post-edit-form-{{ i.id }}" action="{% url 'update_post' i.id %}" hidden>
+       <link href="/static/pagedown/demo/browser/demo.css" type="text/css" media="all" rel="stylesheet">
+<script type="text/javascript" src="/static/pagedown/Markdown.Converter.js"></script>
+<script type="text/javascript" src="/static/pagedown-extra/pagedown/Markdown.Converter.js"></script>
+<script type="text/javascript" src="/static/pagedown/Markdown.Sanitizer.js"></script>
+<script type="text/javascript" src="/static/pagedown/Markdown.Editor.js"></script>
+<script type="text/javascript" src="/static/pagedown-extra/Markdown.Extra.js"></script>
+<script type="text/javascript" src="/static/pagedown_init.js"></script>
+       {{ form.media }}
+        <form class='edit-post' action="" method="POST" enctype="multipart/form-data" data-id="{{ i.id }}" style="color:black;">
+        {% csrf_token %}
+            <input type="hidden">
+            
+            <p><label for="id_title">Title:</label> <input id="id_title" value="{{ i.title }}" maxlength="120" name="title" type="text" required=""></p>
+<p><label for="id_content">Content:</label> </p><div class="wmd-wrapper" id="id_content-wmd-wrapper">
+    <div class="wmd-panel">
+        <div id="id_content_wmd_button_bar"></div>
+        <textarea class=" wmd-input" id="form-content-{{ i.id }}"  cols="40" id="id_content" name="content" rows="10" required="">{{ i.content }}</textarea>
+    </div>
+    
+        <p class="wmd-preview-title"><small>HTML Preview:</small></p>
+        <div id="id_content_wmd_preview" class="wmd-panel wmd-preview"></div>
+    
+</div><p></p>
+            
+                
+            <input type="submit" value="Submit" />
+  </button>
+            
+
+            <br><!-- CREATE A REGISTER PAGE LINK and LOGIN LINK -->
+            <br>
+        </form>
+        </div>
+       
+    

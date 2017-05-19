@@ -1,0 +1,30 @@
+{% load static %}
+<a class="ui teal image label" href="{% url 'profile_view' objuser.id %}">
+      {% if objuser.person.display_pic %}
+      <img class="ui mini rounded image" src="{{objuser.person.display_pic.url}}" style="display: inline;"/>
+      {% else %}
+      <img class="ui mini rounded image" src= {% static 'img/dummy_user.png' %} style="display: inline;"/>
+      {% endif %} 
+{{ objuser.username }}</a>
+      {% if user.person == objuser.person %}
+    {% else %}
+        <div class="ui flowing popup top left transition hidden">
+          <div class="ui center aligned grid">
+            <div class="column">
+              {% if objuser.person.display_pic %}
+              <img class="ui small rounded image" src="{{objuser.person.display_pic.url}}" style="display: inline;"/>
+              {% else %}
+              <img class="ui small rounded image" src= {% static 'img/dummy_user.png' %} style="display: inline;"/>
+              {% endif %} 
+            	{% if objuser.first_name %}
+              <h4 class="ui header">{{ objuser.first_name }}&nbsp;{{ objuser.last_name }}</h4>
+              {% else %}
+              <h4 class="ui header">{{ objuser.username }}</h4>
+              {% endif %}
+              <a href="mailto:{{ objuser.email }}"<h5><i class="mail icon"></i>{{ objuser.email }}</h5></a>
+              <p>{{ objuser.person.about_me }}</p>
+              <a class="profiles" id="follow-{{ objuser.person.id }}" data = "{{ objuser.person.id }}" value = "Follow"> {% if objuser.person in user.person.follows.all %}<div class='ui purple labeled icon button'><i class='user icon'></i>unfollow</div> {% else %}<div class='ui basic purple labeled icon button'><i class='add user icon'></i>follow</div>{% endif %}</a>
+            </div>
+          </div>
+        </div>
+	{% endif %}

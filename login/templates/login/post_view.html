@@ -1,0 +1,263 @@
+{% extends 'login/semantic.html' %}
+{% block body %}
+
+{% load static %}
+{% load dractags %}
+{% load post_tags %}
+	{% load comments_tags %}
+  {% get_post post user %}
+
+
+<script type="text/javascript">
+
+$('.question-delete').click(function(){
+    var element = $(this);
+    var id = $(this).attr('data');
+    if(confirm("Are you sure you want to delete this Question?")){
+      $.ajax({
+               type: "POST",
+               url: "{% url 'delete_question'%}",
+               data: {'question_id': $(this).attr('data'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               success: function(response) {
+                      if(response.message == "Deleted")
+                      {
+                        window.location.replace("/post/");
+                        }
+                        else if(resonse.message == 'Unauthenticated')
+                        {
+                            alert('You are not allowed to do this!!');
+                        }
+                },
+                error: function(rs, e) {
+                       alert(rs.responseText);
+                }
+          }); 
+    }
+    })
+
+
+    </script>
+<script type="text/javascript">
+$('.post').click(function(){
+    var element = $(this);
+      $.ajax({
+               type: "POST",
+               url: "{% url 'upvote_post'%}",
+               data: {'post_id': $(this).attr('data'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               success: function(response) {
+                      if(response.message == "Upvoted")
+                      {
+                      element.html("<div class='ui small blue button'><i class='chevron up icon'></i>unvote</div><div class='ui small basic blue left pointing label'>"+response.upvotes+"</div>");
+                      // document.getElementById(element.attr('data')).style.color = 'red';
+                        }
+                        else
+                        {
+                      element.html("<div class='ui small basic grey button'><i class='chevron up icon'></i>vote</div><div class='ui small basic grey left pointing label'>"+response.upvotes+"</div>");
+                            // document.getElementById(element.attr('data')).style.color = 'black';
+                        }
+
+                },
+                error: function(rs, e) {
+                       alert(rs.responseText);
+                }
+          }); 
+    })
+
+$('.post-delete').click(function(){
+    var element = $(this);
+    var id = $(this).attr('data');
+    if(confirm("Are you sure you want to delete this Post?")){
+      $.ajax({
+               type: "POST",
+               url: "{% url 'delete_post'%}",
+               data: {'post_id': $(this).attr('data'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               success: function(response) {
+                      if(response.message == "Deleted")
+                      {
+                        $('.mypost-'+id).slideToggle()
+                        }
+                        else if(resonse.message == 'Unauthenticated')
+                        {
+                            alert('You are not allowed to do this!!');
+                        }
+                },
+                error: function(rs, e) {
+                       alert(rs.responseText);
+                }
+          }); 
+    }
+    })
+
+    </script>
+    <script type="text/javascript">
+
+$(document).ready(function() {
+    // ADD COMMENT //
+    $('.ui.reply.form').submit(function(event){
+        event.preventDefault();
+        var form = $(this);
+        var data =  new FormData(form.get(0));
+        $.ajax({
+            url: $('.ui.reply.form').attr('action'),
+            type: "POST",
+            data: data,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function(json) {
+                if (json['success'] == 0) {
+                  errors = ""
+                  for (var err in json['error']){
+                    errors += "" + err + ": " + json['error'][err] + "\n"
+                  }
+                  alert(errors)                      
+                }
+                else {
+                  var oid = json['oid'];
+                    var comment_count = document.getElementById('comments-count-'+json['oid']);
+                    if (parseInt(comment_count.innerHTML) == 0) {
+                        comment_count.innerHTML = parseInt(comment_count.innerHTML) + 1 + " Comment";
+                    } else {
+                        comment_count.innerHTML = parseInt(comment_count.innerHTML) + 1 + " Comments";
+                    }
+                    html = "<div id='comment-div-" + json['id'] + "' style='display:none;'>" +json['html'] +"</div>"
+                  $('.comments-'+json['oid']).append(html);
+                  $('#comment-div-' + json['id']).slideToggle();
+                  // console.log('comments-'+json['oid']);
+                  // var app = document.getElementById('comments-'+json['oid']);
+                  // app.innerHTML=html;
+                  $('textarea#id_comment').val(" ");
+                  $('textarea#id_comment').placeholder="Comment...";
+                    $('#no-comments').hide()
+                }
+
+            },
+            error: function(response) {
+              alert("error")
+            }
+         });        
+    });
+    
+    // DELETE COMMENT //
+    $('.comments-wrapper').on('click', '.comment-delete-btn', function(event) {
+        event.preventDefault();
+        var id = $(this).attr('data-id');
+        if(confirm("Are you sure you want to delete this comment?")){
+              $.ajax({
+              type: "GET",
+              url: $('.comment-delete-form').attr('action'),
+              data: {'id': id, 'csrfmiddlewaretoken' : $("#csrf").attr('value')},
+              success: function(data){
+                    if(data['success'] == 1) {
+                          $('#comment-div-' + id).slideToggle();
+                          if (data['count'] == 0) {
+                                $('#no-comments').show();
+                                var comment_count = document.getElementById('comments-count-'+data['oid']);
+                                $('#comments-count-'+data['oid']).hide()
+                          }
+                          else {
+                                var comment_count = document.getElementById('comments-count-'+data['oid']);
+                                if (parseInt(comment_count.innerHTML) == 2) {
+                                    comment_count.innerHTML = parseInt(comment_count.innerHTML) - 1 + " Comment";
+                                } else {
+                                    comment_count.innerHTML = parseInt(comment_count.innerHTML) - 1 + " Comments";
+                                }
+                                $('#no-comments').hide()
+                                $('#no-comments').hide()
+                          }
+                    }
+                    else {
+                          alert("You don't have permission to delete this comment")
+                    }
+              }
+          });
+        }
+    });
+
+    // COMMENT EDIT //
+    $('.comments-wrapper').on('click', '.comment-edit-class', function(event){
+
+        var id = $(this).attr('data-id');
+        $('#comment-edit-' + id).slideToggle();
+        $('#comment-' + id).slideToggle();
+    });
+
+    $('.comments-wrapper').on('submit', '.edit-form', function(event){
+    event.preventDefault();
+    var form = $(this);
+    var data = form.serialize();
+    var id = $(this).attr('data-id');
+    var comment = document.getElementById('comment-'+id);
+    var error = document.getElementById('edit-form-errors');
+    $.ajax({
+            type: "POST",
+            url: form.attr('action'),
+            data: data,
+
+            success: function(data){
+                json = JSON.parse(data);
+                if(json.success == 1) {
+                    comment.innerHTML = $('#input-comment-' + id).val();
+                    $('#comment-edit-' + id).slideToggle();
+                    $('#comment-' + id).slideToggle();
+                } else if(json.success == 0){
+                     errors = ""
+                  for (var err in json.error){
+                    errors += "" + json.error[err] + "\n";
+                }
+                error.innerHTML = errors;
+            }
+            },
+            dataType: 'html'
+        });
+    });
+
+
+    // LIKE UNLIKE COMMENT //
+    $('.comments-wrapper').on('click', '.like-comment-btn', function() {
+        var id = $(this).attr('data-id');
+        if($(this).attr('data-like') == 'like') {
+          $('#like-btn-' + id).attr('data-like', 'liked');
+                        $('#like-btn-' + id).html("<div class='mini ui red button'><i class='heart icon'></i>Unike</div>");
+                        
+            $.ajax({
+                type: "GET",
+                url: '/comments/like',
+                data: {'comment_id': id},
+                success: function(data){
+                    if(data['success'] == 1) {
+                        $('#likes-count-' + id).text(data['likes_count']);
+                    } else{
+                       $('#like-btn-' + id).attr('data-like', 'like');
+                        $('#like-btn-' + id).html("<div class='mini ui basic red button'><i class='heart icon'></i>Like</div>");
+                        $('#likes-count-' + id).text(data['likes_count']);
+                        // alert(data['error']);
+                    }
+                }
+            });
+        } else {
+           $('#like-btn-' + id).attr('data-like', 'like');
+                        $('#like-btn-' + id).html("<div class='mini ui basic red button'><i class='heart icon'></i>Like</div>");
+                        
+            $.ajax({
+                type: "GET",
+                url: '/comments/unlike',
+                data: {'comment_id': id},
+                success: function(data){
+                    if(data['success'] == 1) {
+                       $('#likes-count-' + id).text(data['likes_count']);
+                    } else{
+                        alert(data['error']);
+                    }
+                }
+            });
+        }
+    });
+
+})</script>
+
+
+{% endblock body %}

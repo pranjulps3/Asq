@@ -1,0 +1,43 @@
+{% extends 'login/semantic.html' %}
+
+{% block body %}
+<div class="ui raised segment" style="border-radius: 5px; ">
+<!-- <i class="close icon"></i> -->
+  <div class="header">
+    <h2>{{ title }}</h2>
+  </div>
+
+  <div class="content">
+
+    {% load crispy_forms_tags %}
+    {% load staticfiles %}
+        {{ form.media }}
+        
+        <form class="ui form" action="" method="POST" enctype='multipart/form-data'  style="color:black;">
+
+            {% csrf_token %}
+            {% if 'Post' in title or 'Answer' in title %}
+            {{ form.as_p }}
+            {% else %}
+            {{ form|crispy }}
+            {% endif %}
+            <div class="actions">
+            <button class="ui positive right labeled icon button" type="submit" name="submit">
+              Submit
+              <i class="checkmark icon"></i>
+            </button>
+            </div>
+        </form>
+
+</div>
+</div>
+<script type="text/javascript">
+  $(".js-example-tags").select2({
+  tags: true
+})
+</script>
+{% endblock %}
+
+
+
+

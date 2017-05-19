@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://materializecss.com/grid.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="Materialize is a modern responsive CSS framework based on Material Design by Google. ">
+    <title>Grid - Materialize</title>
+    <!-- Favicons-->
+    <link rel="apple-touch-icon-precomposed" href="http://materializecss.com/images/favicon/apple-touch-icon-152x152.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
+    <link rel="icon" href="http://materializecss.com/images/favicon/favicon-32x32.png" sizes="32x32">
+    <!--  Android 5 Chrome Color-->
+    <meta name="theme-color" content="#EE6E73">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tvaran - Homepage</title>
+    <!-- CSS-->
+    <link href={% static "css/prism.css" %} rel="stylesheet">
+    <link href={% static "css/style1.css"%} rel="stylesheet">
+    <link href={% static "css/animate.css"%} rel="stylesheet">
+    <link href={% static "css/ghpages-materialize.css"%} type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- CSS-->
+    <link href="./index_files/prism.css" rel="stylesheet">
+    <link href="./index_files/ghpages-materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="./index_files/css" rel="stylesheet" type="text/css">
+    <link href="./index_files/icon" rel="stylesheet">
+    <script src="./index_files/cb=gapi.loaded_1" async=""></script><script src="./index_files/cb=gapi.loaded_0" async=""></script><script async="" src="./index_files/analytics.js.download"></script><script id="twitter-wjs" src="./index_files/widgets.js.download"></script><script>
+      window.liveSettings = {
+        api_key: "a0b49b34b93844c38eaee15690d86413",
+        picker: "bottom-right",
+        detectlang: true,
+        dynamic: true,
+        autocollect: true
+      };
+    </script>
+    <script src="./index_files/live.js.download"></script><style type="text/css">.txlive {display: none;}
+</style>
+  <script id="_carbonads_projs" type="text/javascript" src="./index_files/C6AILKT.json"></script><script type="text/javascript" src="./index_files/manifest.jsonp"></script><style type="text/css">.txlive-langselector { position:fixed;z-index:999999;min-width: 120px;line-height:32px;background-color:rgba( 0,0,0,0.75 );box-shadow: 0 0 4px rgba( 0,0,0,0.3 );color: #fff;font-size: 14px;font-family: inherit; }.txlive-langselector * { margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;border-radius: 0;-moz-border-radius:0;-webkit-border-radius:0;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-border-radius:0;opacity:1; }.txlive-langselector.txlive-langselector-topleft { top:0;left:0;right:auto;bottom:auto;border-radius: 0 0 2px 0;-moz-border-radius: 0 0 2px 0;-webkit-border-radius: 0 0 2px 0; }.txlive-langselector.txlive-langselector-topright { top:0;left:auto;right:0;bottom:auto;border-radius: 0 2px 0 0;-moz-border-radius: 0 2px 0 0;-webkit-border-radius: 0 2px 0 0; }.txlive-langselector.txlive-langselector-bottomleft { top:auto;left:0;right:auto;bottom:0;border-radius: 0 2px 0 0;-moz-border-radius: 0 2px 0 0;-webkit-border-radius: 0 2px 0 0; }.txlive-langselector.txlive-langselector-bottomright { top:auto;left:auto;right:0;bottom:0;border-radius: 2px 0 0 0;-moz-border-radius: 2px 0 0 0;-webkit-border-radius: 2px 0 0 0; }.txlive-langselector .txlive-langselector-toggle { overflow: hidden;display: block;padding:2px 16px;width: 100%;height:36px;cursor:pointer;cursor:hand; }.txlive-langselector.txlive-langselector-topleft .txlive-langselector-toggle { overflow: hidden;display: block;border-top:2px solid #006f9f;padding:2px 16px;height:36px;line-height:32px;cursor:pointer;cursor:hand; }.txlive-langselector.txlive-langselector-topright .txlive-langselector-toggle { overflow: hidden;display: block;border-top:2px solid #006f9f;padding:2px 16px;height:36px;line-height:32px;cursor:pointer;cursor:hand; }.txlive-langselector.txlive-langselector-bottomleft .txlive-langselector-toggle { overflow: hidden;display: block;border-bottom:2px solid #006f9f;padding:2px 16px;height:36px;line-height:32px;cursor:pointer;cursor:hand; }.txlive-langselector.txlive-langselector-bottomright .txlive-langselector-toggle { overflow: hidden;display: block;border-bottom:2px solid #006f9f;padding:2px 16px;height:36px;line-height:32px;cursor:pointer;cursor:hand; }.txlive-langselector .txlive-langselector-current { float: left;padding: 0;max-width: 200px;overflow:hidden;white-space: nowrap;text-overflow:ellipsis; }.txlive-langselector .txlive-langselector-marker { float: right;display: block;position:relative;width:0;height:0;margin-left:8px;margin-top: 13px;border-right:4px dashed transparent;border-left:4px dashed transparent;}.txlive-langselector-topright .txlive-langselector-marker,.txlive-langselector-topleft .txlive-langselector-marker {border-top:4px solid #fff;}.txlive-langselector-bottomright .txlive-langselector-marker,.txlive-langselector-bottomleft .txlive-langselector-marker {border-bottom:4px solid #fff;}.txlive-langselector-list { position:absolute;width: 100%;margin:0;padding:10px 0;display:none;background-color:#eaf1f7;box-shadow: 0 0 4px rgba( 0,0,0,0.3 );color:#666;list-style-type:none; }.txlive-langselector-list.txlive-langselector-list-opened { display:block; }.txlive-langselector-list > li {padding:0 16px;width:100%;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;}.txlive-langselector-list > li:hover {background-color:#b0b9c1;color:#fff;cursor:pointer;cursor:hand;}.txlive-langselector-topright > .txlive-langselector-list {top:40px;left:auto;right:0;bottom:auto;border-bottom: 1px solid #f4f7f9;}.txlive-langselector-topleft > .txlive-langselector-list {top:40px;left:0;right:auto;bottom:auto;border-bottom: 1px solid #f4f7f9;}.txlive-langselector-bottomright > .txlive-langselector-list {top:auto;left:auto;right:0;bottom:40px;border-top: 1px solid #f4f7f9;}.txlive-langselector-bottomleft > .txlive-langselector-list {top:auto;left:0;right:auto;bottom:40px;border-top: 1px solid #f4f7f9;}.txlive-langselector-topright > .txlive-langselector-list,.txlive-langselector-bottomright > .txlive-langselector-list {border-radius: 2px 0 0 2px;-moz-border-radius: 2px 0 0 2px;-webkit-border-radius: 2px 0 0 2px;}.txlive-langselector-topleft > .txlive-langselector-list,.txlive-langselector-bottomleft > .txlive-langselector-list {border-radius: 0 2px 2px 0;-moz-border-radius: 0 2px 2px 0;-webkit-border-radius: 0 2px 2px 0;}</style><script type="text/javascript" charset="utf-8" async="" src="./index_files/button.ea31e9a5ca2c3a1514ec1ed6530e2669.js.download"></script></head>
+  <body>
+    <header>
+      <nav class="top-nav">
+        <div class="container">
+          <div class="nav-wrapper"><a class="page-title">Grid</a></div>
+        </div>
+      </nav>
+      <div class="container"><a href="http://materializecss.com/grid.html#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a></div>
+      <ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0%);">
+        <li class="logo"><a id="logo-container" href="http://materializecss.com/" class="brand-logo">
+            <object id="front-page-logo" type="image/svg+xml" data="./index_files/materialize.svg">Your browser does not support SVG</object></a></li>
+        <li class="search">
+          <div class="search-wrapper card">
+            <input id="search"><i class="material-icons">search</i>
+            <div class="search-results"></div>
+          </div>
+        </li>
+        <li class="bold"><a href="http://materializecss.com/about.html" class="waves-effect waves-teal">About</a></li>
+        <li class="bold"><a href="http://materializecss.com/getting-started.html" class="waves-effect waves-teal">Getting Started</a></li>
+        <li class="no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li class="bold"><a class="collapsible-header waves-effect waves-teal">CSS</a>
+              <div class="collapsible-body" style="">
+                <ul>
+                  <li><a href="http://materializecss.com/color.html">Color</a></li>
+                  <li class="active"><a href="http://materializecss.com/grid.html">Grid</a></li>
+                  <li><a href="http://materializecss.com/helpers.html">Helpers</a></li>
+                  <li><a href="http://materializecss.com/media-css.html">Media</a></li>
+                  <li><a href="http://materializecss.com/pulse.html">Pulse</a></li>
+                  <li><a href="http://materializecss.com/sass.html">Sass</a></li>
+                  <li><a href="http://materializecss.com/shadow.html">Shadow</a></li>
+                  <li><a href="http://materializecss.com/table.html">Table</a></li>
+                  <li><a href="http://materializecss.com/css-transitions.html">Transitions</a></li>
+                  <li><a href="http://materializecss.com/typography.html">Typography</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Components</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="http://materializecss.com/badges.html">Badges</a></li>
+                  <li><a href="http://materializecss.com/buttons.html">Buttons</a></li>
+                  <li><a href="http://materializecss.com/breadcrumbs.html">Breadcrumbs</a></li>
+                  <li><a href="http://materializecss.com/cards.html">Cards</a></li>
+                  <li><a href="http://materializecss.com/chips.html">Chips</a></li>
+                  <li><a href="http://materializecss.com/collections.html">Collections</a></li>
+                  <li><a href="http://materializecss.com/footer.html">Footer</a></li>
+                  <li><a href="http://materializecss.com/forms.html">Forms</a></li>
+                  <li><a href="http://materializecss.com/icons.html">Icons</a></li>
+                  <li><a href="http://materializecss.com/navbar.html">Navbar</a></li>
+                  <li><a href="http://materializecss.com/pagination.html">Pagination</a></li>
+                  <li><a href="http://materializecss.com/preloader.html">Preloader</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold"><a class="collapsible-header  waves-effect waves-teal">JavaScript</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="http://materializecss.com/carousel.html">Carousel</a></li>
+                  <li><a href="http://materializecss.com/collapsible.html">Collapsible</a></li>
+                  <li><a href="http://materializecss.com/dialogs.html">Dialogs</a></li>
+                  <li><a href="http://materializecss.com/dropdown.html">Dropdown</a></li>
+                  <li><a href="http://materializecss.com/feature-discovery.html">FeatureDiscovery</a></li>
+                  <li><a href="http://materializecss.com/media.html">Media</a></li>
+                  <li><a href="http://materializecss.com/modals.html">Modals</a></li>
+                  <li><a href="http://materializecss.com/parallax.html">Parallax</a></li>
+                  <li><a href="http://materializecss.com/pushpin.html">Pushpin</a></li>
+                  <li><a href="http://materializecss.com/scrollfire.html">ScrollFire</a></li>
+                  <li><a href="http://materializecss.com/scrollspy.html">Scrollspy</a></li>
+                  <li><a href="http://materializecss.com/side-nav.html">SideNav</a></li>
+                  <li><a href="http://materializecss.com/tabs.html">Tabs</a></li>
+                  <li><a href="http://materializecss.com/transitions.html">Transitions</a></li>
+                  <li><a href="http://materializecss.com/waves.html">Waves</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="bold"><a href="http://materializecss.com/mobile.html" class="waves-effect waves-teal">Mobile</a></li>
+        <li class="bold"><a href="http://materializecss.com/showcase.html" class="waves-effect waves-teal">Showcase</a></li>
+        <li class="bold"><a href="http://materializecss.com/themes.html" class="waves-effect waves-teal">Themes</a></li>
+      </ul>
+    </header>
+    <main><div class="container">
+  <div class="row">
+
+    <div class="col s12 m9 l10">
+
+
+      <div>
+        <div id="grid-container" class="section scrollspy">
+          <p class="caption">We are using a standard 12 column fluid responsive grid system. The grid helps you layout your page in an ordered, easy fashion.</p>
+          <h3 class="header">Container</h3>
+          <p>The container class is not strictly part of the grid but is important in laying out content. It allows you to center your page content. The <code class=" language-markup">container</code> class is set to ~70% of the window width. It helps you center and contain your page content. We use the container to contain our body content.
+
+          </p><h4>Demo</h4>
+          <p>Try the button below to see what the page looks like without containers</p>
+          <a id="container-toggle-button" class="btn waves-effect waves-light">Turn off Containers</a>
+
+  <!-- Container Visual Demo -->
+          <div class="row">
+            <div class="col s12">
+              <div class="browser-window">
+                <div class="top-bar">
+                  <div class="circles">
+                     <div id="close-circle" class="circle"></div>
+                     <div id="minimize-circle" class="circle"></div>
+                     <div id="maximize-circle" class="circle"></div>
+                  </div>
+                </div>
+                <div class="content">
+                  <div class="row">
+
+                    <div id="site-layout-example-top" class="col s12">
+                      <!-- <p class="flat-text-logo"></p> -->
+                    </div>
+                    <div id="site-layout-example-right" class="col s12">
+                      <div class="container">
+
+                        <p class="flat-text small"></p>
+                        <p class="flat-text full-width"></p>
+                        <p class="flat-text full-width"></p>
+                        <p class="flat-text full-width"></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <p>To add a container just put your content inside a <code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span></code> tag with a <code class=" language-markup">container</code> class. Here's an example of how your page might be set up.</p>
+
+          <pre class=" language-markup"><code class=" language-markup">
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment" spellcheck="true">&lt;!-- Page Content goes here --&gt;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+          </code></pre>
+
+        </div>
+
+
+        <!-- Grid visual demo -->
+        <div id="grid-intro" class="scrollspy">
+          <h3 class="header">Introduction</h3>
+          <p>Take a look at this section to quickly understand how the grid works!</p>
+          <h4>12 Columns</h4>
+          <p>Our standard grid has 12 columns. No matter the size of the browser, each of these columns will always have an equal width.</p>
+          <div class="row">
+            <div class="col s1 grid-example"><span class="flow-text">1</span></div>
+            <div class="col s1 grid-example"><span class="flow-text">2</span></div>
+            <div class="col s1 grid-example"><span class="flow-text">3</span></div>
+            <div class="col s1 grid-example"><span class="flow-text">4</span></div>
+            <div class="col s1 grid-example"><span class="flow-text">5</span></div>
+            <div class="col s1 grid-example"><span class="flow-text">6</span></div>
+            <div class="col s1 grid-example"><span class="flow-text">7</span></div>
+            <div class="col s1 grid-example"><span class="flow-text">8</span></div>
+            <div class="col s1 grid-example"><span class="flow-text">9</span></div>
+            <div class="col s1 grid-example"><span class="flow-text">10</span></div>
+            <div class="col s1 grid-example"><span class="flow-text">11</span></div>
+            <div class="col s1 grid-example"><span class="flow-text">12</span></div>
+          </div>
+          <p>To get a feel of how the grid is used in HTML, take a look at the code below which will produce a similar result to the one above.</p>
+          <pre class=" language-markup"><code class=" language-markup">
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>6<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>7<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>9<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>10<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>11<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>12<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+          </code></pre>
+          <p>Note: For now, just know that the <code class=" language-markup">s1</code> stands for small-1 which in plain English means "1 column on small screens".</p>
+
+          <br>
+
+          <h4>Columns live inside Rows</h4>
+          <p>Remember when you are creating your layout that all columns must be contained inside a row and that you must add the <code class=" language-markup">col</code> class to your inner divs to make them into columns</p>
+          <div class="row">
+            <div class="col s12 grid-example"><span class="flow-text">This div is 12-columns wide on all screen sizes</span></div>
+            <div class="col s6 grid-example"><span class="flow-text">6-columns (one-half)</span></div>
+            <div class="col s6 grid-example"><span class="flow-text">6-columns (one-half)</span></div>
+          </div>
+          <pre class=" language-markup"><code class=" language-markup">
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s12<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>This div is 12-columns wide<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s6<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>This div is 6-columns wide<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s6<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>This div is 6-columns wide<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+          </code></pre>
+
+          <br>
+        </div>
+
+        <!-- Grid Offsets -->
+        <div id="grid-offsets" class="section scrollspy">
+          <h2 class="header">Offsets</h2>
+          <p>To offset, simply add <code class=" language-markup">offset-s2</code> to the class where <code class=" language-markup">s</code> signifies the screen class-prefix (s = small, m = medium, l = large) and the number after is the number of columns you want to offset by.</p>
+          <div class="row">
+            <div class="col s12 grid-example"><span class="flow-text">This div is 12-columns wide on all screen sizes</span></div>
+            <div class="col s6 offset-s6 grid-example"><span class="flow-text">6-columns (offset-by-6)</span></div>
+          </div>
+          <pre class=" language-markup"><code class=" language-markup">
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s12<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>flow-text<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>This div is 12-columns wide on all screen sizes<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s6 offset-s6<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>flow-text<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>6-columns (offset-by-6)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+          </code></pre>
+        </div>
+
+        <br>
+
+        <!-- Grid push and pull -->
+        <div id="grid-push" class="section scrollspy">
+          <h2 class="header">Push and Pull</h2>
+          <p>You can easily change the order of your columns with push and pull. Simply add <code class=" language-markup">push-s2</code> or <code class=" language-markup">pull-s2</code> to the class where <code class=" language-markup">s</code> signifies the screen class-prefix (s = small, m = medium, l = large) and the number after is the number of columns you want to push or pull by.</p>
+          <div class="row">
+            <div class="col s7 push-s5 grid-example"><span style="font-size: 14px;">This div is 7-columns wide on pushed to the right by 5-columns.</span></div>
+            <div class="col s5 pull-s7 grid-example"><span style="font-size: 14px;">5-columns wide pulled to the left by 7-columns.</span></div>
+          </div>
+          <pre class=" language-markup"><code class=" language-markup">
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s7 push-s5<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>flow-text<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>This div is 7-columns wide on pushed to the right by 5-columns.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s5 pull-s7<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>flow-text<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>5-columns wide pulled to the left by 7-columns.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+          </code></pre>
+        </div>
+
+        <br>
+
+        <!-- Creating Layouts -->
+        <div id="grid-layouts" class="scrollspy">
+          <h3 class="header">Creating Layouts</h3>
+          <p>Here we will show you how to create some commonly used layouts with our grid system. Hopefully these will get you more comfortable with laying out elements. To keep these demos simple, the ones here will not be responsive.</p>
+          <div class="row">
+            <div class="col s12 m6">
+              <h4>Section</h4>
+              <p>The section class is used for simple top and bottom padding. Just add the <code class=" language-markup">section</code> class to your div's containing large blocks of content.</p>
+            </div>
+            <div class="col s12 m6">
+              <h4>Divider</h4>
+              <p>Dividers are 1 pixel lines that help break up your content. Just add the <code class=" language-markup">divider</code> to a div in between your content.</p>
+            </div>
+          </div>
+
+          <h4>Example Sections and Dividers</h4>
+          <div class="divider"></div>
+          <div class="section">
+            <h5>Section 1</h5>
+            <p>Stuff</p>
+          </div>
+          <div class="divider"></div>
+          <div class="section">
+            <h5>Section 2</h5>
+            <p>Stuff</p>
+          </div>
+          <div class="divider"></div>
+          <div class="section">
+            <h5>Section 3</h5>
+            <p>Stuff</p>
+          </div>
+          <div class="divider"></div>
+          <pre class=" language-markup"><code class=" language-markup">
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>divider<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>section<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h5</span><span class="token punctuation">&gt;</span></span>Section 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h5</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Stuff<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>divider<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>section<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h5</span><span class="token punctuation">&gt;</span></span>Section 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h5</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Stuff<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>divider<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>section<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h5</span><span class="token punctuation">&gt;</span></span>Section 3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h5</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Stuff<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+          </code></pre><br>
+
+          <h4>Example Promotion Table</h4>
+          <p>If we want 3 divs that are equal size, we define the divs with a width of 4-columns, 4+4+4 = 12, which nicely adds up to 12. Inside those divs, we can put our content. Take our front page content for example. We've modified it slightly for the sake of this example.</p>
+          <div class="row">
+            <div class="col s4">
+              <div class="center promo promo-example">
+                <i class="material-icons">flash_on</i>
+                <p class="promo-caption">Speeds up development</p>
+                <p class="light center">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components.</p>
+              </div>
+            </div>
+            <div class="col s4">
+              <div class="center promo promo-example">
+                <i class="material-icons">group</i>
+                <p class="promo-caption">User Experience Focused</p>
+                <p class="light center">By utilizing elements and principles of Material Design, we were able to create a framework that focuses on User Experience.</p>
+              </div>
+            </div>
+            <div class="col s4">
+              <div class="center promo promo-example">
+                <i class="material-icons">settings</i>
+                <p class="promo-caption">Easy to work with</p>
+                <p class="light center">We have provided detailed documentation as well as specific code examples to help new users get started.</p>
+              </div>
+            </div>
+          </div>
+
+          <pre class=" language-markup"><code class=" language-markup">
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s4<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment" spellcheck="true">&lt;!-- Promo Content 1 goes here --&gt;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s4<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment" spellcheck="true">&lt;!-- Promo Content 2 goes here --&gt;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s4<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment" spellcheck="true">&lt;!-- Promo Content 3 goes here --&gt;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+          </code></pre>
+
+          <br>
+
+          <h4>Example Side Navigation Layout</h4>
+          <p>You can see how easy it is to create layouts using the grid system. Just remember to make sure your column numbers add up to 12 for an even layout.</p>
+
+          <div class="row">
+            <div class="col s12">
+              <div class="browser-window">
+                <div class="top-bar">
+                  <div class="circles">
+                     <div id="close-circle" class="circle"></div>
+                     <div id="minimize-circle" class="circle"></div>
+                     <div id="maximize-circle" class="circle"></div>
+                  </div>
+                </div>
+                <div class="content">
+                  <div class="row">
+
+                    <div id="site-layout-example-top" class="col s12">
+                      <!-- <p class="flat-text-logo"></p> -->
+                    </div>
+                    <div id="site-layout-example-left" class="col s3">
+                      <p class="flat-text-header"></p>
+                      <p class="flat-text"></p>
+                      <p class="flat-text"></p>
+                    </div>
+                    <div id="site-layout-example-right" class="col s9">
+                      <p class="flat-text"></p>
+                      <p class="flat-text"></p>
+                      <p class="flat-text"></p>
+                      <p class="flat-text"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <pre class=" language-markup"><code class=" language-markup">
+    <span class="token comment" spellcheck="true">&lt;!-- Navbar goes here --&gt;</span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- Page Layout here --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment" spellcheck="true">&lt;!-- Grey navigation panel --&gt;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s9<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment" spellcheck="true">&lt;!-- Teal page content  --&gt;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+          </code></pre>
+        </div>
+
+
+        <!-- Creating Responsive Layouts -->
+        <div id="grid-responsive" class="scrollspy">
+          <h3 class="header">Creating Responsive Layouts</h3>
+          <p>Above we showed you how to layout elements using our grid system. Now we'll show you how to design your layouts so that they look great on all screen sizes.</p>
+          <h4>Screen Sizes</h4>
+          <table class="highlight">
+            <thead>
+              <tr>
+                  <th></th>
+                  <th data-field="id">Mobile Devices <br>&lt;= 600px</th>
+                  <th data-field="name">Tablet Devices <br>&gt; 600px</th>
+                  <th data-field="price">Desktop Devices <br>&gt; 992px</th>
+                  <th data-field="price">Large Desktop Devices <br>&gt; 1200px</th>
+              </tr>
+            </thead>
+              <tbody>
+              <tr>
+                <td><strong>Class Prefix</strong></td>
+                <td><code class=" language-markup">.s</code></td>
+                <td><code class=" language-markup">.m</code></td>
+                <td><code class=" language-markup">.l</code></td>
+                <td><code class=" language-markup">.xl</code></td>
+              </tr>
+              <tr>
+                <td><strong>Container Width</strong></td>
+                <td>90%</td>
+                <td>85%</td>
+                <td>70%</td>
+                <td>70%</td>
+              </tr>
+              <tr>
+                <td><strong>Number of Columns</strong></td>
+                <td>12</td>
+                <td>12</td>
+                <td>12</td>
+                <td>12</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <br>
+
+          <h4>Adding Responsiveness</h4>
+          <p>In the previous examples, we only defined the size for small screens using <code class=" language-markup">"col s12"</code>. This is fine if we want a fixed layout since the rules propagate upwards. By just saying s12, we are essentially saying <code class=" language-markup">"col s12 m12 l12"</code>. But by explicitly defining the size we can make our website more responsive.</p>
+
+          <div class="row">
+            <div class="grid-example col s12 teal lighten-2"><span class="flow-text">I am always full-width (col s12)</span></div>
+            <div class="grid-example col s12 m6 teal lighten-2"><span class="flow-text">I am full-width on mobile (col s12 m6)</span></div>
+          </div>
+          <pre class=" language-markup"><code class=" language-markup">
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>grid-example col s12<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>flow-text<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>I am always full-width (col s12)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>grid-example col s12 m6<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>flow-text<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>I am full-width on mobile (col s12 m6)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+          </code></pre>
+
+          <br>
+
+          <h4>Responsive Side Navigation Layout</h4>
+          <p>In this example below, we take the same layout from above, but we make it responsive by defining how many columns the div should take up on each screen size. Try resizing your browser and watch the layout change below.</p>
+
+          <div class="row">
+            <div class="col s12">
+              <div class="browser-window">
+                <div class="top-bar">
+                  <div class="circles">
+                     <div id="close-circle" class="circle"></div>
+                     <div id="minimize-circle" class="circle"></div>
+                     <div id="maximize-circle" class="circle"></div>
+                  </div>
+                </div>
+                <div class="content">
+                  <div class="row">
+
+                    <div id="site-layout-example-top" class="col s12">
+                      <!-- <p class="flat-text-logo"></p> -->
+                    </div>
+                    <div id="site-layout-example-left" class="col s12 m4 l3">
+                      <p class="flat-text-header"></p>
+                      <p class="flat-text"></p>
+                      <p class="flat-text"></p>
+                    </div>
+                    <div id="site-layout-example-right" class="col s12 m8 l9">
+                      <p class="flat-text"></p>
+                      <p class="flat-text"></p>
+                      <p class="flat-text"></p>
+                      <p class="flat-text"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <pre class=" language-markup"><code class=" language-markup">
+    <span class="token comment" spellcheck="true">&lt;!-- Navbar goes here --&gt;</span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- Page Layout here --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s12 m4 l3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> <span class="token comment" spellcheck="true">&lt;!-- Note that "m4 l3" was added --&gt;</span>
+        <span class="token comment" spellcheck="true">&lt;!-- Grey navigation panel
+
+              This content will be:
+          3-columns-wide on large screens,
+          4-columns-wide on medium screens,
+          12-columns-wide on small screens  --&gt;</span>
+
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s12 m8 l9<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> <span class="token comment" spellcheck="true">&lt;!-- Note that "m8 l9" was added --&gt;</span>
+        <span class="token comment" spellcheck="true">&lt;!-- Teal page content
+
+              This content will be:
+          9-columns-wide on large screens,
+          8-columns-wide on medium screens,
+          12-columns-wide on small screens  --&gt;</span>
+
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+          </code></pre>
+
+          <h4>More Responsive Grid Examples</h4>
+          <div class="row">
+            <div class="col grid-example s12 blue lighten-1"><span class="flow-text">s12</span></div>
+            <div class="col grid-example s12 m4 l2 teal lighten-1"><span class="flow-text">s12 m4 l2</span></div>
+            <div class="col grid-example s12 m4 l8 teal lighten-1"><span class="flow-text">s12 m4 l8</span></div>
+            <div class="col grid-example s12 m4 l2 teal lighten-1"><span class="flow-text">s12 m4 l2</span></div>
+            <div class="col grid-example s12 m6 l3 purple lighten-3"><span class="flow-text">s12 m6 l3</span></div>
+            <div class="col grid-example s12 m6 l3 purple lighten-3"><span class="flow-text">s12 m6 l3</span></div>
+            <div class="col grid-example s12 m6 l3 purple lighten-3"><span class="flow-text">s12 m6 l3</span></div>
+            <div class="col grid-example s12 m6 l3 purple lighten-3"><span class="flow-text">s12 m6 l3</span></div>
+          </div>
+          <div class="row">
+            <pre class=" language-markup"><code class=" col s12 language-markup">
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s12<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>s12<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s12 m4 l2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>s12 m4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s12 m4 l8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>s12 m4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s12 m4 l2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>s12 m4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s12 m6 l3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>s12 m6 l3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s12 m6 l3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>s12 m6 l3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s12 m6 l3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>s12 m6 l3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>col s12 m6 l3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>s12 m6 l3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+            </code></pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="col hide-on-small-only m3 l2">
+      <div class="toc-wrapper pin-top" style="top: 0px;">
+        <div class="buysellads hide-on-small-only">
+          <!-- CarbonAds Zone Code -->
+          <script async="" type="text/javascript" src="./index_files/carbon.js.download" id="_carbonads_js"></script><div id="carbonads"><span><span class="carbon-wrap"><a href="https://www.graphicstock.com/join/browse?utm_campaign=AFFGS-BSACPA-affiliate-site1-joinbrowse&amp;utm_medium=affiliate&amp;utm_source=AFFGS-BSACPA-affiliate-site1-joinbrowse" class="carbon-img" target="_blank"><img src="./index_files/28536" alt="" border="0" height="100" width="130" style="max-width: 130px;"></a><a href="https://www.graphicstock.com/join/browse?utm_campaign=AFFGS-BSACPA-affiliate-site1-joinbrowse&amp;utm_medium=affiliate&amp;utm_source=AFFGS-BSACPA-affiliate-site1-joinbrowse" class="carbon-text" target="_blank">90% Unlimited Downloads Choose from Over 300,000 Vectors, Graphics &amp; Photos.</a></span><a href="http://carbonads.net/" class="carbon-poweredby" target="_blank">ads via Carbon</a></span></div>
+        <div id="carbonads"><span><a class="carbon-text" href="http://materializecss.com/grid.html#!" onclick="document.getElementById(&#39;paypal-donate&#39;).submit();"><img src="./index_files/donate.png"> Help support us by turning off adblock. If you still prefer to keep adblock on for this page but still want to support us, feel free to donate. Any little bit helps.</a></span></div></div>
+        <div style="height: 1px;">
+          <ul class="section table-of-contents">
+            <li><a href="http://materializecss.com/grid.html#grid-container" class="active">Container</a></li>
+            <li><a href="http://materializecss.com/grid.html#grid-intro" class="">Introduction</a></li>
+            <li><a href="http://materializecss.com/grid.html#grid-offsets" class="">Offsets</a></li>
+            <li><a href="http://materializecss.com/grid.html#grid-push">Push and Pull</a></li>
+            <li><a href="http://materializecss.com/grid.html#grid-layouts">Creating Layouts</a></li>
+            <li><a href="http://materializecss.com/grid.html#grid-responsive">Responsive Layouts</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    </main>    <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col l4 s12">
+            <h5 class="white-text">Help Materialize Grow</h5>
+            <p class="grey-text text-lighten-4">We hope you have enjoyed using Materialize! If you feel Materialize has helped you out and want to support the team, send us over a donation! Any amount would help support and continue development on this project and is greatly appreciated.</p>
+            <form id="paypal-donate" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHLwYJKoZIhvcNAQcEoIIHIDCCBxwCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC2O5rnsmP26R+2wNew3Jc3rCzBzw8LpJh1TTRZyMIFMYv/voKC1TMEvxU0ct4gdsZ29zARE96gRsCPVtVpY1hGr0NivLXeiHyw3xoW9UfzjcI9gZy5PZYoNv2xkTMj+jUkzuBMDiB2JfrIH7ZNxbcK1m/ep7Luoo1CR8JmYNCtlzELMAkGBSsOAwIaBQAwgawGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI/PHaKaPxsg2AgYh0FZUDlxXaZSGYZJiUkF4L0p9hZn0tYmT6kqOqB50541GOsZtJSVAO/F+Qz5I9EsCuGve7GLKSBufhNjWa24ay5T2hkGJkAzISlqS2qBQSFDDpHDyEnNSZ2vPG2K8Bepc/SQD5nurs+vyC55axU4OnG33RBEtAmdOrAlZGxwzDBSjg4us1epUyoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTQxMjE1MDcwNTI3WjAjBgkqhkiG9w0BCQQxFgQUTOnEae05+jEbHsz0um3L3/Cl/zgwDQYJKoZIhvcNAQEBBQAEgYAGuieIpSk7XCxyo4RieZQ/SO0EHUYEW9B7KFJB9qZ1+yCKpUm7prwsGGOJAAdqKOw59I7qjLQI5cFJz/O8Ivb14TclAZiKTnOCB/wO1QHp+9s+hF00D6v0TDetLm0GLnk/7ljWvNq1pTyiMTLVg4yw1dAzQE1tC6bYTtLuDhLl0Q==-----END PKCS7-----
+">
+<button class="btn waves-effect waves-light red lighten-3" type="submit" name="action" alt="PayPal - The safer, easier way to pay online!">Donate Now
+</button>
+</form>
+
+          </div>
+          <div class="col l4 s12">
+            <h5 class="white-text">Join the Discussion</h5>
+            <p class="grey-text text-lighten-4">We have a Gitter chat room set up where you can talk directly with us. Come in and discuss new features, future goals, general problems or questions, or anything else you can think of.</p>
+            <a class="btn waves-effect waves-light red lighten-3" target="_blank" href="https://gitter.im/Dogfalo/materialize">Chat</a>
+          </div>
+          <div class="col l4 s12" style="overflow: hidden;">
+            <h5 class="white-text">Connect</h5>
+            <iframe src="./index_files/github-btn.html" allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe>
+            <br>
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-follow-button twitter-follow-button-rendered" title="Twitter Follow Button" src="./index_files/follow_button.89bd237a86eeb0e8b1de842a4b88b09b.en.html" style="position: static; visibility: visible; width: 281px; height: 28px;" data-screen-name="MaterializeCSS"></iframe>
+            <br>
+            <div id="___follow_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 131px; height: 24px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 131px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" tabindex="0" vspace="0" width="100%" id="I0_1490902058188" name="I0_1490902058188" src="./index_files/follow.html" data-gapiattached="true"></iframe></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2014-2017 Materialize, All rights reserved.
+        <a class="grey-text text-lighten-4 right" href="https://github.com/Dogfalo/materialize/blob/master/LICENSE">MIT License</a>
+        </div>
+      </div>
+    </footer>
+
+    <!--  Scripts-->
+    <script src="./index_files/jquery-2.1.4.min.js.download"></script>
+    <script>if (!window.jQuery) { document.write('<script src="bin/jquery-2.1.1.min.js"><\/script>'); }
+    </script>
+    <script src="./index_files/jquery.timeago.min.js.download"></script>
+    <script src="./index_files/prism.js.download"></script>
+    <script src="./index_files/lunr.min.js.download"></script>
+    <script src="./index_files/search.js.download"></script>
+    <script src="./index_files/materialize.js.download"></script>
+    <script src="./index_files/init.js.download"></script>
+    <!-- Twitter Button -->
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    <!-- Google Plus Button-->
+    <script src="./index_files/platform.js.download" async="" defer="" gapi_processed="true"></script>
+
+    <!--  Google Analytics  -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-56218128-1', 'auto');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+    </script>
+
+  
+<div id="tx-live-lang-container" class="txlive-langselector txlive-langselector-bottomright"><ul id="tx-live-lang-picker" class="txlive-langselector-list notranslate"><li data-value="en">English</li><li data-value="ar">العربية</li><li data-value="cs">Čeština</li><li data-value="nl">Nederlands</li><li data-value="fr">Français</li><li data-value="de">Deutsch</li><li data-value="ko">한국어</li><li data-value="pt">Português</li><li data-value="ru">Русский</li><li data-value="es">Español</li><li data-value="sv">Svenska</li><li data-value="tr">Türkçe</li></ul><div class="txlive-langselector-toggle notranslate" id="tx-live-lang-toggle"><span class="txlive-langselector-current" id="tx-live-lang-current">English</span><span class="txlive-langselector-marker"></span></div></div><div class="hiddendiv common"></div><div class="drag-target" data-sidenav="nav-mobile" style="left: 0px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div><iframe name="oauth2relay492637765" id="oauth2relay492637765" src="./index_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe" src="./index_files/saved_resource.html"></iframe></body></html>

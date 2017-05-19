@@ -1,0 +1,74 @@
+{% extends 'login/semantic.html' %}
+
+{% block body %}
+<style type="text/css">
+	 /*@-webkit-keyframes rotate{100%{
+	 	-webkit-transform: rotate(360deg);
+	 	}}
+
+	#canvas{
+		-webkit-filter: sepia(100%);
+		-webkit-animation:rotate 2s infinite ease-in-out;
+	}*/
+
+</style>
+<div class="ui segment"><div class= "ui selected button">Cyan Filter</div><br><br>
+<video id="video" height="300" width="400" display="none" autoplay></video>
+<canvas id="canvas" height="300" width="400"></canvas>
+
+
+</div>
+
+<script type="text/javascript">
+	(function(){
+		var canvas = document.getElementById('canvas'),
+			context = canvas.getContext('2d'),
+			vid_chat = document.getElementById('video'),
+			vendor_url = window.URL || window.webkitURL;
+		navigator.getMedia = navigator.getUserMedia ||  
+							navigator.webkitGetUserMedia || 
+							navigator.mozGetUserMedia || 
+							navigator.msGetUserMedia;
+		navigator.getMedia({
+			video :true,
+			audio :false,
+		}, function(stream){  
+			vid_chat.src = vendor_url.createObjectURL(stream);
+		}, function(error){
+			//console.log(error.code );
+		});
+
+		video.addEventListener('play', function(){
+			cyanfilter(this, context, 300, 400);
+		}, false);
+
+
+		function cyanfilter(video, context, height, width){
+			var image, data, i, bright;
+			var data2=[];
+     		context.drawImage(video, 0,0, width, height);
+     		image = context.getImageData(0,0,width, height);
+     		data = image.data;
+     		data2 = image.data;
+     		for(i=0; i<= data.length; i=i+4)
+     		{
+     			bright = (4*data[i]+3*data[i+1]+data[i+2])/3;
+     			data[i]-=data[i+2];
+     			data[i+1]-=data[i+2];
+     			data[i+2]=data[i+2]/4;
+     			data[i]*=5;
+     			data[i+1]*=5;
+     			data[i]=(data2[i]+data[i])/2;
+     			data[i+1]=(data2[i+1]+data[i+1])/2;
+     			data[i+1]=(data2[i+1]+data[i+1])/2;
+     		}
+
+     		data = data2;
+     		image.data = data;
+     		context.putImageData(image, 0, 0);
+			setTimeout(cyanfilter, 10, video, context, height, width);
+		}
+
+	})();
+</script>
+{% endblock %}

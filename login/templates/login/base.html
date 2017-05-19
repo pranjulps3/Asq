@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    {% load crispy_forms_tags %}
+        <title>{{ title }}</title>
+        {% load staticfiles %}
+        {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script type="text/javascript" src={% static 'js/jquery-3.2.0.min.js' %}></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.js"></script>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Material Design for Bootstrap</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href={% static 'sem/semantic.min.css' %} >
+    <link href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled.min.css" rel="stylesheet">
+    
+    <style>
+        .bg-skin-lp {
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center center; 
+            background-attachment: fixed;
+        }
+        #profile-results
+        {
+                width:350px;
+                margin-top:-1px;
+                border:solid 1px #dedede;
+                border-top:0px;
+                overflow:hidden;
+                border-bottom-right-radius: 6px;
+                border-bottom-left-radius: 6px;
+                -moz-border-bottom-right-radius: 6px;
+                -moz-border-bottom-left-radius: 6px;
+                box-shadow: 0px 0px 5px #999;
+                border-width: 3px 1px 1px;
+                border-style: solid;
+                border-color: #333 #DEDEDE #DEDEDE;
+                background-color: white;
+        }
+    </style>
+</head>
+
+<body class="fixed-sn black-skin bg-skin-lp">
+    <!--Double navigation-->
+    <header>
+        <!-- Sidebar navigation -->
+        <ul id="slide-out" class="side-nav fixed sn-bg-1 custom-scrollbar">
+            <!-- Logo -->
+            <li>
+                <div class="logo-wrapper waves-light">
+                    <a href="#"><img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" class="img-fluid flex-center"></a>
+                </div>
+            </li>
+            <!--/. Logo -->
+            <!--Social-->
+            <li>
+                <ul class="social">
+                    <li><a class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
+                    <li><a class="icons-sm pin-ic"><i class="fa fa-pinterest"> </i></a></li>
+                    <li><a class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a></li>
+                    <li><a class="icons-sm tw-ic"><i class="fa fa-twitter"> </i></a></li>
+                </ul>
+            </li>
+            <!--/Social-->
+            <!--Search Form-->
+            <li>
+                <form class="search-form" role="search">
+                    <div class="form-group waves-light">
+                        <div style="width:30vh">
+                            {% csrf_token %}
+                            <input type="text" class="form-control" id="profile-search" name="search" placeholder="Find Friends" list="profile-results">
+                            <div id="profile-results" >
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </li>
+            <!--/.Search Form-->
+            <!-- Side navigation links -->
+            <li>
+                <ul class="collapsible collapsible-accordion">
+                    <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-chevron-right"></i> Submit blog<i class="fa fa-angle-down rotate-icon"></i></a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="#" class="waves-effect">Submit listing</a>
+                                </li>
+                                <li><a href="#" class="waves-effect">Registration form</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-hand-pointer-o"></i> Instruction<i class="fa fa-angle-down rotate-icon"></i></a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="#" class="waves-effect">For bloggers</a>
+                                </li>
+                                <li><a href="#" class="waves-effect">For authors</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-eye"></i> About<i class="fa fa-angle-down rotate-icon"></i></a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="#" class="waves-effect">Introduction</a>
+                                </li>
+                                <li><a href="#" class="waves-effect">Monthly meetings</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-envelope-o"></i> Contact me<i class="fa fa-angle-down rotate-icon"></i></a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="#" class="waves-effect">FAQ</a>
+                                </li>
+                                <li><a href="#" class="waves-effect">Write a message</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <!--/. Side navigation links -->
+            <div class="sidenav-bg mask-strong"></div>
+        </ul>
+        <!--/. Sidebar navigation -->
+        <!-- Navbar -->
+        <nav class="navbar fixed-top navbar-toggleable-md navbar-dark scrolling-navbar double-nav">
+            <!-- SideNav slide-out button -->
+            <div class="float-xs-left">
+                <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
+            </div>
+            <!-- Breadcrumb-->
+            <div class="breadcrumb-dn mr-auto">
+                <p>Material Design for Bootstrap</p>
+            </div>
+            <ul class="nav navbar-nav ml-auto flex-row">
+                <li class="nav-item">
+                    <a class="nav-link"><i class="fa fa-envelope"></i> <span class="hidden-sm-down">Contact</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"><i class="fa fa-comments-o"></i> <span class="hidden-sm-down">Support</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"><i class="fa fa-user"></i> <span class="hidden-sm-down">Account</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.Navbar -->
+    </header>
+    <!--/.Double navigation-->
+    
+    <!--Main layout-->
+    <main>
+        <div class="container-fluid text-center" style="height: 800px;">
+
+            <a class="btn btn-primary btn-lg">Primary button</a>
+            <a class="btn btn-secondary btn-lg">Secondary button</a>
+            <a class="btn btn-default btn-lg">Default button</a>
+            {% block body %}
+            {% endblock %}
+        </div>
+    </main>
+    <!--/Main layout-->
+
+    <!--Footer-->
+    <footer class="page-footer center-on-small-only">
+
+        <!--Footer Links-->
+        <div class="container-fluid">
+            <div class="row">
+
+                <!--First column-->
+                <div class="col-md-3 offset-1">
+                    <h5 class="title">Footer Content</h5>
+                    <p>Here you can use rows and columns here to organize your footer content.</p>
+                </div>
+                <!--/.First column-->
+
+                <hr class="hidden-md-up">
+
+                <!--Second column-->
+                <div class="col-md-2 offset-1">
+                    <h5 class="title">Links</h5>
+                    <ul>
+                        <li><a href="#!">Link 1</a></li>
+                        <li><a href="#!">Link 2</a></li>
+                        <li><a href="#!">Link 3</a></li>
+                        <li><a href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <!--/.Second column-->
+
+                <hr class="hidden-md-up">
+
+                <!--Third column-->
+                <div class="col-md-2">
+                    <h5 class="title">Links</h5>
+                    <ul>
+                        <li><a href="#!">Link 1</a></li>
+                        <li><a href="#!">Link 2</a></li>
+                        <li><a href="#!">Link 3</a></li>
+                        <li><a href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <!--/.Third column-->
+
+                <hr class="hidden-md-up">
+
+                <!--Fourth column-->
+                <div class="col-md-2">
+                    <h5 class="title">Links</h5>
+                    <ul>
+                        <li><a href="#!">Link 1</a></li>
+                        <li><a href="#!">Link 2</a></li>
+                        <li><a href="#!">Link 3</a></li>
+                        <li><a href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <!--/.Fourth column-->
+
+            </div>
+        </div>
+        <!--/.Footer Links-->
+
+        <hr>
+
+        <!--Call to action-->
+        <div class="call-to-action">
+            <ul>
+                <li>
+                    <h5>Register for free</h5>
+                </li>
+                <li><a href="" class="btn btn-danger">Sign up!</a></li>
+            </ul>
+        </div>
+        <!--/.Call to action-->
+
+        <hr>
+
+        <!--Social buttons-->
+        <div class="social-section">
+            <ul>
+                <li><a class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"> </i></a></li>
+                <li><a class="btn-floating btn-small btn-tw"><i class="fa fa-twitter"> </i></a></li>
+                <li><a class="btn-floating btn-small btn-gplus"><i class="fa fa-google-plus"> </i></a></li>
+                <li><a class="btn-floating btn-small btn-li"><i class="fa fa-linkedin"> </i></a></li>
+                <li><a class="btn-floating btn-small btn-git"><i class="fa fa-github"> </i></a></li>
+                <li><a class="btn-floating btn-small btn-pin"><i class="fa fa-pinterest"> </i></a></li>
+                <li><a class="btn-floating btn-small btn-ins"><i class="fa fa-instagram"> </i></a></li>
+            </ul>
+        </div>
+        <!--/.Social buttons-->
+
+        <!--Copyright-->
+        <div class="footer-copyright">
+            <div class="container-fluid">
+                © 2017 Copyright: <a href="http://www.MDBootstrap.com"> MDBootstrap.com </a>
+
+            </div>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->
+
+    
+    
+    <!-- SCRIPTS -->
+    <script type="text/javascript">
+      $(function(){
+        $('#profile-search').keyup(function(){
+          $.ajax({
+            type :'POST',
+            url :'{% url 'profile_search' %}',
+            data : {
+              'search_q':$('#profile-search').val(),
+              'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            dataType : "json",
+            success: function(data){
+              $('#profile-results').html(data['html']);
+            },
+            error: function(rs, e){
+              console.log('kuch dikkat hai'+rs.responseText);
+            },
+
+          })
+
+        })
+
+      })
+
+    </script>>
+    <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
+<!-- LikeBtn.com END -->
+    <script type="text/javascript" src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/compiled.min.js"></script>
+
+    <script>
+    $(".button-collapse").sideNav();
+        
+    var el = document.querySelector('.custom-scrollbar');
+    Ps.initialize(el);
+    </script>
+</body>
+
+</html>

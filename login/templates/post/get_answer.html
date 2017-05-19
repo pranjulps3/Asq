@@ -1,0 +1,98 @@
+{% load static %}
+{% load dractags %}
+{% load post_tags %}
+	{% load comments_tags %}
+	<div class="ui raised green segment" style="border-radius: 5px;">
+	{% if answer in user.answer_set.all %}
+	<div class='myanswer-{{ answer.id }}'>
+	<div id = 'answer-contents-{{ answer.id }}'> 
+		<div class="ui right floated dropdown icon button" style="margin-right: 10px;">
+		    <i class="dropdown icon"></i>
+		    <div class="menu">
+		      <div class="item" data-value="drop">
+		      <a href="{% url 'update_answer' answer.id %}" class='answer-edit' data='{{answer.id}}' >
+				<i class="write icon"></i> Edit</a>
+		      </div>
+		    	<div class="item" data-value="horizontal flip">
+		    	<a class="answer-delete" data = "{{ answer.id }}" value = "delete">
+		    	 <i class="trash icon"></i> Delete answer</a>
+			</div>
+		    </div>
+		  </div>
+		<div class="metadata">
+    		{% get_user_popup answer.author user %}&emsp;{{ answer.timestamp | timesince}}&emsp;
+    		<a href = "{% url 'view_answer' answer.id %}">view full answer</a>
+		</div>
+		<h5 class="content-markdown" id="answer-{{ answer.id }}">{{ answer.content | safe_markdown }}</h5><br></div>
+		<div class="ui dividing header" style="margin: 4px; padding: 0px;"></div>
+		{% if answer in user.person.upvoted_answer.all %}
+		<div class="ui small labeled button" tabindex="0">
+		<a class="answer" id="{{ answer.id }}" data = "{{ answer.id }}" value = "vote"  style="color:red;">
+		  <div class="ui small blue button">
+		    <i class="chevron up icon"></i> unvote
+		  </div>
+		  <div class="ui small basic blue left pointing label">
+		     {{ upvotes }}
+		  </div>
+		  </a>
+		</div>
+		{% else %}
+		<div class="ui small labeled button" tabindex="0">
+		<a class="answer" id="{{ answer.id }}" data = "{{ answer.id }}" value = "vote"  style="color:red;">
+		  <div class="ui small basic grey button">
+		    <i class="chevron up icon"></i> vote
+		  </div>
+		  <div class="ui small basic grey left pointing label">
+		     {{ upvotes }}
+		  </div>
+		  </a>
+		</div> 
+		{% endif %}
+		
+		{% get_comments answer user %}  
+{% comment_form answer user %}
+		<br><br>
+</div>
+
+{% else %}
+<div class='myanswer'>
+	<div id = 'answer-contents-{{ answer.id }}'>
+	<div class="metadata">
+			{% get_user_popup answer.author user %}&emsp;{{ answer.timestamp | timesince}}&emsp;
+			<a href = "{% url 'view_answer' answer.id %}">view full answer</a>
+	</div>
+	
+	<br><h5 class="content-markdown" id="answer-{{ answer.id }}">{{ answer.content| safe_markdown }}</h5><br></div>
+		<div class="ui dividing header" style="margin: 4px; padding: 0px;"></div>
+     {% if answer in user.person.upvoted_answer.all %}
+		<div class="ui small labeled button" tabindex="0" style="display: inline;">
+		<a class="answer" id="{{ answer.id }}" data = "{{ answer.id }}" value = "vote"  style="color:red;">
+		  <div class="ui small blue button">
+		    <i class="chevron up icon"></i> unvote
+		  </div>
+		  <div class="ui small basic blue left pointing label">
+		     {{ upvotes }}
+		  </div>
+		  </a>
+		</div>
+		{% else %}
+		<div class="ui small labeled button" tabindex="0" style="display: inline;">
+		<a class="answer" id="{{ answer.id }}" data = "{{ answer.id }}" value = "vote"  style="color:red;">
+		  <div class="ui small basic blue button">
+		    <i class="chevron up icon"></i> vote
+		  </div>
+		  <div class="ui small basic blue left pointing label">
+		     {{ upvotes }}
+		  </div>
+		  </a>
+		</div> 
+
+		{% endif %}
+
+		{% get_comments answer user %}  
+{% comment_form answer user %}
+<br><br>
+</div>
+{% endif %}
+</div>
+<br>

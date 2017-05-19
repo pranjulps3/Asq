@@ -1,0 +1,45 @@
+{% load static comments_tags %}
+			
+			<a href="#" class = "comment-toggle-{{ target.id }}" style="color: grey;float: right;"> &emsp;<i class="large comment icon" style="display: inline; "></i>&nbsp;<h3 class="comments-count" id="comments-count-{{ target.id }}" style="display: inline;">
+			{% if comments_count == 1%}
+				{% get_comment_count target %}
+				Comment
+			{% else %}
+				{% get_comment_count target %}
+				Comments
+			{% endif %} </h3> 
+			</h3>
+			</a>
+		<div class="ui dividing header" style="margin: 1px; padding: 3px; display: inline;"></div>
+		<div class="ui dividing header" style="margin: 1px; padding: 3px;"></div>
+		<!-- <script src="{% static "js/jquery.js" %}"></script>
+		<script src="{% static "js/comments.js" %}"></script> -->
+<blockquote >
+	<div class="comments-wrapper" style="width:100%; text-align: left; background-color: rgba(230,230,230,0.5); border-radius: 4px;">
+	<div class="ui comments">
+
+		
+		
+		<div class="comments-{{ target.id }}" id="comments-{{ target.id }}" style="display: none;">
+			{% for comment, liked in comment_liked %}
+
+				<div id="comment-div-{{ comment.id }}" >
+					{% include "comments/comment.html" with object=comment liked=liked form=form %}
+				</div>
+
+			{% empty %}
+
+				<!-- <h3 id='no-comments'> No Comments </h3> -->
+
+			{% endfor %}
+		</div>
+		  </div>
+		  </div>
+</blockquote>
+<script type="text/javascript">
+	$('.comment-toggle-{{ target.id }}').click(function(event){
+		event.preventDefault();
+		$('.comments-{{ target.id }}').slideToggle();
+
+	})
+</script>

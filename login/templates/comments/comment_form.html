@@ -1,0 +1,36 @@
+{% load comments_tags %}
+{% load static %}
+{% if not user.is_authenticated and not allow_anonymous %}
+{% else %}
+<blockquote>
+	<div id="comment-input-div">
+
+		<form method="POST" action="{% url "comment-create" %}" id="add-comment-form" class="ui reply form">
+			{% csrf_token %}
+			{{ form.errors }}
+			
+			{% if target %}	
+				<input name="model" value="{% get_model_name target %}" hidden>
+				<input name="model_id" value="{{ target.id }}" hidden>
+				<input name="app_name" value="{% get_app_name target %}" hidden>
+			{% endif %}
+			<div class="ui right action input">
+			<div class="ui left action input">
+			<a class="avatar" style="display:inline;">
+		      {% if user.person.display_pic %}
+		      <img class="mini ui rounded image" src="{{user.person.display_pic.url}}"/>
+		      {% else %}
+		      <img class="mini ui rounded image" src= {% static 'img/dummy_user.png' %} />
+		      {% endif %}
+		    </a>
+			{{ form.comment }}
+			<input id="id_user" name="user" value="{% if user.is_authenticated %}{{ user.id }}{% endif %}" hidden>
+
+			</div>
+			<button class="ui grey round labeled icon button" type="submit" value="Add Comment" id="add-comment" ><i class="add icon"></i>Comment</button> 
+			</div>
+		</form>
+	</div>
+</blockquote>
+{% endif %}
+

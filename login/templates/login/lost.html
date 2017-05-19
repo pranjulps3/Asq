@@ -1,0 +1,26 @@
+{% extends 'login/semantic.html' %}
+
+{% block body %}
+{% load post_tags %}
+<div class="ui raised segment">
+          <table class="ui celled table">
+          <thead>
+          <tr><th> Item Report </th><th>{% if lost %}Lost{% else %}Found{% endif %}</th> </tr>
+            <tr>
+            <th>Reported by</th>
+            <th>Item name</th>
+            <th>Details</th>
+            <th>Picture</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td>{% get_user_popup item.reported_by user %}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.details }}</td>
+              <td>{% if item.image %}<img class="ui small image" src="{{ item.image.url }}">{% endif %}</td>
+            </tr>
+          </tbody>
+        </table>
+      
+      </div>
+    {% endblock %}
