@@ -29,13 +29,38 @@ from django.views.generic import View
 
 from braces.views import (AjaxResponseMixin, JSONResponseMixin,  LoginRequiredMixin, SuperuserRequiredMixin,)
 
+def temp_view(request):
+	context = {
+		'title':'Form',
+		'user':request.user,
+	}
+	return render(request, 'login/user_form.html', context)
+
+def general_info(request):
+	if request.method == 'POST':
+		print(request.POST.get('remove'))
+		print(request.FILES.get('profile-pic'))
+	context = {'title': 'Edit Profile'}
+	litem = Item.objects.filter(lost= 'L').order_by('-timestamp') # select * from Item where lost="L" order by timestamp ASC;
+	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
+	context['litem']=litem 
+	context['fitem']=fitem
+	return redirect('/')
+
 
 def video_chat_view(request):
+	u = request.POST.get('user_id')
+	user = User.objects.get(id = u)
+	print(user.username)
 	context = {
 		'title':'Varta- The Video Chat',
-		'user': request.user,
 	}
-	return render(request, 'login/varta_chat.html', context)
+	if user == request.user:
+		html = render_to_string('login/varta_chat.html', {})
+	else:
+		html = "<h2>You are unauthorised!! Please, Sign up!!</h2>"
+	context['html']=html
+	return HttpResponse(json.dumps(context), content_type = 'application/json')
 
 # Create your views here.
 @login_required(login_url='/login/')
@@ -514,6 +539,18 @@ def person_view(request):
 		form = PersonForm(request.POST, request.FILES, instance=request.user.person)
 		if form.is_valid():
 			form.save()
+			print(request.POST.get('first_name'))
+			print(request.POST.get('last_name'))
+			user=User.objects.get(id=request.user.id)
+			if request.POST.get('remove'):
+				print("yes")
+				user.person.display_pic.delete(save=False)
+			if request.FILES.get('profile-pic'):
+				user.person.display_pic=request.FILES.get('profile-pic')
+			user.first_name = request.POST.get('first_name')
+			user.last_name = request.POST.get('last_name')
+			print(user.email)
+			user.save()
 			messages.success(request, ('Your profile was successfully updated!'))
 			return redirect('/')
 		else:
@@ -525,7 +562,9 @@ def person_view(request):
 	fitem = Item.objects.filter(lost= 'F').order_by('-timestamp') # select * from Item where lost="F" order by timestamp ASC;
 	context['litem']=litem 
 	context['fitem']=fitem
-	return render(request, 'login/login.html', context)
+	return render(request, 'login/user_form.html', context)
+
+
 
 def logout_view(request):
 	logout(request)
@@ -540,7 +579,8 @@ def index(request):
 	fuser.append(user)
 	for i in follows:
 		fuser.append(i.username)
-
+	if not request.user.first_name:
+		return redirect('/fillup')
 	feed_a = Answer.objects.filter(author__in = fuser)[:5]
 	feed_p = Post.objects.filter(author__in = fuser)[:5]
 	feed_q = Question.objects.all().order_by('-timestamp')[:5]
@@ -578,18 +618,21 @@ def auth(request):
 
 
 class TopicAutocomplete(autocomplete.Select2QuerySetView):
+	def create_topic(self):
+		topic = Topic.objects.create(name = self.q)
+		topic.save()
+		print("2")
+		return topic.pk
+
 	def get_queryset(self):
 		 # Don't forget to filter out results depending on the visitor !
 		if not self.request.user.is_authenticated():
 			return Topic.objects.none()
 		qs = Topic.objects.all()
+		print("1")
 		if self.q:
 			qs = qs.filter(name__istartswith=self.q)
 		return qs
-	def create_topic(self):
-		topic = Topic.objects.create(name = self.q)
-		topic.save()
-		return topic.pk
 
 class AjaxableResponseMixin(object):
 
@@ -733,7 +776,7 @@ class LikeComment(FormView):
                 # Create a like on the comment in case the user hasn't
                 # liked it already.
                 Like.objects.create(comment=comment, user=user).save()
-                likes_count += 1
+                likes_count = Like.objects.filter(comment=comment).count()
                 comment.likes_count = likes_count
                 comment.save()
                 data['likes_count'] = likes_count
@@ -772,8 +815,8 @@ class UnlikeComment(FormView):
                 # Check if the user already liked the comment,
                 # Unlike the comment in this case.
                 Like.objects.get(comment=comment, user=user).delete()
-                likes_count -= 1
-                comment.likes_count = likes_count
+                likes_count =Like.objects.filter(comment=comment).count()
+                comment.likes_count =  likes_count
                 comment.save()
                 data['success'] = 1
                 data['likes_count'] = likes_count

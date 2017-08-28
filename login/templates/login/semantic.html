@@ -17,6 +17,7 @@
     <title>{{title}}</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href={% static 'sem/semantic.min.css' %} >
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">
     <!-- CSS -->
     <script src={% static 'sem/components/sidebar.min.js' %} type="text/javascript"></script>
     <script src={% static 'sem/components/search.min.js' %} type="text/javascript"></script>
@@ -25,14 +26,39 @@
     <script src={% static 'sem/components/popup.min.js' %} type="text/javascript"></script>
     <script src={% static 'sem/components/modal.min.js' %} type="text/javascript"></script>
         <script src={% static 'sem/components/dimmer.min.js' %} type="text/javascript"></script>
+        <script src={% static 'sem/components/checkbox.min.js' %} type="text/javascript"></script>
         <script src={% static 'sem/components/tab.min.js' %} type="text/javascript"></script>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
     <style>
         body{
           background-color: rgba(230,230,230,1);
             /*background-image:url({% static 'img/paper-background-7.jpg' %});*/
         }
+
+        h3{
+          font-family: Lato;
+          font-size: 1.6em;
+        }
+
+        *{
+          font-family: Lato;
+        }
+
+        #id_comment {
+                     resize: none;
+                     border-right-width: 0px;
+                     border-radius: 0px;
+        }
+
+        #add-emoji
+        {
+            border-left-width: 0px;
+            border-left: 0px;
+            border-right-width: 0px;
+            border-radius: 0px;
+        }
+
 
     
         img{
@@ -48,13 +74,13 @@
 <body class="body">
     <div class="ui black sidebar inverted vertical menu">
     <a class="item" href="http://www.github.com/pranjulps3" target="_blank">
-      <i class="github icon" ></i> GitHub- Pranjul
+      <i class="github icon" ></i> Pranjul
     </a>
     <a class="item" href="http://www.github.com/samy-33" target="_blank">
-      <i class="github icon" ></i> GitHub- Saket
+      <i class="github icon" ></i> Saket
     </a>
     <a class="item" href="http://www.github.com/aryanakul" target="_blank">
-      <i class="github icon" ></i> GitHub- Nakul
+      <i class="github icon" ></i> Nakul
     </a>
   </div>
 
@@ -66,19 +92,17 @@
       <a class="item" id="sidenav" style="border-radius: 0px;">
             <i class="content icon"></i>
           </a>
-        <div class="ui dropdown item">
-                More
-                <i class="dropdown icon"></i>
+        <a href="/" class="item" style="background-color: rgba(200,200,200,1); border-radius: 4px; border: 2px solid; border-color: rgba(10,10,10,0.92); padding-top: 2px; padding-bottom: 2px; margin-top: 0px; margin-bottom: 0px;margin-right: 0px">
+            <img class="ui transparent tiny image" id="logo-asq" style="height: 3em; width: auto;" src={% static 'img/asq.png' %}/>
+        </a>
+        <div class="ui dropdown item" style="width: 4%;">
+                <i class="chevron down icon"></i>
                 <div class="menu">
                   <a href="/post/" class="item"><i class="edit icon"></i> Post</a>
                   <a href="/" class="item"><i class="browser icon"></i> feed</a>
                 </div>
-              </div>
-              <a href="/" class="item">
-        
-            <i class = "home icon"></i>Home
-        </a>
-         &emsp;
+         </div>
+         &emsp;&emsp;&emsp;
     <div class="center menu" style="width: 39%;">
         <div class="item" style="width: 100%; ">
           <div class="ui icon input">
@@ -90,6 +114,9 @@
 
        
   <div class="right menu">
+  <a class="teal item" id='varta_chat' href="#">
+            {% csrf_token %}
+            <i class="record icon"></i>Varta</a>
   <a class="teal item">
             Notifications 
 
@@ -136,7 +163,7 @@
                         <div class="ui transparent icon input" >
                           {% csrf_token %}
                             <input class="prompt" id="profile-search" type="text" placeholder="Find People..." style="border-radius: 0px;color: white;" >
-                            <i class="white search icon"></i>
+                            <i class="white inverted search icon"></i>
                         </div>
                               <div class="results" id="profile-results" >
                               </div>
@@ -175,21 +202,20 @@
         </div>
   </div>
   <div class="seven wide stretched column" >
-    <div class="ui raised segment" style="border-radius: 5px;">
-    <a href="{% url 'create_question' %}" class="ui inverted red button">
+    <div class="ui inverted raised segment" style="border-radius: 5px;">
+    <a href="{% url 'create_question' %}" class="ui inverted button">
         <div class="two wide stretched column">
         <h2> Ask a Question </h2>
         </div>
     </a>
-    <a href="{% url 'create_post' %}" class="ui right floated inverted red button">
+    <a href="{% url 'create_post' %}" class="ui right floated inverted button">
         <div class="two wide stretched column">
         <h2> Create Post</h2>
         </div>
     </a>
     </div>
-            <div class="ui modal">
+            <div class="ui modal" style="padding: 0px;">
               <i class="close icon"></i>
-              
               
             </div>
     
@@ -205,16 +231,17 @@
           <thead>
           <!-- <tr class = "ui yellow top attched segment""><th colspan="2" ><center><b> LOST</b></center> </th></tr> -->
             <tr>
-            <th >Reported by</th>
-            <th >Item name</th>
+            <th colspan="2">Reported by</th>
+            <th colspan="1">Item name</th>
           </tr></thead>
           <tbody>
           {% load post_tags %}
           {% for item in litem %}
           
             <tr>
-              <td>{% get_user_popup item.reported_by user %}</td>
-              <td href="{% url 'lost_view' item.id %}"><a href="{% url 'lost_view' item.id %}">{{ item.name }}</a></td>
+              <td colspan="2">{% get_user_popup item.reported_by user %}</td>
+              <td colspan="1" href="{% url 'lost_view' item.id %}"><a href="{% url 'lost_view' item.id %}">{{ item.name }}</a></td>
+
             </tr>
 
             {% endfor %}
@@ -226,15 +253,15 @@
           <thead>
         <!--  <tr class = "ui inverted yellow top attched segment""><th colspan="2"><center><b> FOUND</b></center> </th></tr> -->
             <tr >
-            <th>Reported by</th>
-            <th>Item name</th>
+            <th colspan="2">Reported by</th>
+            <th colspan="1">Item name</th>
           </tr></thead>
           <tbody>
             {% for item in fitem %}
             
             <tr>
-              <td>{% get_user_popup item.reported_by user %}</td>
-              <td href="{% url 'lost_view' item.id %}"><a href="{% url 'lost_view' item.id %}">{{ item.name }}</a></td>
+              <td colspan="2">{% get_user_popup item.reported_by user %}</td>
+              <td colspan="1" href="{% url 'lost_view' item.id %}"><a href="{% url 'lost_view' item.id %}">{{ item.name }}</a></td>
             </tr>
             
             {% endfor %}
@@ -243,12 +270,18 @@
         </table>
       
       </div>
-      <a class = "ui bottom attached teal button" href="{% url 'report' %}" class="ui small teal button">Report Item Lost/Found</a> 
+      <a class = "ui bottom attached teal button" href="{% url 'report' %}" class="ui small teal button">Report Item Lost/Found</a>
       </div>
       </div>
 </div>
 </div>
-</body>
+</div></div></div></div></body>
+
+<script type="text/javascript">
+  document.load(function(){
+    $('.ui.modal').modal('show');
+  });
+</script>
  
     <script type="text/javascript">
 $('#sidenav').click(function(event){
@@ -381,6 +414,40 @@ $('.ui.image.label')
     }
   })
 ;
+
+$('.ui.transparent.label')
+  .popup({
+    inline     : true,
+    hoverable  : true,
+    position   : 'bottom left',
+    delay: {
+      show: 300,
+      hide: 500
+    }
+  })
+;
+
+$('.ui.emoji.label')
+  .popup({
+    on         : 'click',
+    inline     : true,
+    hoverable  : true,
+    position   : 'bottom left',
+    delay: {
+      show: 300,
+      hide: 500
+    }
+  })
+;
+
+$('.ui.emoji.button').click(function(event){
+  var emoji = event.currentTarget;
+  var element = event.currentTarget.parentElement.parentElement;
+  var elem = element.getElementsByClassName('comment-form-class').comment;
+  // console.log(elem.value);
+  var str=elem.value+emoji.innerText;
+  elem.value=str;
+});
 </script>
 <script type="text/javascript">
 
@@ -405,6 +472,38 @@ $('.ui.image.label')
     transition: 'slide'
   })
 ;
+</script>
+<script type="text/javascript">
+  $('img').click(function(event){
+    if(event.currentTarget.id!='logo-asq' && event.currentTarget.id!='avatar-image')
+    {
+    var modal = $('.ui.modal');
+    modal.html("<i class='close icon' id='modal-close-button'></i><center style='padding:0px;'><img class='ui big image' style='padding:0px;' src='"+event.currentTarget.src+"'/></center>");
+    modal.modal('show');
+  }
+  });
+  $('#modal-close-button').click(function(){
+      console.log('grabbed');
+      $('.ui.modal').html("<i class='close icon'></i>");
+  });
+</script>
+<script type="text/javascript">
+  $('#varta_chat').click(function(event){
+    var element = $(this);
+      $.ajax({
+               type: "POST",
+               url: "{% url 'varta_chat'%}",
+               data: {'user_id': {{request.user.id}},'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               success: function(response) {
+                      $('.ui.modal').html("<i class='close icon'></i>"+response.html);
+                      $('.ui.modal').modal('show');
+                },
+                error: function(rs, e) {
+                       alert("Something went wrong!")//rs.responseText);
+                }
+          }); 
+  },);
 </script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>

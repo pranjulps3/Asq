@@ -2,19 +2,19 @@
 {% load dractags %}
 {% load post_tags %}
 	{% load comments_tags %}
-	<div class="ui raised green segment" style="border-radius: 5px;">
+	<div class="ui secondary black segment" style="border-radius: 5px;">
 	{% if answer in user.answer_set.all %}
 	<div class='myanswer-{{ answer.id }}'>
 	<div id = 'answer-contents-{{ answer.id }}'> 
-		<div class="ui right floated dropdown icon button" style="margin-right: 10px;">
-		    <i class="dropdown icon"></i>
+		<div class="ui right floated dropdown icon button" style="background-color: rgba(0,0,0,0); margin-right: 10px; margin-top: 4px;color: black;">
+		    <i class="chevron down icon"></i>
 		    <div class="menu">
-		      <div class="item" data-value="drop">
-		      <a href="{% url 'update_answer' answer.id %}" class='answer-edit' data='{{answer.id}}' >
+		      <div class="item" data-value="drop" >
+		      <a href="{% url 'update_answer' answer.id %}" style="color: black;" class='answer-edit' data='{{answer.id}}' >
 				<i class="write icon"></i> Edit</a>
 		      </div>
-		    	<div class="item" data-value="horizontal flip">
-		    	<a class="answer-delete" data = "{{ answer.id }}" value = "delete">
+		    	<div class="item" data-value="horizontal flip" >
+		    	<a class="answer-delete" data = "{{ answer.id }}" style="color: black;" value = "delete">
 		    	 <i class="trash icon"></i> Delete answer</a>
 			</div>
 		    </div>
@@ -78,10 +78,10 @@
 		{% else %}
 		<div class="ui small labeled button" tabindex="0" style="display: inline;">
 		<a class="answer" id="{{ answer.id }}" data = "{{ answer.id }}" value = "vote"  style="color:red;">
-		  <div class="ui small basic blue button">
+		  <div class="ui small basic grey button">
 		    <i class="chevron up icon"></i> vote
 		  </div>
-		  <div class="ui small basic blue left pointing label">
+		  <div class="ui small basic grey left pointing label">
 		     {{ upvotes }}
 		  </div>
 		  </a>

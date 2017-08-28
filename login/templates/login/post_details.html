@@ -195,7 +195,7 @@ $(document).ready(function() {
         var id = $(this).attr('data-id');
         if($(this).attr('data-like') == 'like') {
           $('#like-btn-' + id).attr('data-like', 'liked');
-                        $('#like-btn-' + id).html("<div class='mini ui red button'><i class='heart icon'></i>Unike</div>");
+                        $('#like-btn-' + id).html("<i class='red heart icon'></i>Unike");
                         
             $.ajax({
                 type: "GET",
@@ -206,7 +206,7 @@ $(document).ready(function() {
                         $('#likes-count-' + id).text(data['likes_count']);
                     } else{
                        $('#like-btn-' + id).attr('data-like', 'like');
-                        $('#like-btn-' + id).html("<div class='mini ui basic red button'><i class='heart icon'></i>Like</div>");
+                        $('#like-btn-' + id).html("<i class='heart icon'></i>Like");
                         $('#likes-count-' + id).text(data['likes_count']);
                         // alert(data['error']);
                     }
@@ -214,7 +214,7 @@ $(document).ready(function() {
             });
         } else {
            $('#like-btn-' + id).attr('data-like', 'like');
-                        $('#like-btn-' + id).html("<div class='mini ui basic red button'><i class='heart icon'></i>Like</div>");
+                        $('#like-btn-' + id).html("<i class='heart icon'></i>Like");
                         
             $.ajax({
                 type: "GET",
@@ -224,7 +224,7 @@ $(document).ready(function() {
                     if(data['success'] == 1) {
                        $('#likes-count-' + id).text(data['likes_count']);
                     } else{
-                        alert(data['error']);
+                        // alert(data['error']);
                     }
                 }
             });

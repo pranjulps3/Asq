@@ -1,11 +1,11 @@
 {% load static %}
-<a class="ui teal image label" href="{% url 'profile_view' objuser.id %}">
+<a class="ui black image ribbon label" href="{% url 'profile_view' objuser.id %}">
       {% if objuser.person.display_pic %}
-      <img class="ui mini rounded image" src="{{objuser.person.display_pic.url}}" style="display: inline;"/>
+      <img class="ui mini rounded left attached image" id="avatar-image" src="{{objuser.person.display_pic.url}}" style="display: inline;"/>
       {% else %}
-      <img class="ui mini rounded image" src= {% static 'img/dummy_user.png' %} style="display: inline;"/>
-      {% endif %} 
-{{ objuser.username }}</a>
+      <img class="ui mini rounded left attached image" id="avatar-image" src= {% static 'img/dummy_user.png' %} style="display: inline;"/>
+      {% endif %}{{ objuser.username }}
+      </a>
       {% if user.person == objuser.person %}
     {% else %}
         <div class="ui flowing popup top left transition hidden">

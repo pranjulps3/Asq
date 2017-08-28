@@ -43,11 +43,12 @@ class UserForm(forms.Form):
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
-        fields = [ 'display_pic', 'gender', 'cover_pic', 'about_me']
+        fields = [ 'gender', 'about_me']
 
 class PostForm(forms.ModelForm):
     #publish =  forms.DateField(widget = forms.SelectDateWidget)
     content = DraceditorFormField()
+    title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Heading for the Post...'}))
     topic_follows = models.ManyToManyField('login.topic')
     #content = forms.CharField(widget = PagedownWidget)
     #content = MarkdownxFormField(widget = PagedownWidget)
@@ -120,7 +121,7 @@ class CommentForm(forms.ModelForm):
     comment = forms.CharField(
         label='comment', 
         widget=forms.Textarea(
-            attrs={'rows':'1','cols':'70','placeholder': 'Comment...'}
+            attrs={'rows':'1','cols':'70','placeholder': 'Write a Comment...', 'class':'comment-form-class'}
         )
     )
     class Meta:

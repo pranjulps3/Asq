@@ -1,0 +1,10 @@
+django-pagedown
+django-notifications-hq
+django-allauth
+django-markdownx
+draceditor
+django-bootstrap3
+django-crispy-forms
+django-friendship
+django-braces
+django-autocomplete-light

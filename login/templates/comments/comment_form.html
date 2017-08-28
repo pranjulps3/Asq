@@ -16,21 +16,146 @@
 			{% endif %}
 			<div class="ui right action input">
 			<div class="ui left action input">
-			<a class="avatar" style="display:inline;">
-		      {% if user.person.display_pic %}
-		      <img class="mini ui rounded image" src="{{user.person.display_pic.url}}"/>
-		      {% else %}
-		      <img class="mini ui rounded image" src= {% static 'img/dummy_user.png' %} />
-		      {% endif %}
-		    </a>
-			{{ form.comment }}
-			<input id="id_user" name="user" value="{% if user.is_authenticated %}{{ user.id }}{% endif %}" hidden>
-
+		    <div class="none" style="background-color: white;">
+		    		<div class="ui icon input">
+		    			<a class="avatar" style="display:inline;">
+					      {% if user.person.display_pic %}
+					      <img class="ui avatar left attached image" style="height: 3em; width: auto; border-top-right-radius: 0px;border-bottom-right-radius: 0px;border-top-left-radius: 6px;border-bottom-left-radius: 6px;" src="{{user.person.display_pic.url}}"/>
+					      {% else %}
+					      <img class="ui avatar left attached image" style="height: 3em; width: auto; border-top-right-radius: 0px;border-bottom-right-radius: 0px;border-top-left-radius: 6px;border-bottom-left-radius: 6px;" src= {% static 'img/dummy_user.png' %} />
+					      {% endif %}
+					    </a>
+						{{ form.comment }}
+						<input id="id_user" name="user" value="{% if user.is_authenticated %}{{ user.id }}{% endif %}" hidden>
+						<i class="icon"></i>
+					</div>
 			</div>
-			<button class="ui grey round labeled icon button" type="submit" value="Add Comment" id="add-comment" ><i class="add icon"></i>Comment</button> 
+			</div>
+			<a class="ui emoji label" id="add-emoji" style="background-color: rgba(0,0,0,0); border-color: rgba(230,230,230,1); border-width: 1px; margin: 0px;"><h3>🙂</h3>
+			</a>
+			<div class="ui flowing popup top right transition hidden" style="height: 20em; width: 20em; overflow-y: auto;">
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😀</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😃</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😄</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😁</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😆</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😅</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😂</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤣</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">☺️</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😊</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😇</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🙂</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🙃</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😉</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😌</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😍</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😘</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😗</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😙</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😚</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😋</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😜</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😝</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😛</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤑</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤗</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤓</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😎</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤡</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤠</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😏</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😒</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😞</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😔</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😟</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😕</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🙁</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">☹️</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😣</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😖</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😫</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😩</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😤</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😠</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😡</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😶</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😐</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😑</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😯</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😦</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😧</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😮</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😲</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😵</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😳</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😱</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😨</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😰</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😢</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😥</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤤</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😭</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😓</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😪</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😴</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🙄</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤔</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤥</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😬</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤐</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤢</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤧</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">😷</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤝</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">👍</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">👎</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">👊</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">✊</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤛</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤜</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤞</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">✌️</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤘</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">👌</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">👈</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">👉</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">👆</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">👇</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">☝️</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">✋</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤚</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🖐</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🖖</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">👋</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🤙</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">💪</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">❤️</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">💛</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">💚</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">💙</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">💜</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">🖤</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">💔</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">❣️</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">💕</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">💞</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">💓</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">💗</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">💖</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">💘</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">💝</div>
+				<div class="ui emoji button" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.4em;">💟</div>
+			</div>
+			<button class="ui grey icon round button" type="submit" value="Add Comment" id="add-comment"><i class="large right arrow icon"></i></button> 
 			</div>
 		</form>
 	</div>
 </blockquote>
 {% endif %}
 
+
+
+<!-- <p style="font-family: Segoe UI Emoji; font-size: 3.5em">
+
+</p> -->

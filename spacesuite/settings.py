@@ -25,7 +25,7 @@ SECRET_KEY = '^t^s%3w@=+k_)*y98i^y83_-r@5fv1e59d@v7p8!g4dbtoh)bi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.103','127.0.0.1']
+ALLOWED_HOSTS = []
 
 SOCIAL_AUTH_FACEBOOK_KEY = '1909808875929144'
 SOCIAL_AUTH_FACEBOOK_SECRET = '60e47322c1d39381de500da161216d76'
@@ -135,7 +135,6 @@ INSTALLED_APPS = [
     'markdownx',
     'draceditor',
     'bootstrap3',
-    'social_django',
     'crispy_forms',
     'friendship',
     'braces',
@@ -151,7 +150,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'spacesuite.urls'
@@ -168,8 +166,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
                 'django.template.context_processors.request',
             ],
         },
@@ -184,10 +180,6 @@ STATICFILES_FINDERS = (
 WSGI_APPLICATION = 'spacesuite.wsgi.application'
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.github.GithubOAuth2',
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.facebook.FacebookOAuth2',
-    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
@@ -220,8 +212,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/

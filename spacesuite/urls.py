@@ -32,12 +32,16 @@ urlpatterns = [
 	url(r'^$', index, name='index'),
 	#semantic
 	url(r'^varta/', video_chat_view, name='varta_chat'),
+	#temp
+	url(r'^temp/', temp_view, name="temp_view"),
+	#general profile settings
+	url(r'^settings/general/', general_info, name="general_info" ),
 	#all auth urls
 	url(r'^accounts/', include('allauth.urls')),
 	# #social auth
 	# url(r'^oauth/', include('social_django.urls', namespace='social')),
 	#Topic Autocomplete
-	url(r'^topic-autocomplete/$', TopicAutocomplete.as_view(create_field = 'name'), name='topic-autocomplete'),
+	url(r'^topic-autocomplete/$', TopicAutocomplete.as_view(model = Topic, create_field=''), name='topic-autocomplete'),
 	#login
 	url(r'^login/', login_view, name='login'),
 	#notification handling side

@@ -1,10 +1,5 @@
 {% load static %}
-<a class="ui teal image label" href="{% url 'profile_view' objuser.id %}">
-      {% if objuser.person.display_pic %}
-      <img class="ui mini rounded image" src="{{objuser.person.display_pic.url}}" style="display: inline;"/>
-      {% else %}
-      <img class="ui mini rounded image" src= {% static 'img/dummy_user.png' %} style="display: inline;"/>
-      {% endif %} 
+<a class="ui transparent label" style="background-color: rgba(0,0,0,0); padding: 2px; font-size: 1.2em; margin-bottom: 2px;" href="{% url 'profile_view' objuser.id %}">
 {{ objuser.username }}</a>
       {% if user.person == objuser.person %}
     {% else %}

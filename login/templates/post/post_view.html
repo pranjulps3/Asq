@@ -2,39 +2,43 @@
 {% load dractags %}
 {% load post_tags %}
 	{% load comments_tags %}
-	<div class="ui raised olive segment" style="border-radius: 5px;">
+	<div class="ui raised black segment" style="border-radius: 5px;">
 	{% if post in user.post_set.all %}
 	<div class='mypost-{{ post.id }}'>
 	<div id = 'post-contents-{{ post.id }}'> 
-	
+	{% if post.topic.follows.all > 0 %}
 	{% for topic in post.topic_follows.all %}
-		<a class="ui small yellow tag label">{{ topic }}</a>
+		<a class="ui small tag label">{{ topic }}</a>
 	{% endfor %}
 	
 	<br>
 	<br>
+	{% endif %}
+	<div class="metadata">
+    		{% get_user_popup post.author user %}&emsp;{{ post.timestamp | timesince}}
+		</div>
+		<br><br>
 	<h2 style=" display:inline;"><a href="{% url 'view_post' post.id %}" style="color: black;">{{ post.title }}</a></h2>
-		<div class="ui right floated dropdown icon button" style="margin-right: 10px;">
-		    <i class="dropdown icon"></i>
+		<div class="ui right floated dropdown icon button" style="background-color: rgba(0,0,0,0); margin-right: 10px; margin-top: 4px;">
+		    <i class="chevron down icon"></i>
 		    <div class="menu">
 		      <div class="item" data-value="drop">
-		      <a href="{% url 'update_post' post.id %}" class='post-edit' data='{{post.id}}' >
+		      <a href="{% url 'update_post' post.id %}" style="color: black;" class='post-edit' data='{{post.id}}' >
 				<i class="write icon"></i> Edit</a>
 		      </div>
 		      
 		      
 		    	<div class="item" data-value="horizontal flip">
-		    	<a class="post-delete" data = "{{ post.id }}" value = "delete">
+		    	<a class="post-delete" data = "{{ post.id }}" style="color: black;" value = "delete">
 		    	 <i class="trash icon"></i> Delete Post</a>
 			</div>
 			
 		    </div>
 		  </div>
-		  <br><br>
-		<div class="metadata">
-    		{% get_user_popup post.author user %}&emsp;{{ post.timestamp | timesince}}
-		</div>
-		<h5 class="content-markdown" id="post-{{ post.id }}">{{ post.content | safe_markdown }}</h5><br></div>
+		  <div class="ui divider"></div>
+			<div class="ui segment">
+				<h5 class="content-markdown" id="post-{{ post.id }}">{{ post.content | safe_markdown }}</h5><br></div>
+			</div>
 		<div class="ui dividing header" style="margin: 4px; padding: 0px;"></div>
 		{% if post in user.person.upvoted_post.all %}
 		<div class="ui small labeled button" tabindex="0">
@@ -66,22 +70,25 @@
 {% else %}
 <div class='mypost'>
 	<div id = 'post-contents-{{ post.id }}'>
-
+{% if post.topic.follows.all > 0 %}
 	{% for topic in post.topic_follows.all %}
-		<a class="ui small yellow tag label">{{ topic }}</a>
+		<a class="ui small tag label">{{ topic }}</a>
 	{% endfor %}
 	<br><br>
-	<h2 style=" display:inline;"><a href="{% url 'view_post' post.id %}" style="color: black;">{{ post.title }}</a></h2>
-	<br><br>
+	{% endif %}
 	<div class="metadata">
 			{% get_user_popup post.author user %}&emsp;{{ post.timestamp | timesince}}
 	</div>
-	
-	<br><h5 class="content-markdown" id="post-{{ post.id }}">{{ post.content| safe_markdown }}</h5><br></div>
+	<br><br>
+	<h2 style=" display:inline;"><a href="{% url 'view_post' post.id %}" style="color: black;">{{ post.title }}</a></h2>
+	<br>
+	<div class="ui divider"></div>
+	<div class="ui segment">
+		<h5 class="content-markdown" id="post-{{ post.id }}">{{ post.content| safe_markdown }}</h5></div><br></div>
 	<div class="ui dividing header" style="margin: 4px; padding: 0px;"></div>
      {% if post in user.person.upvoted_post.all %}
 		<div class="ui small labeled button" tabindex="0" style="display: inline;">
-		<a class="post" id="{{ post.id }}" data = "{{ post.id }}" value = "vote"  style="color:red;">
+		<a class="post" id="{{ post.id }}" data = "{{ post.id }}" value = "vote">
 		  <div class="ui small blue button">
 		    <i class="chevron up icon"></i> unvote
 		  </div>
@@ -92,7 +99,7 @@
 		</div>
 		{% else %}
 		<div class="ui small labeled button" tabindex="0" style="display: inline;">
-		<a class="post" id="{{ post.id }}" data = "{{ post.id }}" value = "vote"  style="color:red;">
+		<a class="post" id="{{ post.id }}" data = "{{ post.id }}" value = "vote" >
 		  <div class="ui small basic grey button">
 		    <i class="chevron up icon"></i> vote
 		  </div>

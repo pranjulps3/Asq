@@ -2,34 +2,59 @@
 {% block body %}
 <div class="ui raised segment" style="border-radius: 5px; ">
     {% load static %}
-    {% if profile.person.display_pic %}
-        <img class="ui left floated small rounded image" src="{{ profile.person.display_pic.url }}"/>
-    {% else %}
-        <img class="ui left floated small rounded image" src={% static 'img/dummy_user.png' %}/>
-    {% endif %}
-    <div class="ui right floated">
-      <h1>{{profile.first_name}} &nbsp;{{profile.last_name}} <i class="at icon"></i> {{profile.username}}
-    
-    {% if user.person == profile.person %}
-        <a href="/fillup" style="float:right;"><i class="settings icon"></i></a>
-    {% else %}
-        <a class="profiles" id="follow-{{ profile.person.id }}" data = "{{ profile.person.id }}" value = "Follow"> {% if profile.person in user.person.follows.all %}<div class='ui purple labeled icon button'><i class='user icon'></i>unfollow</div> {% else %}<div class='ui basic purple labeled icon button'><i class='add user icon'></i>follow</div>{% endif %}</a>
-    {% endif %}
-	   </h1>
-     <h2><i class="mail icon"></i>{{profile.email}}</h2>
-     <p>
-     {{profile.person.about_me}}
-     </p>
+    <div class="ui segment"  style="border-width: 0px; padding: 0px;margin:0px; height: 12em;">
+          <div class="ui left floated image" id="profile-picture">
+          {% if profile == user %}
+            <a class="ui left black corner label" href="/fillup" style="display: none;">
+              <i class="write icon"></i>
+            </a>
+            {% endif %}
+          {% if profile.person.display_pic %}
+              <img class="ui left floated small avatar image" src="{{ profile.person.display_pic.url }}"/>
+          {% else %}
+              <img class="ui left floated small avatar image" src={% static 'img/dummy_user.png' %}/>
+          {% endif %}
+        </div>
+        <div class="ui right floated">
+        {% if profile.first_name %}
+          <h1 style="margin-bottom: 0px; display: inline;">{{profile.first_name}} &nbsp;{{profile.last_name}}</h1>
+          <br>
+          {% endif %}
+          {% if user.person == profile.person %}
+            <h1 style="float:right;display: inline;"><a class="ui icon button" href="/fillup" style="background-color:rgba(0,0,0,0);float:right;display: inline;"><i class="big settings icon"></i></a></h1>
+        {% else %}
+            <a class="profiles" style="float:right;" id="follow-{{ profile.person.id }}" data = "{{ profile.person.id }}" value = "Follow"> {% if profile.person in user.person.follows.all %}<div class='ui purple labeled icon button'><i class='user icon'></i>unfollow</div> {% else %}<div class='ui basic purple labeled icon button'><i class='add user icon'></i>follow</div>{% endif %}</a>
+        {% endif %}
+          <a href="" class="ui icon button" style="margin-top: 0px; background-color: rgba(0,0,0,0);"><h3><i class="at icon"></i>{{profile.username}}</h3></a>
+          <br>
+          <a class="ui transparent icon button"><i class="user icon"></i>&nbsp;{{profile.person.followed_by.count}} &nbsp;followers</a>
+          <br>
+        <a class="ui icon button" href="mailto:{{ profile.email }}" style="background-color: rgba(0,0,0,0); font-stretch: 3px;"><h2><i class="mail icon"></i>{{profile.email}}</h2></a>
+        
+
+        </div>
+    </div>
+    {% if profile.person.about_me %}
+     <div class="ui secondary segment">
+     <h3>About Me -</h3>
+     <blockquote>
+       <p> <i class="quote left icon" style="color: grey;"></i>
+       {{profile.person.about_me | linebreaks}}     
+       <i class="quote right icon" style="color: grey;"></i></p>
+       </blockquote>
+     </div>
+     {% endif %}
      <div>
+     <br>
       <div class="ui top attached tabular menu">
         <a class="item active" data-tab="answers">answers</a>
         <a class="item" data-tab="questions">questions</a>
         <a class="item" data-tab="posts">posts</a>
       </div>
-      <div class="ui bottom attached tab segment active" data-tab="answers">
+      <div class="ui bottom attached tab segment active" data-tab="answers" style="padding-right: 0px;padding-left: 0px; border-right-width: 0px; border-left-width: 0px;: ">
         {% for ans in usera %}
-          <div class="ui raised orange segment" style="border-radius: 5px; background-color: rgba(230,230,230,0.2)">
-          <center><a href="{% url 'view_question' ans.question.id %}"><h3>{{ans.question.question}}</h3></a><br>
+          <div class="ui raised black segment" style="border-radius: 5px; background-color: rgba(230,230,230,0.2)">
+          <center><a href="{% url 'view_question' ans.question.id %}"><h3 style="color: black;">{{ans.question.question}}</h3></a><br>
           <p> {{ ans.question.details }} </p>
           </center>
           <br>
@@ -40,12 +65,12 @@
             {% endfor %}
             
       </div>
-      <div class="ui bottom attached tab segment" data-tab="questions">
+      <div class="ui bottom attached tab segment" data-tab="questions" style="padding-right: 0px;padding-left: 0px; border-right-width: 0px; border-left-width: 0px;">
         {% for quest in userq %}
           {% question_feed quest user %}
         {% endfor %}
       </div>
-      <div class="ui bottom attached tab segment" data-tab="posts">
+      <div class="ui bottom attached tab segment" data-tab="posts" style="padding-right: 0px;padding-left: 0px; border-right-width: 0px; border-left-width: 0px;: ">
         {% for post in userp %}
           {% get_post post user %}
         {% endfor %}
@@ -53,7 +78,7 @@
      </div>
     </div>
 
-</div>
+
 <script type="text/javascript">
 
 $('.menu .item')
@@ -332,7 +357,7 @@ $('.question-delete').click(function(){
         var id = $(this).attr('data-id');
         if($(this).attr('data-like') == 'like') {
           $('#like-btn-' + id).attr('data-like', 'liked');
-                        $('#like-btn-' + id).html("<div class='mini ui red button'><i class='heart icon'></i>Unike</div>");
+                        $('#like-btn-' + id).html("<i class='red heart icon'></i>Unike");
                         
             $.ajax({
                 type: "GET",
@@ -343,7 +368,7 @@ $('.question-delete').click(function(){
                         $('#likes-count-' + id).text(data['likes_count']);
                     } else{
                        $('#like-btn-' + id).attr('data-like', 'like');
-                        $('#like-btn-' + id).html("<div class='mini ui basic red button'><i class='heart icon'></i>Like</div>");
+                        $('#like-btn-' + id).html("<i class='heart icon'></i>Like");
                         $('#likes-count-' + id).text(data['likes_count']);
                         // alert(data['error']);
                     }
@@ -351,7 +376,7 @@ $('.question-delete').click(function(){
             });
         } else {
            $('#like-btn-' + id).attr('data-like', 'like');
-                        $('#like-btn-' + id).html("<div class='mini ui basic red button'><i class='heart icon'></i>Like</div>");
+                        $('#like-btn-' + id).html("<i class='heart icon'></i>Like");
                         
             $.ajax({
                 type: "GET",
@@ -361,7 +386,7 @@ $('.question-delete').click(function(){
                     if(data['success'] == 1) {
                        $('#likes-count-' + id).text(data['likes_count']);
                     } else{
-                        alert(data['error']);
+                        // alert(data['error']);
                     }
                 }
             });
@@ -369,4 +394,12 @@ $('.question-delete').click(function(){
     });
 
 })</script>
+
+<script type="text/javascript">
+  $('#profile-picture').hover(function(event){
+    $('.ui.left.corner.label').fadeToggle('fast');
+  },function(event){
+    $('.ui.left.corner.label').fadeToggle('fast');
+  }) ;
+</script>
 {% endblock %}

@@ -2,8 +2,8 @@
 
 {% block body %}
 {% load post_tags %}
-<div class="ui raised segment">
-          <table class="ui celled table">
+
+          <table class="ui black inverted celled table">
           <thead>
           <tr><th> Item Report </th><th>{% if lost %}Lost{% else %}Found{% endif %}</th> </tr>
             <tr>
@@ -22,5 +22,4 @@
           </tbody>
         </table>
       
-      </div>
     {% endblock %}

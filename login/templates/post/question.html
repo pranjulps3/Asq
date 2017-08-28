@@ -10,19 +10,19 @@
   <div class='myquestion-{{ quest.id }}'>
   <div id = 'question-contents-{{ quest.id }}'> 
   {% for topic in quest.topic_follows.all %}
-    <a class="ui small yellow tag label">{{ topic }}</a>
+    <a class="ui small tag label">{{ topic }}</a>
   {% endfor %}
   <br>
   <br>
-    <div class="ui right floated dropdown icon button" style="margin-right: 10px;">
-        <i class="dropdown icon"></i>
+    <div class="ui right floated dropdown icon button" style="background-color: rgba(0,0,0,0); margin-right: 10px; margin-top: 4px;">
+        <i class="chevron down icon"></i>
         <div class="menu">
           <div class="item" data-value="drop">
-          <a href="{% url 'update_question' quest.id %}" class='question-edit' data='{{quest.id}}' >
+          <a href="{% url 'update_question' quest.id %}" style="color: black;" class='question-edit' data='{{quest.id}}' >
         <i class="write icon"></i> Edit</a>
           </div>
           <div class="item" data-value="horizontal flip">
-          <a class="question-delete" data = "{{ quest.id }}" value = "delete">
+          <a class="question-delete" data = "{{ quest.id }}" style="color: black;" value = "delete">
            <i class="trash icon"></i> Delete question</a>
       </div>
         </div>
@@ -33,9 +33,8 @@
     <center>
     <strong><h2 class="content-markdown" id="quest-{{ quest.id }}">{{ quest.question }}</h2></strong><br>
     <p class="content-markdown" id="question-{{ quest.id }}">{{ quest.details| linebreaks }}</p><br>
-    </center>
-    </div>
-    <br><br>
+    </center><br>
+    </div> 
     <div class="ui dividing header" style="margin: 4px; padding: 0px;"></div>
     {% get_comments quest user %}  
 {% comment_form quest user %} 
@@ -45,7 +44,7 @@
 <div class='myquestion'>
   <div id = 'question-contents-{{ quest.id }}'>
   {% for topic in quest.topic_follows.all %}
-    <a class="ui small yellow tag label">{{ topic }}</a>
+    <a class="ui small tag label">{{ topic }}</a>
   {% endfor %}
   <br>
   <br>
@@ -56,23 +55,24 @@
   <br><center>
     <strong><h2 class="content-markdown" id="quest-{{ quest.id }}">{{ quest.question }}</h2></strong><br>
     <p class="content-markdown" id="question-{{ quest.id }}">{{ quest.details| linebreaks }}</p><br>
-    </center><br>
+    </center>
   </div>
-<br><br>
+<br>
+<div class="ui dividing header" style="margin: 4px; padding: 0px;"></div>
     {% if not answered %}
-    <a href="{% url 'create_answer' quest.id %}">
+    <a href="{% url 'create_answer' quest.id %}" style="display: inline;">
     <div class="ui small blue button">
         <i class="write icon"></i> Answer
       </div>
       </a>
       {% else %}
-      <a href="{% url 'view_answer' myanswer.id %}">
+      <a href="{% url 'view_answer' myanswer.id %}" style="display: inline;">
     <div class="ui small blue button">
         <i class="book icon"></i>Your Answer
       </div>
       </a>
       {% endif %}
-      <div class="ui dividing header" style="margin: 4px; padding: 0px;"></div>
+      
   {% get_comments quest user %}  
 {% comment_form quest user %} 
 {% get_all_answers quest user %}
@@ -243,7 +243,7 @@ $(document).ready(function() {
         var id = $(this).attr('data-id');
         if($(this).attr('data-like') == 'like') {
           $('#like-btn-' + id).attr('data-like', 'liked');
-                        $('#like-btn-' + id).html("<div class='mini ui red button'><i class='heart icon'></i>Unike</div>");
+                        $('#like-btn-' + id).html("<i class='red heart icon'></i>Unike");
                         
             $.ajax({
                 type: "GET",
@@ -254,7 +254,7 @@ $(document).ready(function() {
                         $('#likes-count-' + id).text(data['likes_count']);
                     } else{
                        $('#like-btn-' + id).attr('data-like', 'like');
-                        $('#like-btn-' + id).html("<div class='mini ui basic red button'><i class='heart icon'></i>Like</div>");
+                        $('#like-btn-' + id).html("<i class='heart icon'></i>Like");
                         $('#likes-count-' + id).text(data['likes_count']);
                         // alert(data['error']);
                     }
@@ -262,7 +262,7 @@ $(document).ready(function() {
             });
         } else {
            $('#like-btn-' + id).attr('data-like', 'like');
-                        $('#like-btn-' + id).html("<div class='mini ui basic red button'><i class='heart icon'></i>Like</div>");
+                        $('#like-btn-' + id).html("<i class='heart icon'></i>Like");
                         
             $.ajax({
                 type: "GET",
@@ -272,7 +272,7 @@ $(document).ready(function() {
                     if(data['success'] == 1) {
                        $('#likes-count-' + id).text(data['likes_count']);
                     } else{
-                        alert(data['error']);
+                        // alert(data['error']);
                     }
                 }
             });

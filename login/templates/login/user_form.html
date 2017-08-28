@@ -1,0 +1,84 @@
+{% extends 'login/semantic.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+<div class="ui black raised segment" style="border-radius: 5px; ">
+<!-- <i class="close icon"></i> -->
+  <div class="header">
+    <a class="ui ribbon label"><h2>{{ title }}</h2></a>
+  </div>
+<br>
+
+<form class="ui form" method="post" action="" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="ui left floated circular image dimmable">
+        <div class="ui dimmer transition hidden">
+          <div class="content">
+            <div class="center">
+            	{% if user.person.display_pic %}
+		  			<div class="ui checkbox">
+				      <input type="checkbox" tabindex="0" name="remove" class="hidden">
+				      <label style="color: white; padding-bottom: 1em;">Remove this pic</label>
+				    </div>
+		  		{% endif %}
+		  		<a class="ui inverted button" style="margin-left:0.22em;padding:1em;padding-bottom: 0px;"><i class="big upload icon" style="padding:0px;position: relative;margin-top: 0em;"></i>
+              <input class="box__file" style="padding-left: 2em;opacity: 0;z-index: 100;position: relative; margin-top: -2.5em;padding-bottom: 2em;" type="file" name="profile-pic" id="file" data-multiple-caption="files selected" multiple />
+              </a>
+            </div>
+          </div>
+        </div>
+        {% if user.person.display_pic %}
+		  	<img class="ui left floated medium circular image" id="profile-image" style="width: 17em;" src="{{ user.person.display_pic.url  }}" />
+		  	{% else %} 
+		  	<img class="ui left floated medium circular image" id="profile-image" style="width: 17em;" src={% static 'img/dummy_user.png'%}/>
+		  {% endif %}
+      </div>
+   
+
+      <div class="field">
+        <label for="First Name">First Name</label>
+        <input id="first_name" name="first_name" value="{{ user.first_name }}" required="" placeholder="First Name" type="text" />
+      </div>
+
+      <div class="field">
+        <label for="Last Name">Last Name</label>
+        <input id="last_name" name="last_name" value="{{ user.last_name }}" placeholder="Last Name" type="text">
+      </div>
+  		{{ form|crispy }}
+	  <button class="ui positive right labeled icon button" type="submit" name="submit">Submit<i class="checkmark icon"></i></button>
+</form>
+  
+</div>
+<script type="text/javascript">
+	$('.circular.image.dimmable')
+  .dimmer({
+    on: 'hover'
+  })
+;
+$('.ui.checkbox')
+  .checkbox()
+;
+</script>
+<script type="text/javascript">
+	function readURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#profile-image').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+	}
+
+	$("#file").change(function(){
+	    readURL(this);
+	});
+</script>
+{% endblock %}
+
+
+
+
