@@ -9,7 +9,7 @@
       {% csrf_token %}
       <input type="text" id="profile-search" name="search" placeholder="Find Friends">
       <ul id="profile-results" >
-      	
+
       </ul>
       </div>
 	{% for i in post %}
@@ -23,8 +23,8 @@
 	<li>
      <button class="post" id="{{ i.id }}" data = "{{ i.id }}" value = "vote" {% if i in user.person.upvoted_post.all %} style="color:red;">unvote {% else %} style="color:black;">vote{% endif %}</button><br>
 </li>
-{% get_comments i user %}  
-{% comment_form i user %} 
+{% get_comments i user %}
+{% comment_form i user %}
 {% get_comment_count i %}
 <br><br>
 </div>
@@ -33,8 +33,8 @@
 <li><h4>{{ i.title }}</h4><p>{{ i.timestamp }}</p><br><h5 class="content-markdown">{{ i.contenti.content | safe_markdown }}</h5><br>
      <button class="post" id="{{ i.id }}" data = "{{ i.id }}" value = "vote" {% if i in user.person.upvoted_post.all %} style="color:red;">unvote {% else %} style="color:black;">vote{% endif %}</button><br>
 </li>
-{% get_comments i user %}  
-{% comment_form i user %} 
+{% get_comments i user %}
+{% comment_form i user %}
 {% get_comment_count i %}
 <br><br>
 </div>
@@ -93,7 +93,7 @@ $('.post').click(function(){
                 error: function(rs, e) {
                        alert(rs.responseText);
                 }
-          }); 
+          });
     })
 
 $('.post-delete').click(function(){
@@ -118,7 +118,7 @@ $('.post-delete').click(function(){
                 error: function(rs, e) {
                        alert(rs.responseText);
                 }
-          }); 
+          });
   	}
     })
 
@@ -144,7 +144,7 @@ $(document).ready(function() {
                   for (var err in json['error']){
                     errors += "" + err + ": " + json['error'][err] + "\n"
                   }
-                  alert(errors)                      
+                  alert(errors)
                 }
                 else {
                 	var oid = json['oid'];
@@ -167,9 +167,9 @@ $(document).ready(function() {
             error: function(response) {
             	alert("error")
             }
-         });        
+         });
     });
-    
+
     // DELETE COMMENT //
     $('.comments-wrapper').on('click', '.comment-delete-btn', function(event) {
         event.preventDefault();
@@ -251,7 +251,7 @@ $(document).ready(function() {
         if($(this).attr('data-like') == 'like') {
           $('#like-btn-' + id).attr('data-like', 'liked');
                         $('#like-btn-' + id).html("<i class='red heart icon'></i>Unike");
-                        
+
             $.ajax({
                 type: "GET",
                 url: '/comments/like',
@@ -270,7 +270,7 @@ $(document).ready(function() {
         } else {
            $('#like-btn-' + id).attr('data-like', 'like');
                         $('#like-btn-' + id).html("<i class='heart icon'></i>Like");
-                        
+
             $.ajax({
                 type: "GET",
                 url: '/comments/unlike',

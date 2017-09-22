@@ -1,16 +1,25 @@
 {% extends 'login/semantic.html' %}
 {% block body %}
 {% load static %}
-<div class="ui bottom attached active tab segment" style="border-radius: 5px;">
-<center><a href="{% url 'view_question' answer.question.id %}"><h3 style="color: black;">{{answer.question.question}}</h3></a><br>
-<p> {{ answer.question.details }} </p>
-</center>
-<br>
+
+<div class="ui top attached segment">
+  <center>
+    <a href="{% url 'view_question' answer.question.id %}"><h3 style="color: black;">{{answer.question.question}}</h3></a><br>
+    <p> {{ answer.question.details }} </p>
+  </center>
+</div>
 {% load comments_tags %}
 {% load post_tags %}
 {% get_answer answer user %}
- 
-</div>
+
+
+
+
+
+
+
+
+
 <script type="text/javascript">
 
 $('.answer').click(function(){

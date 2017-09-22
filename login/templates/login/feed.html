@@ -7,15 +7,16 @@
 	{% for entity in feed %}
 
 		{% if entity.question.question %}
-			<div class="ui raised black segment" style="border-radius: 5px; ">
-			<center><a href="{% url 'view_question' entity.question.id %}"><strong><h3 style="color: black;">{{entity.question.question}}</h3></strong></a><br>
-			<p> {{ entity.question.details }} </p>
-			</center>
-			<br>
+      <div class="ui top attached segment">
+  			<center>
+          <a href="{% url 'view_question' entity.question.id %}"><strong><h3 style="color: black;">{{entity.question.question}}</h3></strong></a><br>
+  			 <p> {{ entity.question.details }} </p>
+  			</center>
+      </div>
 			{% load comments_tags %}
 			{% load post_tags %}
 			{% get_answer entity user %}
-			</div>
+
 		{% elif entity.content %}
 			{% get_post entity user %}
 		{% elif entity.question %}

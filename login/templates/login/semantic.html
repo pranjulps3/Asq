@@ -11,13 +11,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script type="text/javascript" src={% static 'js/jquery-3.2.0.min.js' %}></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.js"></script>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{{title}}</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href={% static 'sem/semantic.min.css' %} >
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">
+<!--     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato"> -->
     <!-- CSS -->
     <script src={% static 'sem/components/sidebar.min.js' %} type="text/javascript"></script>
     <script src={% static 'sem/components/search.min.js' %} type="text/javascript"></script>
@@ -28,8 +28,8 @@
         <script src={% static 'sem/components/dimmer.min.js' %} type="text/javascript"></script>
         <script src={% static 'sem/components/checkbox.min.js' %} type="text/javascript"></script>
         <script src={% static 'sem/components/tab.min.js' %} type="text/javascript"></script>
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+<!--         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script> -->
     <style>
         body{
           background-color: rgba(230,230,230,1);
@@ -66,33 +66,53 @@
             height: auto;
         }
 
+        img:hover{
+            cursor: pointer;
+        }
+
         li{
             text-decoration:none;
         }
+        .scrollbar
+        {
+          margin-left: 30px;
+          float: left;
+          height: 300px;
+          width: 65px;
+          background: #F5F5F5;
+          overflow-y: scroll;
+          margin-bottom: 25px;
+        }
+        #style-1::-webkit-scrollbar
+        {
+          width: 3px;
+          background-color: none;
+        }
+
+        #style-1::-webkit-scrollbar-thumb
+        {
+          border-radius: 10px;
+          -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+          background-color: #555;
+        }
     </style>
 </head>
-<body class="body">
+<body class="body" id="style-1">
     <div class="ui black sidebar inverted vertical menu">
     <a class="item" href="http://www.github.com/pranjulps3" target="_blank">
       <i class="github icon" ></i> Pranjul
-    </a>
-    <a class="item" href="http://www.github.com/samy-33" target="_blank">
-      <i class="github icon" ></i> Saket
-    </a>
-    <a class="item" href="http://www.github.com/aryanakul" target="_blank">
-      <i class="github icon" ></i> Nakul
     </a>
   </div>
 
   <div class="pusher" >
     <!-- Site content !-->
 
-    <div class="sixteen fixed wide column">
+    <div class="sixteen wide column">
     <div class="ui black inverted fixed pointing menu" >
       <a class="item" id="sidenav" style="border-radius: 0px;">
             <i class="content icon"></i>
           </a>
-        <a href="/" class="item" style="background-color: rgba(200,200,200,1); border-radius: 4px; border: 2px solid; border-color: rgba(10,10,10,0.92); padding-top: 2px; padding-bottom: 2px; margin-top: 0px; margin-bottom: 0px;margin-right: 0px">
+        <a href="/" class="item" style="padding-top: 2px; padding-bottom: 2px; margin-top: 0px; margin-bottom: 0px;margin-right: 0px">
             <img class="ui transparent tiny image" id="logo-asq" style="height: 3em; width: auto;" src={% static 'img/asq.png' %}/>
         </a>
         <div class="ui dropdown item" style="width: 4%;">
@@ -144,135 +164,128 @@
     </div> 
     <br><br>
 <br>
-  <div class="ui grid">
-          <div class="three wide column">
+  <div class="ui stackable grid">
+        <div class="three wide column">
           <div class="ui black vertical menu" style="position: fixed; margin-left: 1.7%; ">
-          <div class="ui black fluid card" style="background-color: rgba(10,10,10,0.92);color: white;">
-                    <div class=" item">
-                        <!-- <div class="ui input"><form class="search-form" role="search">
-                            <div class="ui loading search">
-                                <div style="width:30vh">
-                                    {% csrf_token %}
-                                    <input type="text" class="form-control" id="profile-search" name="search" placeholder="Find Friends...." list="profile-results">
-                                    <div class="results" id="profile-results" >
+            <div class="ui black fluid card" style="background-color: rgba(10,10,10,0.92);color: white;">
+              <div class=" item">
+                            <!-- <div class="ui input"><form class="search-form" role="search">
+                                <div class="ui loading search">
+                                    <div style="width:30vh">
+                                        {% csrf_token %}
+                                        <input type="text" class="form-control" id="profile-search" name="search" placeholder="Find Friends...." list="profile-results">
+                                        <div class="results" id="profile-results" >
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form></div> -->
-                        <div class="ui fluid inverted search" id="profile-search-div">
-                        <div class="ui transparent icon input" >
-                          {% csrf_token %}
-                            <input class="prompt" id="profile-search" type="text" placeholder="Find People..." style="border-radius: 0px;color: white;" >
-                            <i class="white inverted search icon"></i>
-                        </div>
-                              <div class="results" id="profile-results" >
-                              </div>
-                        </div>
-                    </div>   
-                  <div class="image">
-                    {% if user.person.display_pic %}
-                      <img src="{{user.person.display_pic.url}}" style="display: inline;"/>
-                      {% else %}
-                      <img src= {% static 'img/dummy_user.png' %} style="display: inline;"/>
-                      {% endif %} 
+                            </form></div> -->
+                  <div class="ui fluid inverted search" id="profile-search-div">
+                  <div class="ui transparent icon input" >
+                    {% csrf_token %}
+                      <input class="prompt" id="profile-search" type="text" placeholder="Find People..." style="border-radius: 0px;color: white;" >
+                      <i class="white inverted search icon"></i>
                   </div>
-                  <div class="ui content">
-                    <a class="header" href="{% url 'profile_view' request.user.id %}" style="color: white;text-decoration-color: blue;">
-                          {% if user.first_name %}
-                          {{ user.first_name }}&nbsp;{{ user.last_name }}
+                        <div class="results" id="profile-results" >
+                        </div>
+                  </div>
+              </div>   
+                      <div class="image">
+                        {% if user.person.display_pic %}
+                          <img src="{{user.person.display_pic.url}}" style="display: inline;"/>
                           {% else %}
-                          {{ user.username }}
+                          <img src= {% static 'img/dummy_user.png' %} style="display: inline;"/>
                           {% endif %} 
-                    </a>
-                    <div class="meta">
-                      <span class="date" style="color: white;">Joined on {{ user.date_joined }}</span>
-                    </div>
-                    <div class="description" style="color: white;">
-                      {{ user.person.about_me }}
-                    </div>
-                  </div>
-                  <div class="extra content">
-                    <a style="color: white; text-decoration-color: blue;">
-                      <i class="user icon"></i>
-                      {{ user.person.followed_by.all.count }}&nbsp;follower{% if user.person.followed_by.all.count > 1 %}s{% endif %}
-                    </a>
-                  </div>
-            </div>
-          
-        </div>
-  </div>
-  <div class="seven wide stretched column" >
-    <div class="ui inverted raised segment" style="border-radius: 5px;">
-    <a href="{% url 'create_question' %}" class="ui inverted button">
-        <div class="two wide stretched column">
-        <h2> Ask a Question </h2>
-        </div>
-    </a>
-    <a href="{% url 'create_post' %}" class="ui right floated inverted button">
-        <div class="two wide stretched column">
-        <h2> Create Post</h2>
-        </div>
-    </a>
-    </div>
-            <div class="ui modal" style="padding: 0px;">
-              <i class="close icon"></i>
+                      </div>
+                      <div class="ui content">
+                        <a class="header" href="{% url 'profile_view' request.user.id %}" style="color: white;text-decoration-color: blue;">
+                              {% if user.first_name %}
+                              {{ user.first_name }}&nbsp;{{ user.last_name }}
+                              {% else %}
+                              {{ user.username }}
+                              {% endif %} 
+                        </a>
+                        <div class="meta">
+                          <span class="date" style="color: white;">Joined on {{ user.date_joined }}</span>
+                        </div>
+                        <div class="description" style="color: white;">
+                          {{ user.person.about_me }}
+                        </div>
+                      </div>
+                      <div class="extra content">
+                        <a style="color: white; text-decoration-color: blue;">
+                          <i class="user icon"></i>
+                          {{ user.person.followed_by.all.count }}&nbsp;follower{% if user.person.followed_by.all.count > 1 %}s{% endif %}
+                        </a>
+                      </div>
+                </div>
               
             </div>
-    
-      {% block body %}
-      {% endblock %}
-</div>
-    <div class="three wide column" style="float: right;">
-    <div  style="position: fixed; width:18%;">
-    
-    <div>
-    
-          <table class="ui selectable inverted compact fixed table">
-          <thead>
-          <!-- <tr class = "ui yellow top attched segment""><th colspan="2" ><center><b> LOST</b></center> </th></tr> -->
-            <tr>
-            <th colspan="2">Reported by</th>
-            <th colspan="1">Item name</th>
-          </tr></thead>
-          <tbody>
-          {% load post_tags %}
-          {% for item in litem %}
-          
-            <tr>
-              <td colspan="2">{% get_user_popup item.reported_by user %}</td>
-              <td colspan="1" href="{% url 'lost_view' item.id %}"><a href="{% url 'lost_view' item.id %}">{{ item.name }}</a></td>
+      </div>
 
-            </tr>
 
-            {% endfor %}
-          </tbody>
-          
-        </table>
+      <div class="seven wide column" >
+        <div class="ui inverted buttons" style="border-radius: 5px; width: 100%">
+        <a href="{% url 'create_question' %}" class="ui button">
+            <div class="two wide stretched column">
+            <h2> <img class="ui transparent tiny image" id="logo-asq" style="height: 3em; width: auto; display: inline;" src={% static 'img/asq.png' %}/> a Question </h2>
+            </div>
+        </a>
+        <a href="{% url 'create_post' %}" class="ui button">
+            <div class="two wide stretched column">
+            <h2> Create Post</h2>
+            </div>
+        </a>
+        </div>
+                <div class="ui modal" style="padding: 0px;">
+                  <i class="close icon"></i>
+                  
+                </div>
         
-          <table class="ui inverted selectable compact fixed table">
-          <thead>
-        <!--  <tr class = "ui inverted yellow top attched segment""><th colspan="2"><center><b> FOUND</b></center> </th></tr> -->
-            <tr >
-            <th colspan="2">Reported by</th>
-            <th colspan="1">Item name</th>
-          </tr></thead>
-          <tbody>
-            {% for item in fitem %}
-            
-            <tr>
-              <td colspan="2">{% get_user_popup item.reported_by user %}</td>
-              <td colspan="1" href="{% url 'lost_view' item.id %}"><a href="{% url 'lost_view' item.id %}">{{ item.name }}</a></td>
-            </tr>
-            
-            {% endfor %}
-          </tbody>
-          
-        </table>
-      
-      </div>
-      <a class = "ui bottom attached teal button" href="{% url 'report' %}" class="ui small teal button">Report Item Lost/Found</a>
-      </div>
-      </div>
+          {% block body %}
+          {% endblock %}
+    </div>
+        <div class="three wide column" style="float: right;">
+            <div  style="position: fixed; width:18%;">
+            <a class = "ui top attached teal button" href="{% url 'report' %}" class="ui small teal button">Report Item Lost/Found</a>
+                <div id="style-1" style="height:280px;overflow-y: scroll;">
+                  <table class="ui selectable compact fixed table" >
+                    <thead>
+                    <!-- <tr class = "ui yellow top attched segment""><th colspan="2" ><center><b> LOST</b></center> </th></tr> -->
+                      <tr>
+                      <th colspan="2">Reported by</th>
+                      <th colspan="1"><b>LOST</b></th>
+                    </tr></thead>
+                    <tbody>
+                    {% load post_tags %}
+                    {% for item in litem %}
+                      <tr>
+                        <td colspan="2">{% get_user_tag item.reported_by user %}</td>
+                        <td colspan="1" href="{% url 'lost_view' item.id %}"><a href="{% url 'lost_view' item.id %}">{{ item.name }}</a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <div id="style-1" style="height:280px;overflow-y: scroll; margin-top: 5px;">
+                  <table class="ui selectable compact fixed table" >
+                        <thead>
+                      <!--  <tr class = "ui inverted yellow top attched segment""><th colspan="2"><center><b> FOUND</b></center> </th></tr> -->
+                          <tr >
+                          <th colspan="2">Reported by</th>
+                          <th colspan="1"><b>FOUND</b></th>
+                        </tr></thead>
+                        <tbody>
+                          {% for item in fitem %}
+                          <tr>
+                            <td colspan="2">{% get_user_tag item.reported_by user %}</td>
+                            <td colspan="1" href="{% url 'lost_view' item.id %}"><a href="{% url 'lost_view' item.id %}">{{ item.name }}</a></td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                  </table>
+                </div>
+              </div>
+        </div>
 </div>
 </div>
 </div></div></div></div></body>
@@ -452,8 +465,12 @@ $('.ui.emoji.button').click(function(event){
 <script type="text/javascript">
 
 
-
-
+$('#style-1').hover(function(){
+  $(this).style.overflow-y = 'scroll';
+  console.log('sdfds');
+}, function(){
+  $(this).style.overflow-y = 'hidden';
+});
 
 // $('.ui.transparent.icon.input')
 //   .click(function(){

@@ -1,86 +1,116 @@
 {% load static %}
 {% load dractags %}
 
-  {% load post_tags %}
-	 {% load comments_tags %}
+{% load post_tags %}
+{% load comments_tags %}
 
 
-<div class="ui bottom attached active tab segment" style="border-radius: 5px;">
-  {% if quest in user.question_set.all %}
+{% if quest in user.question_set.all %}
   <div class='myquestion-{{ quest.id }}'>
-  <div id = 'question-contents-{{ quest.id }}'> 
-  {% for topic in quest.topic_follows.all %}
-    <a class="ui small tag label">{{ topic }}</a>
-  {% endfor %}
-  <br>
-  <br>
-    <div class="ui right floated dropdown icon button" style="background-color: rgba(0,0,0,0); margin-right: 10px; margin-top: 4px;">
-        <i class="chevron down icon"></i>
-        <div class="menu">
-          <div class="item" data-value="drop">
-          <a href="{% url 'update_question' quest.id %}" style="color: black;" class='question-edit' data='{{quest.id}}' >
-        <i class="write icon"></i> Edit</a>
+    <div class="ui segments" id = 'question-contents-{{ quest.id }}'> 
+      {% if quest.topic_follows.all.count > 0 %}
+        <div class="ui segment">
+        {% for topic in quest.topic_follows.all %}
+          <a class="ui small tag label">{{ topic }}</a>
+        {% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="ui segment" style="padding: 0px;">
+        <div class="metadata">
+          {% get_user_popup quest.author user %}&emsp;{{ quest.timestamp | timesince}}
+          <div class="ui right floated dropdown icon button" style="background-color: rgba(0,0,0,0);">
+            <i class="chevron down icon"></i>
+            <div class="menu">
+              <div class="item" data-value="drop">
+                <a href="{% url 'update_question' quest.id %}" style="color: black;" class='question-edit' data='{{quest.id}}' >
+                  <i class="write icon"></i> Edit</a>
+              </div>
+              <div class="item" data-value="horizontal flip">
+                <a class="question-delete" data = "{{ quest.id }}" style="color: black;" value = "delete">
+                  <i class="trash icon"></i> Delete question</a>
+              </div>
+            </div>
           </div>
-          <div class="item" data-value="horizontal flip">
-          <a class="question-delete" data = "{{ quest.id }}" style="color: black;" value = "delete">
-           <i class="trash icon"></i> Delete question</a>
-      </div>
         </div>
       </div>
-    <div class="metadata">
-        {% get_user_popup quest.author user %}&emsp;{{ quest.timestamp | timesince}}
+
+      <div class="ui segment">
+        <center>
+          <strong><h2 class="content-markdown" id="quest-{{ quest.id }}">{{ quest.question }}</h2></strong><br>
+            <p class="content-markdown" id="question-{{ quest.id }}">{{ quest.details| linebreaks }}</p>
+        </center>
+      </div>
+
+      <div class="ui segment">
+        {% get_comments quest user %}  
+        {% comment_form quest user %} 
+      </div>
     </div>
-    <center>
-    <strong><h2 class="content-markdown" id="quest-{{ quest.id }}">{{ quest.question }}</h2></strong><br>
-    <p class="content-markdown" id="question-{{ quest.id }}">{{ quest.details| linebreaks }}</p><br>
-    </center><br>
-    </div> 
-    <div class="ui dividing header" style="margin: 4px; padding: 0px;"></div>
-    {% get_comments quest user %}  
-{% comment_form quest user %} 
-{% get_all_answers quest user %}
-</div>
+    <div class="ui top attached segment">
+      <div class="ui centered header">
+        <h3><b>Answers - </b>{% if quest.answers.all.count > 0 %}{{ quest.answers.all.count }}{% else %}No Answers yet !{% endif %}</h3>
+      </div>
+    </div>
+    <div class="ui bottom attached segment">
+      {% get_all_answers quest user %}
+    </div>
+  </div>
+
 {% else %}
-<div class='myquestion'>
-  <div id = 'question-contents-{{ quest.id }}'>
-  {% for topic in quest.topic_follows.all %}
-    <a class="ui small tag label">{{ topic }}</a>
-  {% endfor %}
-  <br>
-  <br>
-  <div class="metadata">
-      {% get_user_popup quest.author user %}&emsp;{{ quest.timestamp | timesince}}
-  </div>
-  
-  <br><center>
-    <strong><h2 class="content-markdown" id="quest-{{ quest.id }}">{{ quest.question }}</h2></strong><br>
-    <p class="content-markdown" id="question-{{ quest.id }}">{{ quest.details| linebreaks }}</p><br>
-    </center>
-  </div>
-<br>
-<div class="ui dividing header" style="margin: 4px; padding: 0px;"></div>
-    {% if not answered %}
-    <a href="{% url 'create_answer' quest.id %}" style="display: inline;">
-    <div class="ui small blue button">
-        <i class="write icon"></i> Answer
-      </div>
-      </a>
-      {% else %}
-      <a href="{% url 'view_answer' myanswer.id %}" style="display: inline;">
-    <div class="ui small blue button">
-        <i class="book icon"></i>Your Answer
-      </div>
-      </a>
+  <div class='myquestion'>
+    <div class="ui segments" id = 'question-contents-{{ quest.id }}'>
+      {% if quest.topic_follows.all.count > 0 %}
+        <div class="ui segment">
+        {% for topic in quest.topic_follows.all %}
+          <a class="ui small tag label">{{ topic }}</a>
+        {% endfor %}
+        </div>
       {% endif %}
-      
-  {% get_comments quest user %}  
-{% comment_form quest user %} 
-{% get_all_answers quest user %}
-</div>
+
+      <div class="ui segment" style="padding: 0px;">
+        <div class="metadata">
+          {% get_user_popup quest.author user %}&emsp;{{ quest.timestamp | timesince}}
+        </div>
+      </div>
+
+      <div class="ui segment">
+        <center>
+          <strong><h2 class="content-markdown" id="quest-{{ quest.id }}">{{ quest.question }}</h2></strong><br>
+          <p class="content-markdown" id="question-{{ quest.id }}">{{ quest.details| linebreaks }}</p><br>
+        </center>
+      </div>
+    
+      <div class="ui segment">
+        {% if not answered %}
+          <a href="{% url 'create_answer' quest.id %}" style="display: inline;">
+            <div class="ui small blue button">
+              <i class="write icon"></i> Answer
+            </div>
+          </a>
+        {% else %}
+          <a href="{% url 'view_answer' myanswer.id %}" style="display: inline;">
+            <div class="ui small blue button">
+              <i class="book icon"></i>Your Answer
+            </div>
+          </a>
+        {% endif %}
+
+        {% get_comments quest user %}  
+        {% comment_form quest user %} 
+      </div>
+    </div>
+    <div class="ui top attached segment">
+      <div class="ui centered header">
+        <h3><b>Answers - </b>{% if quest.answers.all.count > 0 %}{{ quest.answers.all.count }}{% else %}No Answers yet !{% endif %}</h3>
+      </div>
+    </div>
+    <div class="ui bottom attached segment">
+      {% get_all_answers quest user %}
+    </div>
+  </div>
 {% endif %}
 
-
-	</div>
   
 
 

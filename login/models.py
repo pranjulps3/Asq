@@ -62,7 +62,7 @@ class Person(models.Model):
 	def create_user_profile(sender, instance, created, **kwargs):
 		if created:
 			Person.objects.create(username = instance)
-	
+
 	@receiver(post_save, sender=User)
 	def save_user_profile(sender, instance, **kwargs):
 		instance.person.save()
@@ -77,7 +77,7 @@ class Post(models.Model):
 	timestamp = models.DateTimeField(auto_now = False, auto_now_add = True)
 	upvotes = models.ManyToManyField('Person', related_name='upvoted_post')
 	topic_follows = models.ManyToManyField('Topic', related_name = 'post_followers', blank = True)
-	def __str__(self): 
+	def __str__(self):
 		return self.title
 
 class Question(models.Model):
@@ -116,4 +116,3 @@ class Item(models.Model):
 	timestamp = models.DateTimeField(auto_now = False, auto_now_add = True)
 	def __str__(self):
 		return self.name
-

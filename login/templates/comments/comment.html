@@ -7,7 +7,7 @@
       <img  src="{{object.user.person.display_pic.url}}" style="display: inline;"/>
       {% else %}
       <img  src= {% static 'img/dummy_user.png' %} style="display: inline;"/>
-      {% endif %} 
+      {% endif %}
     </a>
     <div class="content">
 
@@ -16,7 +16,7 @@
 		<div class="metadata">
 	        <div class="date"> {{ object.timestamp | timesince }} ago.
 		</div>
-      </div> 
+      </div>
       {% if object.user.id == user.id or object.content_object.author.id == user.id %}
       <div class="ui right floated dropdown icon mini button" style="background-color: rgba(0,0,0,0); margin-right: 10px; margin-top: 4px;">
 		    <i class="chevron down icon"></i>
@@ -25,7 +25,7 @@
 			{% if object.user.id == user.id %}
 		      <div class="item" data-value="drop">
 
-						<a class='comment-edit-class' data-id='{{ object.id }}' style="color: black"><i class="edit icon"></i> Edit</a>		
+						<a class='comment-edit-class' data-id='{{ object.id }}' style="color: black"><i class="edit icon"></i> Edit</a>
 		      </div>
 		      {% endif %}
 				{% endif %}
@@ -35,7 +35,7 @@
 		    		  <form class="comment-delete-form" method='DELETE' action="{% url "comment-delete" object.pk %}">
 							<input value="{% csrf_token %}" id="csrf" hidden>
 							{% csrf_token %}
-							
+
 							<a type="submit" value="Delete" class="comment-delete-btn" data-id="{{ object.id }}" style="color: black"><i class="trash icon"></i> Delete</a>
 						</form>
 						</div>
@@ -55,35 +55,35 @@
       </div>
 
       <div class="actions">
-      			
-        	{% if allow_likes %}	
+
+        	{% if allow_likes %}
 			{% if liked %}
-				
+
 				  <a class="like-comment-btn" id="like-btn-{{ object.id }}" data-like="liked" data-id="{{ object.id }}">
-				  
+
 				    <i class="red heart icon"></i> Unlike
-				  
+
 				  </a>
 				  <a class="mini ui left pointing label">
 				    <p id="likes-count-{{ object.id }}" >{{ object.likes_count }}</p>
 				  </a>
-				
+
 			{% else %}
-				
+
 				  <a class="like-comment-btn" id="like-btn-{{ object.id }}" data-like="like" data-id="{{ object.id }}">
-				  
+
 				    <i class="heart icon"></i> Like
 				  </a>
 				  <a class="mini ui left pointing label">
 				    <p id="likes-count-{{ object.id }}" >{{ object.likes_count }}</p>
 				    </a>
-			{% endif %}	
 			{% endif %}
-			
-        	
-        	
-				
-			
+			{% endif %}
+
+
+
+
+
 			<div class="ui divider"></div>
       </div>
 
@@ -110,4 +110,3 @@ $('.ui.image.label')
   })
 ;
 </script>
-

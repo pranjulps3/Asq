@@ -53,16 +53,18 @@
       </div>
       <div class="ui bottom attached tab segment active" data-tab="answers" style="padding-right: 0px;padding-left: 0px; border-right-width: 0px; border-left-width: 0px;: ">
         {% for ans in usera %}
-          <div class="ui raised black segment" style="border-radius: 5px; background-color: rgba(230,230,230,0.2)">
-          <center><a href="{% url 'view_question' ans.question.id %}"><h3 style="color: black;">{{ans.question.question}}</h3></a><br>
-          <p> {{ ans.question.details }} </p>
-          </center>
-          <br>
-          {% load comments_tags %}
-          {% load post_tags %}
-          {% get_answer ans user %}
+          <div class="ui top attached segment">
+            <center>
+              <a href="{% url 'view_question' ans.question.id %}"><h3 style="color: black;">{{ans.question.question}}</h3></a><br>
+              <p> {{ ans.question.details }} </p>
+            </center>
           </div>
-            {% endfor %}
+          <div class="ui bottom attached segment">
+            {% load comments_tags %}
+            {% load post_tags %}
+            {% get_answer ans user %}
+          </div>
+        {% endfor %}
             
       </div>
       <div class="ui bottom attached tab segment" data-tab="questions" style="padding-right: 0px;padding-left: 0px; border-right-width: 0px; border-left-width: 0px;">

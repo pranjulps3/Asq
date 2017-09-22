@@ -1,10 +1,10 @@
 {% load static %}
-<a class="ui black image ribbon label" href="{% url 'profile_view' objuser.id %}">
+<a class="ui label" style="background-color: rgba(0,0,0,0);font-size: 1.2em;color: #090909;" href="{% url 'profile_view' objuser.id %}">
       {% if objuser.person.display_pic %}
-      <img class="ui mini rounded left attached image" id="avatar-image" src="{{objuser.person.display_pic.url}}" style="display: inline;"/>
+      <img class="ui rounded middle alligned tiny image" id="avatar-image" src="{{objuser.person.display_pic.url}}" style="display: inline;"/>
       {% else %}
-      <img class="ui mini rounded left attached image" id="avatar-image" src= {% static 'img/dummy_user.png' %} style="display: inline;"/>
-      {% endif %}{{ objuser.username }}
+      <img class="ui rounded middle alligned tiny image" id="avatar-image" src= {% static 'img/dummy_user.png' %} style="display: inline;"/>
+      {% endif %}<span>{{ objuser.username }}</span>
       </a>
       {% if user.person == objuser.person %}
     {% else %}

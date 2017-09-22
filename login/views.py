@@ -539,17 +539,13 @@ def person_view(request):
 		form = PersonForm(request.POST, request.FILES, instance=request.user.person)
 		if form.is_valid():
 			form.save()
-			print(request.POST.get('first_name'))
-			print(request.POST.get('last_name'))
 			user=User.objects.get(id=request.user.id)
 			if request.POST.get('remove'):
-				print("yes")
 				user.person.display_pic.delete(save=False)
 			if request.FILES.get('profile-pic'):
 				user.person.display_pic=request.FILES.get('profile-pic')
 			user.first_name = request.POST.get('first_name')
 			user.last_name = request.POST.get('last_name')
-			print(user.email)
 			user.save()
 			messages.success(request, ('Your profile was successfully updated!'))
 			return redirect('/')
