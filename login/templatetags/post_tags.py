@@ -82,6 +82,7 @@ def get_user_popup(object, user):
 
 register.inclusion_tag('post/mini_profile.html')(get_user_popup)
 
+
 def get_user_tag(object, user):
     # print("our user "+user.username)
     return {
@@ -89,6 +90,9 @@ def get_user_tag(object, user):
             'objuser': object,}
 
 register.inclusion_tag('post/profile_tag.html')(get_user_tag)
+
+
+
 	
 
 # def all_about_rubbish(object, user):

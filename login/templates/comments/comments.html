@@ -1,6 +1,6 @@
 {% load static comments_tags %}
 			
-			<a href="#" class = "comment-toggle-{{ target.id }}" style="color: grey;float: right;"> &emsp;<a class="ui left icon button comment-toggle-{{ target.id }}" style="background-color: rgba(0,0,0,0); padding: 2px; float: right;"><i class="large comment icon" style="display: inline; "></i>&nbsp;<h3 class="comments-count" id="comments-count-{{ target.id }}" style="display: inline;">
+			<a href="#" class = "comment-toggle-{{target.get_class}}{{ target.id }}" style="color: grey;float: right;"> &emsp;<a class="ui left icon button comment-toggle-{{target.get_class}}{{ target.id }}" style="background-color: rgba(0,0,0,0); padding: 2px; float: right;"><i class="large comment icon" style="display: inline; "></i>&nbsp;<h3 class="comments-count" id="comments-count-{{ target.id }}" style="display: inline;">
 			{% if comments_count == 1%}
 				{% get_comment_count target %}
 				Comment
@@ -10,8 +10,7 @@
 			{% endif %} </h3> 
 			</h3></a>
 			</a>
-		<div class="ui dividing header" style="margin: 1px; padding: 3px; display: inline;"></div>
-		<div class="ui dividing header" style="margin: 1px; padding: 3px;"></div>
+			<br>
 		<!-- <script src="{% static "js/jquery.js" %}"></script>
 		<script src="{% static "js/comments.js" %}"></script> -->
 <blockquote >
@@ -20,7 +19,7 @@
 
 		
 		
-		<div class="comments-{{ target.id }}" id="comments-{{ target.id }}" style="display: none;">
+		<div class="comments-{{ target.id }} comments-{{target.get_class}}{{ target.id }}" id="comments-{{ target.id }}" style="display: none;">
 			{% for comment, liked in comment_liked %}
 
 				<div id="comment-div-{{ comment.id }}"  >
@@ -37,9 +36,9 @@
 		  </div>
 </blockquote>
 <script type="text/javascript">
-	$('.comment-toggle-{{ target.id }}').click(function(event){
+	$('.comment-toggle-{{target.get_class}}{{ target.id }}').click(function(event){
 		event.preventDefault();
-		$('.comments-{{ target.id }}').slideToggle();
+		$('.comments-{{target.get_class}}{{ target.id }}').slideToggle();
 
 	})
 </script>

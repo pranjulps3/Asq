@@ -25,11 +25,17 @@ class Comment(models.Model):
 	def __str__(self):
 		return str(self.likes_count)
 
+	def get_class(self):
+		return 'comment'
+
 
 class Topic(models.Model):
 	name = models.CharField(max_length = 30)
 	def __str__(self):
 		return str(self.name)
+
+	def get_class(self):
+		return 'topic'
 
 class Like(models.Model):
 	"""
@@ -80,6 +86,10 @@ class Post(models.Model):
 	def __str__(self):
 		return self.title
 
+	def get_class(self):
+		return 'post'
+
+
 class Question(models.Model):
 	author = models.ForeignKey(User, null=True, db_index=True, on_delete = models.CASCADE )
 	question = models.TextField(max_length=300)
@@ -89,6 +99,9 @@ class Question(models.Model):
 	topic_follows = models.ManyToManyField('Topic', related_name = 'question_followers', blank = True)
 	def __str__(self):
 		return self.question
+
+	def get_class(self):
+		return 'question'
 
 class Answer(models.Model):
 	author = models.ForeignKey(User, on_delete = models.CASCADE, null=True, db_index=True)
@@ -103,6 +116,9 @@ class Answer(models.Model):
 	def display(self):
 		return self.author.username
 
+	def get_class(self):
+		return 'answer'
+
 class Item(models.Model):
 	reported_by = models.ForeignKey(User, on_delete = models.CASCADE)
 	name = models.CharField(max_length= 30)
@@ -116,3 +132,6 @@ class Item(models.Model):
 	timestamp = models.DateTimeField(auto_now = False, auto_now_add = True)
 	def __str__(self):
 		return self.name
+
+	def get_class(self):
+		return 'item'
