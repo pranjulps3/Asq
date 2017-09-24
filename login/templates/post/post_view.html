@@ -7,9 +7,9 @@
 		<div class="ui segments" id = 'post-contents-{{ post.id }}'> 
 
 			{% if post.topic_follows.all.count > 0 %}	
-			<div class="ui segment">
+			<div class="ui segment" style="padding: 3px;background-color: #F5F5DC;">
 				{% for topic in post.topic_follows.all %}
-					<a class="ui small tag label">{{ topic }}</a>
+					<a class="ui small tag label mylabel">{{ topic }}</a>
 				{% endfor %}
 			</div>
 			{% endif %}
@@ -39,7 +39,7 @@
 				<div class="ui divider"></div>
 				<h5 class="content-markdown" id="post-{{ post.id }}">{{ post.content | safe_markdown }}</h5><br>
 			</div>
-			<div class="ui segment">
+			<div class="ui segment" style="background-color:#F5F5DC;">
 				{% if post in user.person.upvoted_post.all %}
 
 				<div class="ui small labeled button" tabindex="0">
@@ -99,7 +99,7 @@
 				<h5 class="content-markdown" id="post-{{ post.id }}">{{ post.content| safe_markdown }}</h5>
 			</div>
 
-			<div class="ui segment">
+			<div class="ui segment" style="background-color: #F5F5DC;">
 			    {% if post in user.person.upvoted_post.all %}
 
 				<div class="ui small labeled button" tabindex="0" style="display: inline;">

@@ -9,9 +9,9 @@
   <div class='myquestion-{{ quest.id }}'>
     <div class="ui segments" id = 'question-contents-{{ quest.id }}'> 
       {% if quest.topic_follows.all.count > 0 %}
-        <div class="ui segment">
+        <div class="ui segment" style="padding: 3px;background-color: #F5F5DC;">
         {% for topic in quest.topic_follows.all %}
-          <a class="ui small tag label">{{ topic }}</a>
+          <a class="ui small tag label mylabel">{{ topic }}</a>
         {% endfor %}
         </div>
       {% endif %}
@@ -43,7 +43,7 @@
         </center>
       </div>
 
-      <div class="ui segment">
+      <div class="ui segment" style="background-color: #F5F5DC;">
         {% get_comments quest user %}  
         {% comment_form quest user %} 
       </div>
@@ -73,7 +73,7 @@
         </center>
       </div>
     
-      <div class="ui segment">
+      <div class="ui segment" style="background-color: #F5F5DC;">
         {% if not answered %}
         <a href="{% url 'create_answer' quest.id %}">
           <div class="ui small blue button">

@@ -28,7 +28,7 @@
 			<div class="ui segment">
 				<h5 class="content-markdown" id="answer-{{ answer.id }}">{{ answer.content | safe_markdown }}</h5><br>
 			</div>
-			<div class="ui segment">
+			<div class="ui segment" style="background-color:#F5F5DC;">
 			{% if answer in user.person.upvoted_answer.all %}
 				<div class="ui small labeled button" tabindex="0">
 					<a class="answer" id="{{ answer.id }}" data = "{{ answer.id }}" value = "vote"  style="color:red;">
@@ -71,7 +71,7 @@
 			<div class="ui segment">
 				<h5 class="content-markdown" id="answer-{{ answer.id }}">{{ answer.content| safe_markdown }}</h5>
 			</div>
-			<div class="ui segment">
+			<div class="ui segment" style="background-color:#F5F5DC;">
 	 			{% if answer in user.person.upvoted_answer.all %}
 				<div class="ui small labeled button" tabindex="0" style="display: inline;">
 					<a class="answer" id="{{ answer.id }}" data = "{{ answer.id }}" value = "vote"  style="color:red;">

@@ -11,12 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script type="text/javascript" src={% static 'js/jquery-3.2.0.min.js' %}></script>
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.js"></script>
+        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.js"></script> -->
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{{title}}</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href={% static 'sem/semantic.min.css' %} >
-<!--     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato"> -->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!-- CSS -->
     <script src={% static 'sem/components/sidebar.min.js' %} type="text/javascript"></script>
     <script src={% static 'sem/components/search.min.js' %} type="text/javascript"></script>
@@ -27,21 +28,22 @@
         <script src={% static 'sem/components/dimmer.min.js' %} type="text/javascript"></script>
         <script src={% static 'sem/components/checkbox.min.js' %} type="text/javascript"></script>
         <script src={% static 'sem/components/tab.min.js' %} type="text/javascript"></script>
-<!--         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script> -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
     <style>
         body{
-          background-color: #F5F5DC;
+          background-color: #fafafa;
+
             /*background-image:url({% static 'img/paper-background-7.jpg' %});*/
         }
 
         h3{
-          font-family: Lato;
+          font-family: 'Roboto', serif;
           font-size: 1.6em;
         }
 
         *{
-          font-family: Lato;
+          font-family:'Roboto', serif;
         }
 
         #id_comment {
@@ -94,6 +96,54 @@
           -webkit-box-shadow: inset 0 0 6px #E91E63;
           background-color: #555;
         }
+
+        .mylabel{
+          margin-top: 1px !important;
+          background-color: #F44336 !important; 
+          opacity: 0.7 !important; 
+          color: white !important;
+        }
+        .mylabel:hover{
+          opacity: 0.97 !important; 
+          transition: 0.15s ease-in !important;
+        }
+
+        blockquote {
+          background: #F5F5DC;
+          border-left: 10px solid #F44336;
+          margin: 1.5em 10px;
+          padding: 0.5em 3em;
+          quotes: "\201C""\201D""\2018""\2019";
+        }
+        blockquote:before {
+          color: #F44336;
+          content: open-quote;
+          font-size: 4em;
+          line-height: 0.1em;
+          margin-right: 0.25em;
+          vertical-align: -0.4em;
+        }
+
+        blockquote:after {
+          color: #F44336;
+          content: close-quote;
+          font-size: 4em;
+          line-height: 0.1em;
+          margin-left: 0.25em;
+          vertical-align: -0.5em;
+        }
+
+        blockquote p {
+          display: inline;
+        }
+
+        .headbut{
+          color:#F44336;
+        }
+        .headbut:hover{
+          color:#cf3327;
+        }
+
     </style>
 </head>
 
@@ -105,35 +155,35 @@
     <!-- Site content !-->
   <div class="sixteen wide column">
 
-    <div class="ui fixed pointing menu">
+    <div class="ui inverted borderless fixed pointing menu" style="background-color: #F44336;opacity: 0.95;">
 
       <a href="/" class="item" style="padding-top: 2px; padding-bottom: 2px; margin-top: 0px; margin-bottom: 0px;margin-right: 0px">
         <img class="ui transparent tiny image" id="logo-asq" style="height: 3em; width: auto;" src={% static 'img/asq.png' %}/>
       </a>
         
-      <div class="ui dropdown item" style="color:#9600cd;">
+      <div class="ui dropdown item" >
         <i class="chevron down icon"></i>
         <div class="menu">
-          <a href="/post/" class="item"><i class="edit icon" style=" color:#9600cd;"></i> Post</a>
-          <a href="/" class="item"><i class="browser icon" style=" color:#9600cd;"></i> feed</a>
+          <a href="/post/" class="item"><i class="edit icon" ></i> Post</a>
+          <a href="/" class="item"><i class="browser icon" ></i> feed</a>
         </div>
       </div>
     
-      <div class="center menu" style="width: 39%;">
+      <div class="center menu" style="width: 35%; margin-left: 130px;">
         <div class="item" style="width: 100%; ">
-          <div class="ui transparent icon input">
+          <div class="ui inverted transparent icon input">
             <input type="text" placeholder="Ask anything..." style="width: 100%; ">
-            <i class="search link icon" style="color:#9600cd;"></i>
+            <i class="inverted search link icon" ></i>
           </div>
         </div>
       </div>     
 
       <div class="right menu">
-        <a class="teal item" id='varta_chat' href="#" style="color:#9600cd;">
+        <a class="teal item" id='varta_chat' href="#" >
           {% csrf_token %}
           <i class="record icon"></i>Varta
         </a>
-        <a class="teal item" style="color:#9600cd;">
+        <a class="teal item" >
             Notifications 
             <!-- <div class="ui teal left pointing label">
               
@@ -142,18 +192,18 @@
           <!-- <a class="item">
                <div class="results"></div>
           </a> -->
-        <a class="item" id=modal style="color:#9600cd;">
+        <a class="item" id=modal >
           <i class="send outline icon"></i>
           Messages
         </a>
 
-        <div class="ui dropdown item" style="color:#9600cd;">
+        <div class="ui dropdown item" >
           More
           <i class="dropdown icon"></i>
           <div class="menu">
-            <a class="item" href="{% url 'fillup' %}"><i class="edit icon" style="color:#9600cd;"></i> Edit Profile</a>
-            <a class="item" href="/accounts/password/change/"><i class="settings icon" style=" color:#9600cd;"></i>Change Password</a>
-            <a class="item" href="{% url 'logout' %}"><i class="power off icon" style=" color:#9600cd;"></i> logout</a>
+            <a class="item" href="{% url 'fillup' %}"><i class="edit icon" ></i> Edit Profile</a>
+            <a class="item" href="/accounts/password/change/"><i class="settings icon" ></i>Change Password</a>
+            <a class="item" href="{% url 'logout' %}"><i class="power off icon" ></i> logout</a>
           </div>
         </div>
       </div>
@@ -181,7 +231,7 @@
               <div class="ui transparent icon input" >
                 {% csrf_token %}
                 <input class="prompt" id="profile-search" type="text" placeholder="Find People..." style="border-radius: 0px;">
-                <i class="search icon" style=" color:#9600cd;"></i>
+                <i class="search icon" ></i>
               </div>
               <div class="results" id="profile-results" >
               </div>
@@ -222,19 +272,28 @@
       </div>
     </div>
 
-
     <div class="seven wide column" >
-      <div class="ui purple buttons" style="border-radius: 5px; width: 100%">
-        <a href="{% url 'create_question' %}" class="ui basic purple button">
-          <div class="two wide stretched column">
-            <h2> <img class="ui transparent tiny image" id="logo-asq" style="height: 3em; width: auto; display: inline;" src={% static 'img/asq.png' %}/> a Question </h2>
+      <div class="ui segments" style="border-left: 3px solid #F44336; border-right: 3px solid #F44336;">
+        <div class="ui segment" style="padding: 3px; text-align: center;background-color: #F5F5DC;">
+          <img class="ui transparent tiny image" id="logo-asq" style="height: 3em; width: auto; display: inline;" src={% static 'img/asq.png' %}/>
+        </div>
+        <div class="ui segment grid">
+          <div class="sixteen wide column">
+            <div class="ui vertical divider">or</div>
+            <div class="ui grid">
+              <div class="eight wide stretched column" >
+                <a class="headbut" href="{% url 'create_question' %}">
+                  <h2 style="text-align: center;">Have a Question ?</h2>
+                </a>
+              </div>
+              <div class="eight wide stretched column">
+                <a class="headbut" href="{% url 'create_post' %}">
+                  <h2 style="text-align: center;">Create a Post !</h2>
+                </a>
+              </div>
+            </div>
           </div>
-        </a>
-        <a href="{% url 'create_post' %}" class="ui basic purple button">
-          <div class="two wide stretched column">
-            <h2> Create Post</h2>
-          </div>
-        </a>
+        </div>
       </div>
 
 
@@ -248,58 +307,64 @@
           <i class="edit icon"></i>
           <input type="text" name="">
         </div> -->
-        <br><br>
       {% block body %}
       {% endblock %}
     </div>
 
 
 
-        <div class="three wide column" style="float: right;">
-            <div>
-            <a class = "ui top attached purple button"  href="{% url 'report' %}" class="ui small teal button">Report Item Lost/Found</a>
-                <div id="style-1" style="height:280px;overflow-y: scroll;">
-                  <table class="ui selectable compact fixed table" >
-                    <thead>
-                    <!-- <tr class = "ui yellow top attched segment""><th colspan="2" ><center><b> LOST</b></center> </th></tr> -->
-                      <tr>
-                      <th colspan="2">Reported by</th>
-                      <th colspan="1"><b>LOST</b></th>
-                    </tr></thead>
-                    <tbody>
-                    {% load post_tags %}
-                    {% for item in litem %}
-                      <tr>
-                        <td colspan="2">{% get_user_tag item.reported_by user %}</td>
-                        <td colspan="1" href="{% url 'lost_view' item.id %}"><a style="color: #111" href="{% url 'lost_view' item.id %}">{{ item.name }}</a></td>
-                      </tr>
-                      {% endfor %}
-                    </tbody>
-                  </table>
-                </div>
-                <div id="style-1" style="height:280px;overflow-y: scroll; margin-top: 5px;">
-                  <table class="ui selectable compact fixed table" >
-                        <thead>
-                      <!--  <tr class = "ui inverted yellow top attched segment""><th colspan="2"><center><b> FOUND</b></center> </th></tr> -->
-                          <tr >
-                          <th colspan="2">Reported by</th>
-                          <th colspan="1"><b>FOUND</b></th>
-                        </tr></thead>
-                        <tbody>
-                          {% for item in fitem %}
-                          <tr>
-                            <td colspan="2">{% get_user_tag item.reported_by user %}</td>
-                            <td colspan="1" href="{% url 'lost_view' item.id %}"><a style="color: #111" href="{% url 'lost_view' item.id %}">{{ item.name }}</a></td>
-                          </tr>
-                          {% endfor %}
-                        </tbody>
-                  </table>
-                </div>
-              </div>
-        </div>
+    <div class="three wide column" style="">
+
+      <a class = "ui top attached button" style="background-color: #F44336;color: white;" href="{% url 'report' %}">Report Item Lost/Found</a>
+
+      <div id="style-1" style="max-height:280px;overflow-y: scroll;">
+
+        <table class="ui selectable single line compact fixed table">
+          <thead>
+          <!-- <tr class = "ui yellow top attched segment""><th colspan="2" ><center><b> LOST</b></center> </th></tr> -->
+            <tr>
+              <th style="background-color: #F5F5DC;padding: 7px;" colspan="2">Reported by</th>
+              <th style="background-color: #F5F5DC;padding: 7px;" colspan="1"><b>LOST</b></th>
+            </tr>
+          </thead>
+                    
+          <tbody>
+          {% load post_tags %}
+          {% for item in litem %}
+            <tr>
+              <td colspan="2">{% get_user_tag item.reported_by user %}</td>
+              <td colspan="1" href="{% url 'lost_view' item.id %}"><a style="color: #111" href="{% url 'lost_view' item.id %}">{{ item.name }}</a></td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+                
+      <div id="style-1" style="max-height:280px;overflow-y: scroll; margin-top: 5px;">
+                  
+        <table class="ui selectable single line compact fixed table" >
+          <thead>
+          <!--  <tr class = "ui inverted yellow top attched segment""><th colspan="2"><center><b> FOUND</b></center> </th></tr> -->
+            <tr>
+              <th style="background-color: #F5F5DC;padding: 7px;" colspan="2">Reported by</th>
+              <th style="background-color: #F5F5DC;padding: 7px;" colspan="1"><b>FOUND</b></th>
+            </tr>
+          </thead>
+                      
+          <tbody>
+          {% for item in fitem %}
+            <tr>
+              <td colspan="2">{% get_user_tag item.reported_by user %}</td>
+              <td colspan="1" href="{% url 'lost_view' item.id %}"><a style="color: #111" href="{% url 'lost_view' item.id %}">{{ item.name }}</a></td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>         
+    </div>
+  </div>
 </div>
-</div>
-</div></div></div></div></body>
+</body>
 
 <script type="text/javascript">
   document.load(function(){
