@@ -123,7 +123,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pagedown',
-    'notifications',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -134,9 +133,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'markdownx',
     'draceditor',
-    'bootstrap3',
     'crispy_forms',
-    'friendship',
     'braces',
 ]
 

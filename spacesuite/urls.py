@@ -19,7 +19,6 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 from login.views import *
-import notifications.urls
 
 
 app_name='home'
@@ -44,8 +43,6 @@ urlpatterns = [
 	url(r'^topic-autocomplete/$', TopicAutocomplete.as_view(model = Topic, create_field=''), name='topic-autocomplete'),
 	#login
 	url(r'^login/', login_view, name='login'),
-	#notification handling side
-	url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
 	#report lost and found
 	url(r'^report/', item_create, name='report'),
 	#lost found view
@@ -56,8 +53,6 @@ urlpatterns = [
 	url(r'^fillup/', person_view, name='fillup'),
 	#markdown drag and drop markdown editor
 	url(r'^markdownx/', include('markdownx.urls')),
-	#friendship and follow(doesn't work)
-	url(r'^friendship/', include('friendship.urls'), name='friendship'),
 	#post create
 	url(r'^post/create/', post_create, name = 'create_post'),
 	#upvote a post

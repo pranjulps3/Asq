@@ -1,6 +1,6 @@
 {% extends 'login/semantic.html' %}
 {% block body %}
-<div class="ui raised segment" style="border-radius: 5px; ">
+<div class="ui segment" style="border-radius: 5px; ">
     {% load static %}
     <div class="ui segment"  style="border-width: 0px; padding: 0px;margin:0px; height: 12em;">
           <div class="ui left floated image" id="profile-picture">
@@ -59,11 +59,9 @@
               <p> {{ ans.question.details }} </p>
             </center>
           </div>
-          <div class="ui bottom attached segment">
             {% load comments_tags %}
             {% load post_tags %}
             {% get_answer ans user %}
-          </div>
         {% endfor %}
             
       </div>
