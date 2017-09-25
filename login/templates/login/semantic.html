@@ -16,14 +16,16 @@
     <title>{{title}}</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href={% static 'sem/semantic.min.css' %} >
+    <link rel="stylesheet" href={% static 'sem/components/rail.min.css' %} >
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <!-- CSS -->
     <script src={% static 'sem/components/sidebar.min.js' %} type="text/javascript"></script>
     <script src={% static 'sem/components/search.min.js' %} type="text/javascript"></script>
     <script src={% static 'sem/components/transition.min.js' %} type="text/javascript"></script>
     <script src={% static 'sem/components/dropdown.min.js' %} type="text/javascript"></script>
     <script src={% static 'sem/components/popup.min.js' %} type="text/javascript"></script>
+    <script src={% static 'sem/components/sticky.min.js' %} type="text/javascript"></script>
     <script src={% static 'sem/components/modal.min.js' %} type="text/javascript"></script>
         <script src={% static 'sem/components/dimmer.min.js' %} type="text/javascript"></script>
         <script src={% static 'sem/components/checkbox.min.js' %} type="text/javascript"></script>
@@ -32,18 +34,24 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
     <style>
         body{
-          background-color: #fafafa;
+          background-color: #f4f4f4;
 
             /*background-image:url({% static 'img/paper-background-7.jpg' %});*/
         }
 
+        p{
+          font-weight: 400;
+        }
+
         h3{
-          font-family: 'Roboto', serif;
+          font-family: 'Open Sans', sans-serif;
           font-size: 1.6em;
         }
 
         *{
-          font-family:'Roboto', serif;
+          font-family:'Open Sans', sans-serif;
+          text-shadow: rgba(0,0,0,.01) 0 0 1px;
+          -webkit-font-smoothing: antialiased;
         }
 
         #id_comment {
@@ -144,6 +152,81 @@
           color:#cf3327;
         }
 
+        @-webkit-keyframes upvoted{
+          0%   {top: 0px; opacity: 1; color: black;}
+          50% { top:-20px; opacity: 0; }
+          51% { top:20px; opacity: 0; }
+          100% {top: 0px; opacity: 1; color: #2185D0;}
+        }
+
+        @keyframes upvoted{
+             0%   {top: 0px; opacity: 1; color: black;}
+          50% { top:-20px; opacity: 0; }
+          51% { top:20px; opacity: 0; }
+          100% {top: 0px; opacity: 1; color: #2185D0;}
+
+        }
+
+        .upnow{
+          position: relative;
+          -webkit-animation: upvoted 0.7s;
+          animation: upvoted 0.7s;
+        }
+
+        /*@keyframes liked{
+          0%{ color:black; }
+          15%{ transform: scale(1.1); color: red; opacity: 0.15; }
+          30%{ transform: scale(1.2); color: red; opacity: 0.3; }
+          50%{ transform: scale(1.4); color: red; opacity: 0.5; }
+          100%{ transform: scale(1); color: red; opacity: 1; }
+        }
+
+        @-webkit-keyframes liked{
+          0%{ color:black; }
+          15%{ transform: scale(1.1); color: red; opacity: 0.15; }
+          30%{ transform: scale(1.2); color: red; opacity: 0.3; }
+          50%{ transform: scale(1.4); color: red; opacity: 0.5; }
+          100%{ transform: scale(1); color: red; opacity: 1; }
+        }
+
+        .liked{
+          animation: liked 0.3s;
+          color: red;
+          -webkit-animation:liked 0.3s;
+        }*/
+
+        @keyframes heart-burst {
+         from {background-position:left;}
+         to { background-position:right;}
+        }
+
+        .like {
+         cursor: pointer;
+         margin-top: -30px;
+         margin-bottom: -30px;
+         margin-right: -25px;
+         padding: 0px;
+         height: 65px;
+         width: 65px;
+         background-image:url("{% static 'img/heart.png' %}");
+         background-position: left;
+         background-repeat:no-repeat;
+         background-size:2900%;
+        }
+
+        .liked{
+          background-position: right;
+        }
+
+        .is_animating {
+          background-position: right;
+          animation: heart-burst .8s steps(28) 1;
+        }
+
+        .metadata{
+          color:rgba(0,0,0,.5);
+        }
+
     </style>
 </head>
 
@@ -181,10 +264,10 @@
       <div class="right menu">
         <a class="teal item" id='varta_chat' href="#" >
           {% csrf_token %}
-          <i class="record icon"></i>Varta
+          <i class="record icon"></i><!-- Varta -->
         </a>
         <a class="teal item" >
-            Notifications 
+            <i class="alarm icon"></i> 
             <!-- <div class="ui teal left pointing label">
               
             </div> -->
@@ -192,14 +275,12 @@
           <!-- <a class="item">
                <div class="results"></div>
           </a> -->
-        <a class="item" id=modal >
-          <i class="send outline icon"></i>
-          Messages
+        <a class="item">
+          <i class="send icon"></i>
         </a>
 
         <div class="ui dropdown item" >
-          More
-          <i class="dropdown icon"></i>
+          <i class="setting icon"></i>
           <div class="menu">
             <a class="item" href="{% url 'fillup' %}"><i class="edit icon" ></i> Edit Profile</a>
             <a class="item" href="/accounts/password/change/"><i class="settings icon" ></i>Change Password</a>
@@ -275,7 +356,9 @@
     <div class="seven wide column" >
       <div class="ui segments" style="border-left: 3px solid #F44336; border-right: 3px solid #F44336;">
         <div class="ui segment" style="padding: 3px; text-align: center;background-color: #F5F5DC;">
-          <img class="ui transparent tiny image" id="logo-asq" style="height: 3em; width: auto; display: inline;" src={% static 'img/asq.png' %}/>
+          <a href="/">
+            <img class="ui transparent tiny image" id="logo-asq" style="height: 3em; width: auto; display: inline;" src={% static 'img/asq.png' %}/>
+          </a>
         </div>
         <div class="ui segment grid">
           <div class="sixteen wide column">
@@ -295,8 +378,9 @@
           </div>
         </div>
       </div>
-
-
+      
+      
+      
       <div class="ui modal" style="padding: 0px;">
         <i class="close icon"></i>  
       </div>
@@ -309,6 +393,9 @@
         </div> -->
       {% block body %}
       {% endblock %}
+      <div id="context">
+         
+      </div>
     </div>
 
 
@@ -360,8 +447,24 @@
           {% endfor %}
           </tbody>
         </table>
-      </div>         
+      </div>
     </div>
+
+    <div class="three wide column">
+      <div class="ui rail" style="">
+        <div class="ui sticky" style="background-color: white; height:100%;z-index: -99; width: 283px !important; height: 476px !important; left: 1040px; top: 0px;">
+          <div class="ui dividing container">  
+            <h4 class="ui header">&emsp;</h4>
+            <h4 class="ui header">&emsp;</h4>
+            <h4 class="ui centered header">Chat division</h4>
+            <div class="ui container">
+              YO
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 </body>
@@ -384,7 +487,11 @@ $('.ui.modal')
   .modal('show')
 ;
 });
-        
+        $('.ui.sticky')
+  .sticky({
+    context: '#context'
+  })
+;
     </script>
 
 <!-- <script type="text/javascript">
@@ -623,12 +730,12 @@ $('.post').click(function(){
                success: function(response) {
                       if(response.message == "Upvoted")
                       {
-                      element.html("<div class='ui small blue button'><i class='chevron up icon'></i>unvote</div><div class='ui small basic blue left pointing label'>"+response.upvotes+"</div>");
+                      element.html("<i class='large blue chevron up icon upnow' style='font-size: 2.7em;''></i><div class='ui small basic blue left pointing label'>"+response.upvotes+"</div>");
                       // document.getElementById(element.attr('data')).style.color = 'red';
                         }
                         else
                         {
-                      element.html("<div class='ui small basic grey button'><i class='chevron up icon'></i>vote</div><div class='ui small basic grey left pointing label'>"+response.upvotes+"</div>");
+                      element.html("<i class='large grey chevron up icon' style='font-size: 2.7em;''></i><div class='ui small basic grey left pointing label'>"+response.upvotes+"</div>");
                             // document.getElementById(element.attr('data')).style.color = 'black';
                         }
 
@@ -679,12 +786,12 @@ $('.answer').click(function(){
                success: function(response) {
                       if(response.message == "Upvoted")
                       {
-                      element.html("<div class='ui small blue button'><i class='chevron up icon'></i>unvote</div><div class='ui small basic blue left pointing label'>"+response.upvotes+"</div>");
+                      element.html("<i class='large blue chevron up icon upnow' style='font-size: 2.7em;''></i><div class='ui small basic blue left pointing label'>"+response.upvotes+"</div>");
                       // document.getElementById(element.attr('data')).style.color = 'red';
                         }
                         else
                         {
-                      element.html("<div class='ui small basic grey button'><i class='chevron up icon'></i>vote</div><div class='ui small basic grey left pointing label'>"+response.upvotes+"</div>");
+                      element.html("<i class='large grey chevron up icon' style='font-size: 2.7em;''></i><div class='ui small basic grey left pointing label'>"+response.upvotes+"</div>");
                             // document.getElementById(element.attr('data')).style.color = 'black';
                         }
                 },
@@ -882,7 +989,7 @@ $(document).ready(function() {
         var id = $(this).attr('data-id');
         if($(this).attr('data-like') == 'like') {
           $('#like-btn-' + id).attr('data-like', 'liked');
-                        $('#like-btn-' + id).html("<i class='red heart icon'></i>Unike");
+                        $('#like-btn-' + id).html("<div class='like is_animating'></div>");
                         
             $.ajax({
                 type: "GET",
@@ -893,7 +1000,7 @@ $(document).ready(function() {
                         $('#likes-count-' + id).text(data['likes_count']);
                     } else{
                        $('#like-btn-' + id).attr('data-like', 'like');
-                        $('#like-btn-' + id).html("<i class='heart icon'></i>Like");
+                        $('#like-btn-' + id).html("<div class='like'></div>");
                         $('#likes-count-' + id).text(data['likes_count']);
                         // alert(data['error']);
                     }
@@ -901,7 +1008,7 @@ $(document).ready(function() {
             });
         } else {
            $('#like-btn-' + id).attr('data-like', 'like');
-                        $('#like-btn-' + id).html("<i class='heart icon'></i>Like");
+                        $('#like-btn-' + id).html("<div class='like'></div>");
                         
             $.ajax({
                 type: "GET",

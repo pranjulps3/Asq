@@ -2,7 +2,7 @@
 {% block body %}
 {% load static %}
 
-<div class="ui top attached segment">
+<div class="ui top attached segment" style="padding: 3px;background-color: #F5F5DC;">
   <center>
     <a href="{% url 'view_question' answer.question.id %}"><h3 style="color: black;">{{answer.question.question}}</h3></a><br>
     <p> {{ answer.question.details }} </p>

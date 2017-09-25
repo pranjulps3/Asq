@@ -23,10 +23,10 @@
 		    <div class="menu">
 		    {% if object.user %}
 			{% if object.user.id == user.id %}
-		      <div class="item" data-value="drop">
+		     <div class="item" data-value="drop">
 
-						<a class='comment-edit-class' data-id='{{ object.id }}' style="color: black"><i class="edit icon"></i> Edit</a>
-		      </div>
+				<a class='comment-edit-class' data-id='{{ object.id }}' style="color: black"><i class="edit icon"></i> Edit</a>
+		     </div>
 		      {% endif %}
 				{% endif %}
 				{% if object.user %}
@@ -61,7 +61,7 @@
 
 				  <a class="like-comment-btn" id="like-btn-{{ object.id }}" data-like="liked" data-id="{{ object.id }}">
 
-				    <i class="red heart icon"></i> Unlike
+				    <div class='like liked'></div>
 
 				  </a>
 				  <a class="mini ui left pointing label">
@@ -72,7 +72,7 @@
 
 				  <a class="like-comment-btn" id="like-btn-{{ object.id }}" data-like="like" data-id="{{ object.id }}">
 
-				    <i class="heart icon"></i> Like
+				    <div class='like'></div>
 				  </a>
 				  <a class="mini ui left pointing label">
 				    <p id="likes-count-{{ object.id }}" >{{ object.likes_count }}</p>

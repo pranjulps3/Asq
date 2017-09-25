@@ -35,14 +35,11 @@
         </div>
     </div>
     {% if profile.person.about_me %}
-     <div class="ui secondary segment">
      <h3>About Me -</h3>
      <blockquote>
-       <p> <i class="quote left icon" style="color: grey;"></i>
-       {{profile.person.about_me | linebreaks}}     
-       <i class="quote right icon" style="color: grey;"></i></p>
+       <p>
+       {{profile.person.about_me | linebreaks}}</p>
        </blockquote>
-     </div>
      {% endif %}
      <div>
      <br>

@@ -7,7 +7,7 @@
 	{% for entity in feed %}
 
 		{% if entity.question.question %}
-      <div class="ui top attached segment">
+      <div class="ui top attached segment" style="background-color: #F5F5DC;">
   			<center>
           <a href="{% url 'view_question' entity.question.id %}"><strong><h3 style="color: black;">{{entity.question.question}}</h3></strong></a><br>
   			 <p> {{ entity.question.details }} </p>

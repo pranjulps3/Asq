@@ -18,7 +18,7 @@
 
       <div class="ui segment" style="padding: 0px;">
         <div class="metadata">
-          {% get_user_popup quest.author user %}&emsp;{{ quest.timestamp | timesince}}
+          {% get_user_popup quest.author user %}&emsp;<i class="history icon"></i>{{ quest.timestamp | timesince}}
           <div class="ui right floated dropdown icon button" style="background-color: rgba(0,0,0,0); margin-right: 10px; margin-top: 4px;">
             <i class="chevron down icon"></i>
             <div class="menu">
@@ -53,16 +53,16 @@
   <div class='myquestion'>
     <div class="ui segments" id = 'question-contents-{{ quest.id }}'>
       {% if quest.topic_follows.all.count > 0 %}
-        <div class="ui segment">
+        <div class="ui segment" style="padding: 3px;background-color: #F5F5DC;">
         {% for topic in quest.topic_follows.all %}
-          <a class="ui small tag label">{{ topic }}</a>
+          <a class="ui small tag label mylabel">{{ topic }}</a>
         {% endfor %}
         </div>
       {% endif %}
 
       <div class="ui segment" style="padding: 0px;">
         <div class="metadata">
-          {% get_user_popup quest.author user %}&emsp;{{ quest.timestamp | timesince}}
+          {% get_user_popup quest.author user %}&emsp;<i class="history icon"></i>{{ quest.timestamp | timesince}}
         </div>
       </div>
 

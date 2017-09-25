@@ -16,7 +16,7 @@
 
 			<div class="ui segment" style="padding: 0px;">
 				<div class="metadata">
-	    			{% get_user_popup post.author user %}&emsp;{{ post.timestamp | timesince}}
+	    			{% get_user_popup post.author user %}&emsp;<i class="history icon"></i>{{ post.timestamp | timesince}}
 
 	    			<div class="ui right floated dropdown icon button" style="background-color: rgba(0,0,0,0);display: block;">
 				    	<i class="chevron down icon"></i>
@@ -42,29 +42,21 @@
 			<div class="ui segment" style="background-color:#F5F5DC;">
 				{% if post in user.person.upvoted_post.all %}
 
-				<div class="ui small labeled button" tabindex="0">
-					<a class="post" id="{{ post.id }}" data = "{{ post.id }}" value = "vote"  ">
-					  	<div class="ui small blue button">
-					    	<i class="chevron up icon"></i> unvote
-					  	</div>
-					  	<div class="ui small basic blue left pointing label">
-					    	{{ upvotes }}
-					  	</div>
-				  	</a>
-				</div>
+				<a class="post" id="{{ post.id }}" style="cursor: pointer;" data = "{{ post.id }}" value = "vote"  ">
+				    <i class="large blue chevron up icon" style="font-size: 2.7em;"></i>
+				  	<div class="ui small basic blue left pointing label">
+				    	{{ upvotes }}
+				  	</div>
+			  	</a>
 
 				{% else %}
 
-				<div class="ui small labeled button" tabindex="0">
-					<a class="post" id="{{ post.id }}" data = "{{ post.id }}" value = "vote"  ">
-				  		<div class="ui small basic grey button">
-				   			<i class="chevron up icon"></i> vote
-				  		</div>
-				  		<div class="ui small basic grey left pointing label">
-				     		{{ upvotes }}
-				  		</div>
-				  	</a>
-				</div> 
+				<a class="post" id="{{ post.id }}" style="cursor: pointer;" data = "{{ post.id }}" value = "vote"  ">
+			   		<i class="large grey outline chevron up icon" style="font-size: 2.7em; "></i>
+			  		<div class="ui small basic grey left pointing label">
+			     		{{ upvotes }}
+			  		</div>
+			  	</a>
 
 				{% endif %}
 			
@@ -89,7 +81,7 @@
 			{% endif %}
 			<div class="ui segment" style="padding: 0px;">
 				<div class="metadata">
-					{% get_user_popup post.author user %}&emsp;{{ post.timestamp | timesince}}
+					{% get_user_popup post.author user %}&emsp;<i class="history icon"></i>{{ post.timestamp | timesince}}
 				</div>
 			</div>
 
@@ -102,29 +94,21 @@
 			<div class="ui segment" style="background-color: #F5F5DC;">
 			    {% if post in user.person.upvoted_post.all %}
 
-				<div class="ui small labeled button" tabindex="0" style="display: inline;">
-					<a class="post" id="{{ post.id }}" data = "{{ post.id }}" value = "vote">
-					  	<div class="ui small blue button">
-					    	<i class="chevron up icon"></i> unvote
-					  	</div>
-					  	<div class="ui small basic blue left pointing label">
-					     	{{ upvotes }}
-					  	</div>
-					</a>
-				</div>
+				<a class="post" id="{{ post.id }}" style="cursor: pointer;" data = "{{ post.id }}" value = "vote"  ">
+				    <i class="large blue chevron up icon" style="font-size: 2.7em;"></i>
+				  	<div class="ui small basic blue left pointing label">
+				    	{{ upvotes }}
+				  	</div>
+			  	</a>
 
 				{% else %}
 
-				<div class="ui small labeled button" tabindex="0" style="display: inline;">
-					<a class="post" id="{{ post.id }}" data = "{{ post.id }}" value = "vote" >
-					  	<div class="ui small basic grey button">
-					    	<i class="chevron up icon"></i> vote
-					 	 </div>
-					  	<div class="ui small basic grey left pointing label">
-					     	{{ upvotes }}
-					  	</div>
-					</a>
-				</div> 
+				<a class="post" id="{{ post.id }}" style="cursor: pointer;" data = "{{ post.id }}" value = "vote"  ">
+			   		<i class="large grey outline chevron up icon" style="font-size: 2.7em;"></i>
+			  		<div class="ui small basic grey left pointing label">
+			     		{{ upvotes }}
+			  		</div>
+			  	</a>
 
 				{% endif %}
 
