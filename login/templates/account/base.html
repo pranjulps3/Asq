@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<title>
+			AsQ - Welcome
+		</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"/>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+		<style>
+
+        label
+        {
+          font-weight: 800 !important;
+        }
+
+        p{
+          font-weight: 400;
+        }
+
+        h3{
+          font-family: 'Open Sans', sans-serif;
+          font-size: 1.6em;
+        }
+
+        *{
+          font-family:'Open Sans', sans-serif;
+          text-shadow: rgba(0,0,0,.01) 0 0 1px;
+          -webkit-font-smoothing: antialiased;
+        }
+
+        .error{
+          	border: 1px solid #aa504f !important;
+          	background-color: rgba(159,58,56,0.03) !important;
+        } 
+
+        .error::after{
+          	color: #aa504f;
+          	content: "✘";
+        } 
+
+
+        .correct{
+          	border: 1px solid #2c662d !important;
+          	background-color: rgba(	44, 102, 45,0.03) !important;
+        }   
+
+        .correct::after{
+        	color: #2c662d;
+          	content: "✓";
+        } 
+
+        .errorlist{
+        	color: #aa504f;
+        	border: 1px solid #aa504f;
+        	background-color: rgba(159,58,56,0.1);
+        	border-radius: 4px;
+        	padding: 0.7em;
+        	padding-left: 2em;
+        }
+    </style>
+	</head>
+	<body>
+	{%  load static %}
+	<div style="color:#00b; margin-top:10px; margin-left:20px; font-weight:bolder ; font-size:50px; font-family:Arial">
+		<!-- <center> -->
+		<center style="z-index: 100; background-color: white; padding: 0px;"><a href="/"><img class="ui small image" style="z-index: 100; background-color: white; margin-top: 0px;" src={% static 'img/asq.png' %}/><br> <sub style="font-size:12px; color:purple;background-color: white; "> Ask Anything </sub></a></center>
+		<!-- </center> --> 
+	</div>
+
+	<div class="ui top attached segment" style="margin-top:30px;">
+	{% block bass %}
+	{% endblock %}
+	</div>
+	<a class="ui bottom white attached segment centered button" href="/">Sign In</a>
+	</body>
+</html>

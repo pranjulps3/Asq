@@ -50,7 +50,7 @@
       </div>
       <div class="ui bottom attached tab segment active" data-tab="answers" style="padding-right: 0px;padding-left: 0px; border-right-width: 0px; border-left-width: 0px;: ">
         {% for ans in usera %}
-          <div class="ui top attached segment">
+          <div class="ui top attached segment" style="background-color: #F5F5DC;">
             <center>
               <a href="{% url 'view_question' ans.question.id %}"><h3 style="color: black;">{{ans.question.question}}</h3></a><br>
               <p> {{ ans.question.details }} </p>

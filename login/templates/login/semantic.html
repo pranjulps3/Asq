@@ -39,6 +39,11 @@
             /*background-image:url({% static 'img/paper-background-7.jpg' %});*/
         }
 
+        label
+        {
+          font-weight: 800 !important;
+        }
+
         p{
           font-weight: 400;
         }
@@ -53,6 +58,7 @@
           text-shadow: rgba(0,0,0,.01) 0 0 1px;
           -webkit-font-smoothing: antialiased;
         }
+     
 
         #id_comment {
                      resize: none;
@@ -173,6 +179,7 @@
           color:#cf3327;
         }
 
+
         @-webkit-keyframes upvoted{
           0%   {top: 0px; opacity: 1;}
           5%   {top: 0px; font-size: 2em; opacity: 1; color: black;}
@@ -263,6 +270,7 @@
 <body class="body" id="style-1">
 
 
+{% if request.user.is_authenticated %}
 <div class="pusher" >
     <!-- Site content !-->
   <div class="sixteen wide column">
@@ -420,8 +428,15 @@
           <i class="edit icon"></i>
           <input type="text" name="">
         </div> -->
+
+{% endif %}
+      
+      {% block bass %}
+      {% endblock %}
       {% block body %}
       {% endblock %}
+
+{% if request.user.is_authenticated %}
       <div id="context">
          
       </div>
@@ -496,6 +511,7 @@
 
   </div>
 </div>
+{% endif %}
 </body>
 
 <script type="text/javascript">
@@ -736,7 +752,7 @@ $('#style-1').hover(function(){
                data: {'user_id': {{request.user.id}},'csrfmiddlewaretoken': '{{ csrf_token }}'},
                dataType: "json",
                success: function(response) {
-                      $('.ui.modal').html("<i class='close icon'></i>"+response.html);
+                      $('.ui.modal').html("<i class='close icon'></i>"+response);
                       $('.ui.modal').modal('show');
                 },
                 error: function(rs, e) {
@@ -745,6 +761,29 @@ $('#style-1').hover(function(){
           }); 
   },);
 </script>
+
+
+<script type="text/javascript">
+  // $('.headbut').click(function(event){
+  //   event.preventDefault();
+  //   var element = $(this);
+  //   $.ajax({
+  //           type: "GET",
+  //           url: element.attr('href'),
+  //           data: {},
+  //           success: function(response){
+  //               $('.ui.modal').html("<i class='close icon'></i>"+response);
+  //               $('.ui.modal').modal('show');
+  //           },
+  //           error: function(response, error){
+  //               alert("Response:"+response+"\nError:"+error);
+  //           }
+  //   },);
+  // });
+</script>
+
+
+<!-- for code and pre highlight -->
 <script>hljs.initHighlightingOnLoad();</script>
 
 

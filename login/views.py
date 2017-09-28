@@ -36,6 +36,30 @@ def temp_view(request):
 	}
 	return render(request, 'login/user_form.html', context)
 
+def get_if_user(request):
+	if request.method == 'POST':
+		search_q = request.POST.get('search_q', None)
+		if(search_q == ''):
+			data = {'data' : True}
+			return JsonResponse(data)
+		k=0
+		try:
+			user = User.objects.get(username = search_q)
+		except Exception as e:
+			k = k+1
+
+		try:
+			user = User.objects.get(email = search_q)
+		except Exception as e:
+			k = k+1
+
+		if k == 2:
+			data = {'data':True,}
+		else:
+			data = {'data': False}
+		return JsonResponse(data)
+
+
 def general_info(request):
 	if request.method == 'POST':
 		print(request.POST.get('remove'))

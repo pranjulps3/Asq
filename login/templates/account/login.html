@@ -1,0 +1,85 @@
+{% extends "account/base.html" %}
+{%block bass%}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block content %}
+
+<div class="ui centered header"><h1>{% trans "Sign In" %}</h1></div>
+<div class="ui divider"></div>
+<div class="ui grid">
+    <div class="three wide column"></div>
+    <div class="four wide column">
+      {% get_providers as socialaccount_providers %}
+      <br><br>
+      {% if socialaccount_providers %}
+        <p>{% blocktrans with site.name as site_name %}Please sign in with one
+        of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+        for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+        <div class="socialaccount_ballot">
+
+          <ul class="socialaccount_providers">
+            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+          </ul>
+
+        </div>
+
+      {% include "socialaccount/snippets/login_extra.html" %}
+
+      {% else %}
+        <p>{% blocktrans %}If you have not created an account yet, then please
+        <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+      {% endif %}
+    </div>
+    <div class="two wide column"><div class="ui vertical divider">
+        or
+    </div></div>
+    <div class="one wide column"></div>
+    <div class="four wide column">
+    <form class="ui large form login" method="POST" action="{% url 'account_login' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button class="ui fluid large teal submit button primaryAction" type="submit">{% trans "Sign In" %}</button>
+      <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a> 
+    </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+  $('#id_login').keyup(function(event){
+    var element = $(this);
+    $.ajax({
+      type :'POST',
+      url :'/getifuser/',
+      data : {
+        'search_q' : element.val(),
+        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+      },
+      dataType : "json",
+      success: function(data){
+          if(data['data'] == true)
+          {
+            element.removeClass('correct');
+            element.addClass('error');
+          }
+          else{
+            element.removeClass('error');
+            element.addClass('correct');
+          }
+      },
+      error: function(rs, e){
+        element.removeClass('error');
+        element.removeClass('correct');
+      },
+
+
+    })
+
+  });
+</script>
+{% endblock %}
+{% endblock %}

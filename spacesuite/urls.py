@@ -33,6 +33,8 @@ urlpatterns = [
 	url(r'^varta/', video_chat_view, name='varta_chat'),
 	#temp
 	url(r'^temp/', temp_view, name="temp_view"),
+	#get if user exists with username or not
+	url(r'^getifuser/', get_if_user, name="get_if_user"),
 	#general profile settings
 	url(r'^settings/general/', general_info, name="general_info" ),
 	#all auth urls
