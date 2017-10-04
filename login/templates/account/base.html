@@ -1,12 +1,13 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en-US">
 	<head>
 		<title>
 			AsQ - Welcome
 		</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"/>
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-		<script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+		<link rel="stylesheet" href={% static 'sem/semantic.min.css' %} >
+    <link href="{% static 'sem/open-sans.css' %}" rel="stylesheet">
+		<script type="text/javascript" src={% static 'js/jquery-3.2.0.min.js' %}></script>
 		<style>
 
         label
@@ -30,7 +31,8 @@
         }
 
         .error{
-          	border: 1px solid #aa504f !important;
+          	border: 1px solid #FF3B30 !important;
+            color: #FF3B30 !important;
           	background-color: rgba(159,58,56,0.03) !important;
         } 
 
@@ -41,7 +43,8 @@
 
 
         .correct{
-          	border: 1px solid #2c662d !important;
+          	border: 1px solid #05AE0E !important;
+            color: #05AE0E !important;
           	background-color: rgba(	44, 102, 45,0.03) !important;
         }   
 
@@ -51,8 +54,8 @@
         } 
 
         .errorlist{
-        	color: #aa504f;
-        	border: 1px solid #aa504f;
+        	color: #FF3B30;
+        	border: 1px solid #FF3B30;
         	background-color: rgba(159,58,56,0.1);
         	border-radius: 4px;
         	padding: 0.7em;

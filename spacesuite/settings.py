@@ -25,7 +25,7 @@ SECRET_KEY = '^t^s%3w@=+k_)*y98i^y83_-r@5fv1e59d@v7p8!g4dbtoh)bi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 SOCIAL_AUTH_FACEBOOK_KEY = '1909808875929144'
 SOCIAL_AUTH_FACEBOOK_SECRET = '60e47322c1d39381de500da161216d76'
@@ -93,7 +93,7 @@ LOGIN_REDIRECT_URL = '/'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'ramlalfff@gmail.com'#email of sender
-EMAIL_HOST_PASSWORD = 'unbeaten'# password of sender
+EMAIL_HOST_PASSWORD = 'unbeaten1'# password of sender
 EMAIL_PORT = 587
 ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_AUTHENTICATION_METHOD ='username_email'
@@ -135,6 +135,7 @@ INSTALLED_APPS = [
     'draceditor',
     'crispy_forms',
     'braces',
+    'notification_channels.apps.NotificationChannelsConfig',
 ]
 
 SITE_ID = 1

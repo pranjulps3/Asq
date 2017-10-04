@@ -83,7 +83,8 @@ def video_chat_view(request):
 		html = render_to_string('login/varta_chat.html', {})
 	else:
 		html = "<h2>You are unauthorised!! Please, Sign up!!</h2>"
-	context['html']=html
+	context['html'] = html
+	print(html)
 	return HttpResponse(json.dumps(context), content_type = 'application/json')
 
 # Create your views here.
