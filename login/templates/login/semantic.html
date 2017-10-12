@@ -82,7 +82,7 @@
         }
 
 
-    
+
         img{
             width:80%;
             height: auto;
@@ -143,12 +143,12 @@
 
         .mylabel{
           margin-top: 1px !important;
-          background-color: #F44336 !important; 
-          opacity: 0.7 !important; 
+          background-color: #F44336 !important;
+          opacity: 0.7 !important;
           color: white !important;
         }
         .mylabel:hover{
-          opacity: 0.97 !important; 
+          opacity: 0.97 !important;
           transition: 0.15s ease-in !important;
         }
 
@@ -289,7 +289,7 @@
         <a href="/" class="item" style="padding-top: 2px; padding-bottom: 2px; margin-top: 0px; margin-bottom: 0px;margin-right: 0px">
           <img class="ui transparent tiny image" id="logo-asq" style="height: 3em; width: auto;" src={% static 'img/asq.png' %}/>
         </a>
-          
+
         <div class="ui dropdown item" id="dropdown">
           <i class="chevron down icon"></i>
           <div class="menu">
@@ -306,7 +306,7 @@
             <i class="inverted search link icon" ></i>
           </div>
         </div>
-      </div>     
+      </div>
 
       <div class="right menu">
         <a class="teal item" id='varta_chat' href="#" >
@@ -314,9 +314,9 @@
           <i class="record icon"></i><!-- Varta -->
         </a>
         <a class="teal item" >
-            <i class="alarm icon"></i> 
+            <i class="alarm icon"></i>
             <!-- <div class="ui teal left pointing label">
-              
+
             </div> -->
         </a>
           <!-- <a class="item">
@@ -336,7 +336,7 @@
         </div>
       </div>
     </div>
-  </div> 
+  </div>
 
     <br><br>
 <br>
@@ -364,30 +364,30 @@
               <div class="results" id="profile-results" >
               </div>
             </div>
-          </div>   
-                      
+          </div>
+
           <div class="image">
             {% if user.person.display_pic %}
               <img src="{{user.person.display_pic.url}}" style="display: inline;"/>
             {% else %}
               <img src= {% static 'img/dummy_user.png' %} style="display: inline;"/>
-            {% endif %} 
+            {% endif %}
           </div>
-                      
+
           <div class="ui content">
             <a class="header" href="{% url 'profile_view' request.user.id %}">
               {% if user.first_name %}
               {{ user.first_name }}&nbsp;{{ user.last_name }}
               {% else %}
               {{ user.username }}
-              {% endif %} 
+              {% endif %}
             </a>
 
             <div class="meta">
               <span class="date">Joined on {{ user.date_joined }}</span>
             </div>
 
-            
+
           </div>
 
           <div class="extra content">
@@ -396,7 +396,7 @@
               {{ user.person.followed_by.all.count }}&nbsp;follower{% if user.person.followed_by.all.count > 1 %}s{% endif %}
             </a>
           </div>
-        </div>          
+        </div>
       </div>
     </div>
 
@@ -425,11 +425,11 @@
           </div>
         </div>
       </div>
-      
-      
-      
+
+
+
       <div class="ui modal" style="padding: 0px;">
-        <i class="close icon"></i>  
+        <i class="close icon"></i>
       </div>
         <!-- <div class="ui top attached segment">
            don't act like its a bad thing to fall in love with me......
@@ -440,7 +440,7 @@
         </div> -->
 
 {% endif %}
-      
+
       {% block bass %}
       {% endblock %}
       {% block body %}
@@ -448,7 +448,7 @@
 
 {% if request.user.is_authenticated %}
       <div id="context">
-         
+
       </div>
     </div>
 
@@ -468,7 +468,7 @@
               <th style="background-color: #F5F5DC;padding: 7px;" colspan="1"><b>LOST</b></th>
             </tr>
           </thead>
-                    
+
           <tbody>
           {% load post_tags %}
           {% for item in litem %}
@@ -480,9 +480,9 @@
           </tbody>
         </table>
       </div>
-                
+
       <div id="style-1" style="max-height:280px;overflow-y: scroll; margin-top: 5px;">
-                  
+
         <table class="ui selectable single line compact fixed table" >
           <thead>
           <!--  <tr class = "ui inverted yellow top attched segment""><th colspan="2"><center><b> FOUND</b></center> </th></tr> -->
@@ -491,7 +491,7 @@
               <th style="background-color: #F5F5DC;padding: 7px;" colspan="1"><b>FOUND</b></th>
             </tr>
           </thead>
-                      
+
           <tbody>
           {% for item in fitem %}
             <tr>
@@ -507,7 +507,7 @@
     <div class="three wide column">
       <div class="ui rail" style="">
         <div class="ui sticky" style="background-color: white; height:100%; top: 7%; z-index: 0;">
-          <div class="ui dividing container">  
+          <div class="ui dividing container">
             <h4 class="ui centered header">Chat division</h4>
             <div class="ui container">
               YO
@@ -527,7 +527,7 @@
     $('.ui.modal').modal('show');
   });
 </script>
- 
+
     <script type="text/javascript">
 $('#sidenav').click(function(event){
     $('.ui.sidebar')
@@ -550,7 +550,7 @@ $('.ui.modal')
 <!-- <script type="text/javascript">
     $('.post-edit').click(function(event){
         var element = $(this);
-        $('.ui.modal').modal('show'); 
+        $('.ui.modal').modal('show');
         $.ajax({
                type: "POST",
                url: "/post/update/"+element.attr('data')+"/",
@@ -559,23 +559,23 @@ $('.ui.modal')
                success: function(response) {
                       if(response['data'])
                       {
-                      $('.ui.modal').html(response['html']); 
+                      $('.ui.modal').html(response['html']);
                       console.log($('.ui.modal').html());
                       // console.log('follow-'+element.attr('data'));
                       // document.getElementById('follow-'+element.attr('data')).style.color = 'red';
-                        
+
                         }
                         else
                         {
-                            $('.ui.modal').html("<h3>Something went wrong</h3>"); 
+                            $('.ui.modal').html("<h3>Something went wrong</h3>");
                             // console.log('follow-'+element.attr('data'));
                             // document.getElementById('follow-'+element.attr('data')).style.color = 'black';
-                            
+
                         }
 
                 },
                 error: function(rs, e) {
-                       $('.ui.modal').html("<h3>Request couldn't be parsed</h3>"); 
+                       $('.ui.modal').html("<h3>Request couldn't be parsed</h3>");
                 },
             });
     });
@@ -633,21 +633,21 @@ $('.profiles').click(function(){
                       element.html("<div class='ui purple labeled icon button'><i class='user icon'></i>unfollow</div>");
                       // console.log('follow-'+element.attr('data'));
                       // document.getElementById('follow-'+element.attr('data')).style.color = 'red';
-                        
+
                         }
                         else
                         {
                             element.html("<div class='ui basic purple labeled icon button'><i class='add user icon'></i>follow</div>");
                             // console.log('follow-'+element.attr('data'));
                             // document.getElementById('follow-'+element.attr('data')).style.color = 'black';
-                            
+
                         }
 
                 },
                 error: function(rs, e) {
                        alert("Something went wrong!")//rs.responseText);
                 }
-          }); 
+          });
     })
 
     </script>
@@ -692,7 +692,7 @@ $('.ui.emoji.label')
 $('.ui.emoji.button').click(function(event){
   var emoji = event.currentTarget;
   var element = event.currentTarget.parentElement.parentElement;
-  
+
   var elem = element.getElementsByClassName('comment-form-class').comment;
   // console.log(elem.value);
   if(elem)
@@ -766,7 +766,7 @@ $('#style-1').hover(function(){
                 error: function(rs, e) {
                        alert("Something went wrong!")//rs.responseText);
                 }
-          }); 
+          });
   },);
 </script>
 
@@ -819,7 +819,7 @@ $('.post').click(function(){
                 error: function(rs, e) {
                        alert(rs.responseText);
                 }
-          }); 
+          });
     })
 
 $('.post-delete').click(function(){
@@ -844,7 +844,7 @@ $('.post-delete').click(function(){
                 error: function(rs, e) {
                        alert(rs.responseText);
                 }
-          }); 
+          });
     }
     })
 
@@ -874,7 +874,7 @@ $('.answer').click(function(){
                 error: function(rs, e) {
                        alert(rs.responseText);
                 }
-          }); 
+          });
     })
 
 $('.answer-delete').click(function(){
@@ -900,7 +900,7 @@ $('.answer-delete').click(function(){
                 error: function(rs, e) {
                        alert(rs.responseText);
                 }
-          }); 
+          });
     }
     })
 
@@ -929,7 +929,7 @@ $('.question-delete').click(function(){
                 error: function(rs, e) {
                        alert(rs.responseText);
                 }
-          }); 
+          });
     }
     })
 
@@ -958,7 +958,7 @@ $(document).ready(function() {
                   for (var err in json['error']){
                     errors += "" + err + ": " + json['error'][err] + "\n"
                   }
-                  alert(errors)                      
+                  alert(errors)
                 }
                 else {
                   var oid = json['oid'];
@@ -982,9 +982,9 @@ $(document).ready(function() {
             error: function(response) {
               alert("error")
             }
-         });        
+         });
     });
-    
+
     // DELETE COMMENT //
     $('.comments-wrapper').on('click', '.comment-delete-btn', function(event) {
         event.preventDefault();
@@ -1066,7 +1066,7 @@ $(document).ready(function() {
         if($(this).attr('data-like') == 'like') {
           $('#like-btn-' + id).attr('data-like', 'liked');
                         $('#like-btn-' + id).html("<div class='like is_animating'></div>");
-                        
+
             $.ajax({
                 type: "GET",
                 url: '/comments/like',
@@ -1085,7 +1085,7 @@ $(document).ready(function() {
         } else {
            $('#like-btn-' + id).attr('data-like', 'like');
                         $('#like-btn-' + id).html("<div class='like'></div>");
-                        
+
             $.ajax({
                 type: "GET",
                 url: '/comments/unlike',
