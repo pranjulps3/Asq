@@ -4,21 +4,96 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.utils.timesince import timesince
 from django.utils import timezone
+from django.db.models.signals import post_save, pre_save, post_delete, m2m_changed
+from django.dispatch import receiver
+from django.conf import settings
 
-# Create your models here.
-#TODO: Activity stream needs non jumbled notifications. so remove generator's manytomany relation
-# add a single ForeignKey relation instead. Try and coupling up them in the views.
+
+class NotificationManager(models.Manager):
+
+	""" Create takes arguments of notification values and returns the notification object """
+
+	def create(self, **kwargs):
+		generator = kwargs.pop("generator", None)
+		target = kwargs.get("target", None)
+		action_obj = kwargs.get("action_obj", None)
+
+		""" Merge allows users to specify if a particular notification needs to be merged or not """
+
+		mergeable = generator and kwargs.pop("merge", True)
+
+		""" Notifications to a recipient will get merged when the action_obj, target and action_verb
+			all are same for the notifications. In the case of merge url and description for the more
+			recent notification will be ignored. """
+
+
+		if getattr(settings, "ALLOW_NOTIFICATION_MERGE", True) and mergeable:
+			try:
+				com_kwargs = kwargs
+				com_kwargs["action_obj_id"] = action_obj.id
+
+				if action_obj:
+					com_kwargs.pop("action_obj", None)
+					com_kwargs["action_obj_ctype"] = ContentType.objects.get_for_model(action_obj)
+				if target:
+					com_kwargs.pop("target", None)
+					com_kwargs["target_id"] = action_obj.id
+					com_kwargs["target_ctype"] = ContentType.objects.get_for_model(target)
+
+				notif = super(NotificationManager, self).get(**com_kwargs)
+			
+			except Exception as e:
+				notif = super(NotificationManager, self).create(**kwargs)
+
+		else:
+			notif = super(NotificationManager, self).create(**kwargs)
+
+		if generator:
+			notif.generator.add(generator)
+		notif.save()
+		return notif
+
+
+
+	""" Discard notification deletes the notification or removes the generator for the """
+	def discard(self, **kwargs):
+		generator = kwargs.pop("generator", None)
+		target = kwargs.pop("target", None)
+		action_obj = kwargs.pop("action_obj", None)
+
+		""" Notifications to a recipient will get merged when the action_obj, target and action_verb
+			all are same for the notifications. In the case of merge url and description for the more
+			recent notification will be ignored. """
+
+		if action_obj:
+			kwargs["action_obj_id"] = action_obj.id
+			kwargs["action_obj_ctype"] = ContentType.objects.get_for_model(action_obj)
+		if target:
+			kwargs["target_id"] = action_obj.id
+			kwargs["target_ctype"] = ContentType.objects.get_for_model(target)
+
+		notif = super(NotificationManager, self).get(**kwargs)
+
+		if getattr(settings, "ALLOW_NOTIFICATION_MERGE", True) and notif.generator.all().count()>1:
+			notif.generator.remove(generator)
+			notif.save()
+		else:
+			notif.delete()
+
+
+
+
 
 class Notification(models.Model):
 	""" Notification Fields """
 
 	""" Type can be used to group different types of notifications together """
-	Type = models.CharField(max_length=255, blank=True, null=True)
+	notif_type = models.CharField(max_length=255, blank=True, null=True)
 
 	recipient = models.ForeignKey(User, null=False, blank=False, related_name="notifications", on_delete=models.CASCADE)
 
 	""" Generator can be a single person in order to maintain activity stream for a user. """
-	generator = models.ForeignKey(User, related_name='activity_notifications', null=True, blank=True)
+	generator = models.ManyToManyField(User, related_name='activity_notifications', blank=True)
 
 	""" target of any type can create a notification """
 	target_ctype = models.ForeignKey(ContentType, related_name='related_notifications', blank=True, null=True, on_delete=models.CASCADE)
@@ -30,12 +105,6 @@ class Notification(models.Model):
 	action_obj_ctype = models.ForeignKey(ContentType, related_name='action_notifications', blank=True, null=True, on_delete=models.CASCADE)
 	action_obj_id = models.CharField(max_length=255, blank=True, null=True,)
 	action_obj = GenericForeignKey('action_obj_ctype', 'action_obj_id')
-
-	"""" Notification read or not """
-	read = models.BooleanField(default=False, blank=False)
-
-	""" Notification seen or not """
-	seen = models.BooleanField(default=False, blank=False)
 
 	""" Action verb is the activity that produced the notification
 		eg. <generator> commented on <action_obj>
@@ -50,19 +119,20 @@ class Notification(models.Model):
 
 	timestamp = models.DateTimeField(auto_now=True)
 
-	def __str__(self):
+	""" Managing creation and manipulation of model """
+	objects = NotificationManager()
 
+	def __str__(self):
 		timedlta = timesince(self.timestamp, timezone.now())
-		# count = self.generator.all().count()
-		# if count == 1:
-		# 	gen = self.generator.all()[0].username
-		# elif count == 2:
-		# 	gen = self.generator.all()[0].username + " and " + self.generator.all()[1].username
-		# elif count == 0:
-		# 	gen = ""
-		# else:
-		# 	gen = self.generator.all()[0].username + " , " + self.generator.all()[1].username + " and " + str(count-2) + " others"
-		gen = self.generator.username
+		count = self.generator.all().count()
+		if count == 1:
+			gen = self.generator.all()[0].username
+		elif count == 2:
+			gen = self.generator.all()[0].username + " and " + self.generator.all()[1].username
+		elif count == 0:
+			gen = ""
+		else:
+			gen = self.generator.all()[0].username + " , " + self.generator.all()[1].username + " and " + str(count-2) + " others"
 		fields = {
 			'recipient': self.recipient,
 			'generator': gen,
@@ -75,15 +145,75 @@ class Notification(models.Model):
 		if self.generator:
 			if self.action_obj:
 				if self.target:
-					return u'%(generator)s %(action_verb)s %(target)s %(action_obj)s %(timesince)s ago' % fields
+					return u'%(generator)s %(action_verb)s %(target)s on %(action_obj)s %(timesince)s ago' % fields
 				return u'%(generator)s %(action_verb)s %(action_obj)s %(timesince)s ago' % fields
 			return u'%(generator)s %(action_verb)s %(timesince)s ago' % fields
 
 		if self.action_obj:
 			if self.target:
-				return u'%(action_verb)s %(target)s %(action_obj)s %(timesince)s ago' % fields
+				return u'%(action_verb)s %(target)s on %(action_obj)s %(timesince)s ago' % fields
 			return u'%(action_verb)s %(action_obj)s %(timesince)s ago' % fields
 		return u'%(action_verb)s %(timesince)s ago' % fields
 
+	
 	def __unicode__(self):
 		return self.__str__(self)
+
+
+
+""" Activities are to keep track of user's activity for mergeable and non-mergeable notifications for notification generators """
+class Activity(models.Model):
+	user = models.ForeignKey(User, null=False, blank=False, related_name="activities", on_delete=models.CASCADE)
+	notification = models.ForeignKey(Notification, null=False, blank=False, related_name="activities", on_delete=models.CASCADE)
+	timestamp = models.DateTimeField(auto_now_add=True)
+
+	"""" Notification read or not """
+	read = models.BooleanField(default=False, blank=False)
+
+	""" Notification seen or not """
+	seen = models.BooleanField(default=False, blank=False)
+
+	def __str__(self):
+		return self.user.username+" "+self.user.__str__()
+
+	def __unicode__(self):
+		return __str__(self)
+
+
+from .models import Notification, Activity
+
+
+def sync_notif_add(notification, generators):
+	for user in generators:
+		try:
+			activity = Activity.objects.get(user = user, notification = notification)
+		except:
+			activity = Activity.objects.create(user=user, notification=notification)
+			activity.save()
+		if not activity:
+			activity = Activity.objects.create(user=user, notification=notification)
+			activity.save()
+
+
+def sync_notif_delete(notification, generators):
+	for activ in notification.activities.all():
+		if activ.user not in generators:
+			activ.delete()
+
+
+@receiver(m2m_changed, sender=Notification.generator.through)
+def create_activity(sender, instance, **kwargs):
+	generators = instance.generator.all()
+	sync_notif_delete(instance, generators)
+	sync_notif_add(instance, generators)
+	
+
+
+@receiver(post_delete, sender=Notification)
+def delete_activity(sender, instance, *args, **kwargs):
+	instance.activities.all().delete()
+
+
+@receiver(post_delete, sender=Activity)
+def remove_activity_trace(sender, instance, *args, **kwargs):
+	instance.notification.generator.remove(instance.user)
