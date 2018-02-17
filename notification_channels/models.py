@@ -217,7 +217,7 @@ class Activity(models.Model):
 	read = models.BooleanField(default=False, blank=False)
 
 	def __str__(self):
-		return self.user.username+" "+self.user.__str__()
+		return self.user.username+" - "+self.notification.__str__()
 
 	def __unicode__(self):
 		return __str__(self)

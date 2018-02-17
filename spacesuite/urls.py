@@ -26,7 +26,7 @@ app_name='home'
 
 
 urlpatterns = [
-
+	url(r'^notifications/', include('notification_channels.urls', namespace='notifications')),
 	#Home
 	url(r'^$', index, name='index'),
 	#semantic
