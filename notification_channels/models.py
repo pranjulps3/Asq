@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.db.models.signals import post_save, pre_save, post_delete, m2m_changed
 from django.dispatch import receiver
 from django.conf import settings
+from functools import reduce
 
 
 class NotificationManager(models.Manager):
@@ -41,7 +42,11 @@ class NotificationManager(models.Manager):
 					com_kwargs["target_ctype"] = ContentType.objects.get_for_model(target)
 
 				notif = super(NotificationManager, self).get(**com_kwargs)
-			
+
+				if generator and generator not in notif.generator.all():
+					notif.seen = False
+					notif.read = False
+
 			except Exception as e:
 				notif = super(NotificationManager, self).create(**kwargs)
 
@@ -61,10 +66,6 @@ class NotificationManager(models.Manager):
 		target = kwargs.pop("target", None)
 		action_obj = kwargs.pop("action_obj", None)
 
-		""" Notifications to a recipient will get merged when the action_obj, target and action_verb
-			all are same for the notifications. In the case of merge url and description for the more
-			recent notification will be ignored. """
-
 		if action_obj:
 			kwargs["action_obj_id"] = action_obj.id
 			kwargs["action_obj_ctype"] = ContentType.objects.get_for_model(action_obj)
@@ -77,15 +78,43 @@ class NotificationManager(models.Manager):
 		if getattr(settings, "ALLOW_NOTIFICATION_MERGE", True) and notif.generator.all().count()>1:
 			notif.generator.remove(generator)
 			notif.save()
-		else:
+			read_list = map(lambda x: x.read, notif.activities.all())
+			flag = True
+			for i in read_list:
+				if not i:
+					flag=False
+			notif.read = flag
+
+			seen_list = map(lambda x: x.seen, notif.activities.all())
+			flag = True
+			for i in seen_list:
+				if not i:
+					flag=False
+			notif.seen = flag
+
+			notif.save()
+		elif not generator and not notif.generator.all().count():
+			notif.delete()
+		elif generator and generator in notif.generator.all():
 			notif.delete()
 
+
+	def seen(self, seen=True):
+		queryset = super(NotificationManager, self).get_queryset()
+		queryset.update(seen=seen)
+		for qry in queryset:
+			qry.activities.all().update(seen=seen)
+
+	def read(self, read=True):
+		queryset = super(NotificationManager, self).get_queryset()
+		queryset.update(read=read)
+		for qry in queryset:
+			qry.activities.all().update(read=read)
 
 
 
 
 class Notification(models.Model):
-	""" Notification Fields """
 
 	""" Type can be used to group different types of notifications together """
 	notif_type = models.CharField(max_length=255, blank=True, null=True)
@@ -110,6 +139,12 @@ class Notification(models.Model):
 		eg. <generator> commented on <action_obj>
 			<description>
 		where 'commented on' is an action verb """
+
+	"""" Notification read or not """
+	read = models.BooleanField(default=False, blank=False)
+
+	""" Notification seen or not """
+	seen = models.BooleanField(default=False, blank=False)
 
 	action_verb = models.CharField(max_length=255, default="You recieved a notification.")
 	description = models.TextField(null=True, blank=True)
@@ -159,6 +194,14 @@ class Notification(models.Model):
 	def __unicode__(self):
 		return self.__str__(self)
 
+	def mark_seen(self, seen=True):
+		self.seen = seen
+		super(Notification, self).save()
+
+	def mark_read(self, read=True):
+		self.read = read
+		super(Notification, self).save()
+
 
 
 """ Activities are to keep track of user's activity for mergeable and non-mergeable notifications for notification generators """
@@ -167,11 +210,11 @@ class Activity(models.Model):
 	notification = models.ForeignKey(Notification, null=False, blank=False, related_name="activities", on_delete=models.CASCADE)
 	timestamp = models.DateTimeField(auto_now_add=True)
 
-	"""" Notification read or not """
-	read = models.BooleanField(default=False, blank=False)
-
 	""" Notification seen or not """
 	seen = models.BooleanField(default=False, blank=False)
+
+	"""" Notification read or not """
+	read = models.BooleanField(default=False, blank=False)
 
 	def __str__(self):
 		return self.user.username+" "+self.user.__str__()
