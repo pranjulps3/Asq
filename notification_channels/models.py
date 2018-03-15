@@ -19,13 +19,14 @@ class NotificationManager(models.Manager):
 		target = kwargs.get("target", None)
 		action_obj = kwargs.get("action_obj", None)
 
-		""" Merge allows users to specify if a particular notification needs to be merged or not """
+		""" Merge allows users to specify if a particular notification needs to be merged or not
+		"""
 
 		mergeable = generator and kwargs.pop("merge", True)
 
-		""" Notifications to a recipient will get merged when the action_obj, target and action_verb
-			all are same for the notifications. In the case of merge url and description for the more
-			recent notification will be ignored. """
+		""" Notifications to a recipient will get merged when the action_obj, target and 
+			action_verball are same for the notifications. In the case of merge url and 
+			description for the more recent notification will be ignored. """
 
 
 		if getattr(settings, "ALLOW_NOTIFICATION_MERGE", True) and mergeable:
@@ -119,19 +120,22 @@ class Notification(models.Model):
 	""" Type can be used to group different types of notifications together """
 	notif_type = models.CharField(max_length=255, blank=True, null=True)
 
-	recipient = models.ForeignKey(User, null=False, blank=False, related_name="notifications", on_delete=models.CASCADE)
+	recipient = models.ForeignKey(User, null=False, blank=False, related_name="notifications", 	\
+		on_delete=models.CASCADE)
 
 	""" Generator can be a single person in order to maintain activity stream for a user. """
 	generator = models.ManyToManyField(User, related_name='activity_notifications', blank=True)
 
 	""" target of any type can create a notification """
-	target_ctype = models.ForeignKey(ContentType, related_name='related_notifications', blank=True, null=True, on_delete=models.CASCADE)
+	target_ctype = models.ForeignKey(ContentType, related_name='related_notifications', 		\
+		blank=True, null=True, on_delete=models.CASCADE)
 	target_id = models.CharField(max_length=255, blank=True, null=True,)
-	target = GenericForeignKey('target_ctype', 'target_id') #change it to manytomany relation for merging similar notification
+	target = GenericForeignKey('target_ctype', 'target_id')
 
 	""" Action object can be of any type that's related to any certain notification
 		for eg. a notification like '<generator> liked your post' has post as action object """
-	action_obj_ctype = models.ForeignKey(ContentType, related_name='action_notifications', blank=True, null=True, on_delete=models.CASCADE)
+	action_obj_ctype = models.ForeignKey(ContentType, related_name='action_notifications',		\
+		blank=True, null=True, on_delete=models.CASCADE)
 	action_obj_id = models.CharField(max_length=255, blank=True, null=True,)
 	action_obj = GenericForeignKey('action_obj_ctype', 'action_obj_id')
 
@@ -149,7 +153,8 @@ class Notification(models.Model):
 	action_verb = models.CharField(max_length=255, default="You recieved a notification.")
 	description = models.TextField(null=True, blank=True)
 
-	""" Reference URL points to the web address the notification needs to redirect the recipient to """
+	""" Reference URL points to the web address the notification needs
+	    to redirect the recipient to """
 	reference_url = models.CharField(max_length=1023, blank=True, null=True, default="#")
 
 	timestamp = models.DateTimeField(auto_now=True)
@@ -167,7 +172,8 @@ class Notification(models.Model):
 		elif count == 0:
 			gen = ""
 		else:
-			gen = self.generator.all()[0].username + " , " + self.generator.all()[1].username + " and " + str(count-2) + " others"
+			gen = self.generator.all()[0].username + " , " + self.generator.all()[1].username + \
+			 " and " + str(count-2) + " others"
 		fields = {
 			'recipient': self.recipient,
 			'generator': gen,
@@ -180,7 +186,8 @@ class Notification(models.Model):
 		if self.generator:
 			if self.action_obj:
 				if self.target:
-					return u'%(generator)s %(action_verb)s %(target)s on %(action_obj)s %(timesince)s ago' % fields
+					return u'%(generator)s %(action_verb)s %(target)s on %(action_obj)s'
+							'%(timesince)s ago' % fields
 				return u'%(generator)s %(action_verb)s %(action_obj)s %(timesince)s ago' % fields
 			return u'%(generator)s %(action_verb)s %(timesince)s ago' % fields
 
@@ -204,10 +211,13 @@ class Notification(models.Model):
 
 
 
-""" Activities are to keep track of user's activity for mergeable and non-mergeable notifications for notification generators """
+""" Activities are to keep track of user's activity for mergeable and 
+	non-mergeable notifications for notification generators """
 class Activity(models.Model):
-	user = models.ForeignKey(User, null=False, blank=False, related_name="activities", on_delete=models.CASCADE)
-	notification = models.ForeignKey(Notification, null=False, blank=False, related_name="activities", on_delete=models.CASCADE)
+	user = models.ForeignKey(User, null=False, blank=False, related_name="activities", 			\
+		on_delete=models.CASCADE)
+	notification = models.ForeignKey(Notification, null=False, blank=False, 					\
+		related_name="activities", on_delete=models.CASCADE)
 	timestamp = models.DateTimeField(auto_now_add=True)
 
 	""" Notification seen or not """
@@ -223,7 +233,19 @@ class Activity(models.Model):
 		return __str__(self)
 
 
-from .models import Notification, Activity
+class PushSubscriptionInfo(models.Model):
+	browser_id = models.CharField(max_length=255, unique=True)
+	user = models.ForeignKey(User, related_name="push_abscription")
+	end_point = models.CharField(max_length=255)
+	auth = models.CharField(max_length=255)
+	p256dh = models.CharField(max_length=255)
+
+	def __str__(self):
+		return self.user.username + "- " + self.browser_id
+
+	def __unicode__(self):
+		return self.__str__(self)
+
 
 
 def sync_notif_add(notification, generators):

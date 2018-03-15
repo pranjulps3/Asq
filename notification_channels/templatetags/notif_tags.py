@@ -20,25 +20,29 @@ def get_notif_count(user):
 @register.simple_tag(name='get_related_notifs')
 def get_related_notifs(obj):
 	obj_ctype = ContentType.objects.get_for_model(obj)
-	return Notification.objects.filter(target_ctype=obj_ctype, target_id=obj.id).order_by("-timestamp")
+	return Notification.objects.filter(target_ctype=obj_ctype, 									\
+		target_id=obj.id).order_by("-timestamp")
 
 
 @register.simple_tag(name='get_action_notifs')
 def get_action_notifs(obj):
 	obj_ctype = ContentType.objects.get_for_model(obj)
-	return Notification.objects.filter(action_obj_ctype=obj_ctype, action_obj_id=obj.id).order_by("-timestamp")
+	return Notification.objects.filter(action_obj_ctype=obj_ctype, 								\
+		action_obj_id=obj.id).order_by("-timestamp")
 
 
 @register.simple_tag(name='get_user_action_notifs')
 def get_user_action_notifs(user, obj):
 	obj_ctype = ContentType.objects.get_for_model(obj)
-	return Notification.objects.filter(recipient=user, action_obj_ctype=obj_ctype, action_obj_id=obj.id).order_by("-timestamp")
+	return Notification.objects.filter(recipient=user, action_obj_ctype=obj_ctype, 				\
+		action_obj_id=obj.id).order_by("-timestamp")
 
 
 @register.simple_tag(name='get_user_related_notifs')
 def get_user_related_notifs(user, obj):
 	obj_ctype = ContentType.objects.get_for_model(obj)
-	return Notification.objects.filter(recipient=user, target_ctype=obj_ctype, target_id=obj.id).order_by("-timestamp")
+	return Notification.objects.filter(recipient=user, target_ctype=obj_ctype, 					\
+		target_id=obj.id).order_by("-timestamp")
 
 
 def unread_notifs(user):
