@@ -186,7 +186,7 @@ class Notification(models.Model):
 		if self.generator:
 			if self.action_obj:
 				if self.target:
-					return u'%(generator)s %(action_verb)s %(target)s on %(action_obj)s'
+					return u'%(generator)s %(action_verb)s %(target)s on %(action_obj)s'		\
 							'%(timesince)s ago' % fields
 				return u'%(generator)s %(action_verb)s %(action_obj)s %(timesince)s ago' % fields
 			return u'%(generator)s %(action_verb)s %(timesince)s ago' % fields

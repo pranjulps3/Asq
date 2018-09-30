@@ -229,6 +229,6 @@ USE_TZ = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 STATIC_URL = '/static/'
-STATIC_ROOT = 'D:\GitHub\spacesuite\login\static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
